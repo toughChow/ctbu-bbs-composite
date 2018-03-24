@@ -70,7 +70,7 @@ spring:
             mail.smtp.starttls.enable: true
             mail.smtp.starttls.required: true
 
-#site.store.root: /data/smartlamp
-#site.store.repo: relative
-#site.store.domain: false
-#site.store.host: http://localhost:8000/smartlamp
+site.store.root: /data/ctbubbs
+site.store.repo: relative
+site.store.domain: false
+site.store.host: http://localhost:8000/smartlamp

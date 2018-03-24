@@ -8,6 +8,10 @@
     </parent>
     <artifactId>bbs-core</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>edu.ctbu.bbs</groupId>
+            <artifactId>bbs-base</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>bbs-core</finalName>

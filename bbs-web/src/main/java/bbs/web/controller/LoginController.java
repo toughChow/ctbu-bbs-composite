@@ -10,6 +10,6 @@ public class LoginController {
     @RequestMapping("/test")
 //    @ResponseBody
     public String test(){
-        return "/temp";
+        return "/index";
     }
 }

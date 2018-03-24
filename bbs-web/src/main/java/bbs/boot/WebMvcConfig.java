@@ -1,6 +1,6 @@
 package bbs.boot;
 
-import bbs.interceptor.BaseInterceptor;
+import bbs.web.interceptor.BaseInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
