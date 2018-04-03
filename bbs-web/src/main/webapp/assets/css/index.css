@@ -1,0 +1,13 @@
+.index_main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.index_main .nav-wrapper .navbar-inner {
+    border-radius: unset;
+    /*line-height: 50px;*/
+}
+.index_main .nav-wrapper .navbar-inner .container-fluid {
+    padding: 0 90px;
+    vertical-align: middle;
+}

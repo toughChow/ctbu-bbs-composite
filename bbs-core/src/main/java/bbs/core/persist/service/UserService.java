@@ -9,4 +9,6 @@ public interface UserService {
     User getByUsername(String username);
 
     AccountProfile login(String username, String s);
+
+    User register(User post);
 }

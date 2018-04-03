@@ -95,4 +95,8 @@ public interface Consts {
     String EMAIL_TEMPLATE_BIND = "bind.vm";
 
     int LOGIN_REMEMBER_ME = 1;
+
+
+    int USER_ENABLED = 0; // 启动
+    int USER_DISABLED = 1; // 禁用
 }

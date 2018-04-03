@@ -7,10 +7,12 @@ import bbs.core.persist.dao.UserDao;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.UserService;
 import bbs.core.persist.utils.BeanMapUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,5 +71,33 @@ public class UserServiceImpl implements UserService {
         userPO.setLastLogin(Calendar.getInstance().getTime());
         userDao.save(userPO);
         return BeanMapUtils.copyPassport(userPO);
+    }
+
+    @Override
+    @Transactional
+    public User register(User user) {
+        Assert.notNull(user, "Parameter user can not be null!");
+
+        Assert.hasLength(user.getUsername(), "用户名不能为空!");
+        Assert.hasLength(user.getPassword(), "密码不能为空!");
+
+        UserPO check = userDao.findByUsername(user.getUsername());
+
+        Assert.isNull(check, "用户名已经存在!");
+
+//        if (StringUtils.isNotBlank(user.getEmail())) {
+//            check = userDao.findByEmail(user.getEmail());
+//            Assert.isNull(check, "邮箱已经被注册!");
+//        }
+
+        UserPO userPO = new UserPO();
+        BeanUtils.copyProperties(user, userPO);
+        userPO.setPassword(DigestUtils.sha1Hex(user.getPassword()));
+        userPO.setStatus(Consts.USER_ENABLED);
+        userPO.setActiveEmail(Consts.USER_ENABLED);
+        userPO.setCreated(Calendar.getInstance().getTime());
+        userDao.save(userPO);
+
+        return BeanMapUtils.copy(userPO, 0);
     }
 }
