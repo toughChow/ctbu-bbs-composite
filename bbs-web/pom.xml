@@ -15,6 +15,17 @@
             <groupId>edu.ctbu.bbs</groupId>
             <artifactId>bbs-core</artifactId>
         </dependency>
+
+        <!-- shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>bbs-web</finalName>

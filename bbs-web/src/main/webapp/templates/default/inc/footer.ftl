@@ -23,8 +23,8 @@
 		<span>${site_copyright} <a
                 href="http://www.miitbeian.gov.cn/" target="_blank">${site_icp}</a>
 		</span>
-        <span class="pull-right">Powered By <a href="http://smartlamp.com/?copyright"
-                                               target="_blank">smartlamp</a></span>
+        <span class="pull-right">Powered By <a href="http://www.mingairui.org"
+                                               target="_blank">toughChow</a></span>
     </div>
 
 </footer>
