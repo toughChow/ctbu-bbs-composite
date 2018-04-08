@@ -1,0 +1,46 @@
+#toregister:target ~ #wrapper #register,
+#tologin:target ~ #wrapper #login {
+    z-index: 22;
+    -webkit-animation-delay: .6s;
+    -webkit-animation-timing-function: ease-in;
+    -moz-animation-delay: .6s;
+    -moz-animation-timing-function: ease-in;
+    -o-animation-delay: .6s;
+    -o-animation-timing-function: ease-in;
+    -ms-animation-delay: .6s;
+    -ms-animation-timing-function: ease-in;
+    animation-delay: .6s;
+    animation-timing-function: ease-in;
+    -webkit-animation-name: scaleIn;
+    -moz-animation-name: scaleIn;
+    -ms-animation-name: scaleIn;
+    -o-animation-name: scaleIn;
+    animation-name: scaleIn;
+}
+
+#toregister:target ~ #wrapper #login,
+#tologin:target ~ #wrapper #register {
+    -webkit-animation-timing-function: ease-out;
+    -moz-animation-timing-function: ease-out;
+    -o-animation-timing-function: ease-out;
+    -ms-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    -webkit-animation-name: scaleOut;
+    -moz-animation-name: scaleOut;
+    -ms-animation-name: scaleOut;
+    -o-animation-name: scaleOut;
+    animation-name: scaleOut;
+}
+
+.animate {
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-duration: 0.5s;
+    -moz-animation-fill-mode: both;
+    -o-animation-duration: 0.5s;
+    -o-animation-fill-mode: both;
+    -ms-animation-duration: 0.5s;
+    -ms-animation-fill-mode: both;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}

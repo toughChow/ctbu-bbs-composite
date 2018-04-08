@@ -4,7 +4,9 @@ import bbs.base.context.Global;
 import bbs.template.DirectiveHandler;
 import bbs.template.TemplateDirective;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ResourceDirective extends TemplateDirective {
     @Override
     public String getName() {

@@ -102,43 +102,43 @@ public class ShiroConfig {
         hashMap.put("/post/**", "user");
         hashMap.put("/account/**", "user");
 
-        hashMap.put("/admin", "authc,perms[admin]");
-        hashMap.put("/admin/", "authc,perms[admin]");
-        hashMap.put("/admin/index", "authc,perms[admin]");
-        hashMap.put("/admin/monitor", "authc,perms[monitor:view]");
-
-        /*用户管理*/
-        hashMap.put("/admin/users/**", "authc,perms[users:view]");
-        hashMap.put("/admin/users/update**", "authc,perms[users:edit]");
-        hashMap.put("/admin/users/pwd**", "authc,perms[users:edit]");
-
-        /*控制器管理*/
-        hashMap.put("/admin/control/**", "authc,perms[control:view]");
-
-        /*维修管理*/
-        hashMap.put("/admin/repair/**", "authc,perms[repair:view]");
-
-        /*监控管理*/
-        hashMap.put("/admin/monitor/**", "authc,perms[monitor:view]");
-
-        /*应急管理*/
-        hashMap.put("/admin/contingency/**", "authc,perms[contingency:view]");
-
-        /*消息中心*/
-        hashMap.put("/admin/message/**", "authc,perms[message:view]");
-
-        /*统计分析*/
-        hashMap.put("/admin/statistics/**", "authc,perms[statistics:view]");
-
-        /*角色管理*/
-        hashMap.put("/admin/roles/list", "authc,perms[roles:view]");
-        hashMap.put("/admin/roles/save", "authc,perms[roles:edit]");
-        hashMap.put("/admin/roles/view", "authc,perms[roles:edit]");
-
-        /*菜单管理*/
-        hashMap.put("/admin/authMenus/list", "authc,perms[authMenus:view]");
-        hashMap.put("/admin/authMenus/save", "authc,perms[authMenus:edit]");
-        hashMap.put("/admin/authMenus/view", "authc,perms[authMenus:edit]");
+        hashMap.put("/admin", "authc,perms[AdminController]");
+        hashMap.put("/admin/", "authc,perms[AdminController]");
+        hashMap.put("/admin/index", "authc,perms[AdminController]");
+//        hashMap.put("/AdminController/monitor", "authc,perms[monitor:view]");
+//
+//        /*用户管理*/
+//        hashMap.put("/AdminController/users/**", "authc,perms[users:view]");
+//        hashMap.put("/AdminController/users/update**", "authc,perms[users:edit]");
+//        hashMap.put("/AdminController/users/pwd**", "authc,perms[users:edit]");
+//
+//        /*控制器管理*/
+//        hashMap.put("/AdminController/control/**", "authc,perms[control:view]");
+//
+//        /*维修管理*/
+//        hashMap.put("/AdminController/repair/**", "authc,perms[repair:view]");
+//
+//        /*监控管理*/
+//        hashMap.put("/AdminController/monitor/**", "authc,perms[monitor:view]");
+//
+//        /*应急管理*/
+//        hashMap.put("/AdminController/contingency/**", "authc,perms[contingency:view]");
+//
+//        /*消息中心*/
+//        hashMap.put("/AdminController/message/**", "authc,perms[message:view]");
+//
+//        /*统计分析*/
+//        hashMap.put("/AdminController/statistics/**", "authc,perms[statistics:view]");
+//
+//        /*角色管理*/
+//        hashMap.put("/AdminController/roles/list", "authc,perms[roles:view]");
+//        hashMap.put("/AdminController/roles/save", "authc,perms[roles:edit]");
+//        hashMap.put("/AdminController/roles/view", "authc,perms[roles:edit]");
+//
+//        /*菜单管理*/
+//        hashMap.put("/AdminController/authMenus/list", "authc,perms[authMenus:view]");
+//        hashMap.put("/AdminController/authMenus/save", "authc,perms[authMenus:edit]");
+//        hashMap.put("/AdminController/authMenus/view", "authc,perms[authMenus:edit]");
 
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;

@@ -85,10 +85,10 @@ public class UserServiceImpl implements UserService {
 
         Assert.isNull(check, "用户名已经存在!");
 
-//        if (StringUtils.isNotBlank(user.getEmail())) {
-//            check = userDao.findByEmail(user.getEmail());
-//            Assert.isNull(check, "邮箱已经被注册!");
-//        }
+        if (StringUtils.isNotBlank(user.getEmail())) {
+            check = userDao.findByEmail(user.getEmail());
+            Assert.isNull(check, "邮箱已经被注册!");
+        }
 
         UserPO userPO = new UserPO();
         BeanUtils.copyProperties(user, userPO);

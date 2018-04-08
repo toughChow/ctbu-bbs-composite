@@ -4,7 +4,7 @@ package bbs.web.controller.desk;
 public interface Views {
     String REDIRECT_HOME = "redirect:/home";
 
-    String REDIRECT_ADMIN = "redirect:/admin";
+    String REDIRECT_ADMIN = "redirect:/AdminController";
 
     String LOGIN = "/login";
     String REG = "/reg";

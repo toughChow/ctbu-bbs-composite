@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface UserDao extends JpaRepository<UserPO, Long>, JpaSpecificationExecutor<UserPO>{
 
     UserPO findByUsername(String username);
+
+    UserPO findByEmail(String email);
 }
