@@ -14,7 +14,7 @@ import java.util.List;
 public class UserPO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "USERNAME", unique = true, length = 64)
     private String username;
@@ -29,10 +29,10 @@ public class UserPO {
     private String nickname;
 
     @Column(name = "GENDER")
-    private int gender;
+    private Integer gender;
 
     @Column(name = "IS_ADMIN")
-    private int isAdmin;
+    private Integer isAdmin;
 
     @Column(name = "EMAIL", unique = true, length = 128)
     private String email;
@@ -54,25 +54,30 @@ public class UserPO {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private List<RolePO> roles = new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name = "T_PUB_COLLECT_PAGE", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "POST_ID")})
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private List<PostPO> posts = new ArrayList<>();
+
     @Column(name = "ACTIVE_EMAIL")
-    private int activeEmail;
+    private Integer activeEmail;
 
     @Column(name = "STATUS")
-    private int status;
+    private Integer status;
 
     public UserPO() {
 
     }
 
-    public UserPO(long id) {
+    public UserPO(Long id) {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -90,6 +95,38 @@ public class UserPO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    public Integer getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public String getEmail() {
@@ -116,60 +153,12 @@ public class UserPO {
         this.created = created;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
     public Date getLastLogin() {
         return lastLogin;
     }
 
     public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public List<RolePO> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RolePO> roles) {
-        this.roles = roles;
-    }
-
-    public int getActiveEmail() {
-        return activeEmail;
-    }
-
-    public void setActiveEmail(int activeEmail) {
-        this.activeEmail = activeEmail;
     }
 
     public String getSignature() {
@@ -180,11 +169,35 @@ public class UserPO {
         this.signature = signature;
     }
 
-    public int getIsAdmin() {
-        return isAdmin;
+    public List<RolePO> getRoles() {
+        return roles;
     }
 
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setRoles(List<RolePO> roles) {
+        this.roles = roles;
+    }
+
+    public Integer getActiveEmail() {
+        return activeEmail;
+    }
+
+    public void setActiveEmail(Integer activeEmail) {
+        this.activeEmail = activeEmail;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public List<PostPO> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<PostPO> posts) {
+        this.posts = posts;
     }
 }

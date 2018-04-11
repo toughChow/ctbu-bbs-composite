@@ -4,23 +4,25 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "T_PUB_GROUP")
+@Table(name = "T_PUB_PLATE")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class GroupPO {
+public class PlatePO {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "PLATE_NAME")
     private String name;
 
-    @Column(name = "KEY_", unique = true)
-    private String key;
+    @Column(name = "PLATE_CREATOR")
+    private String creator;
 
-    @Column(name = "STATUS")
-    private Integer status;
+    @Column(name = "CREATE_TIME")
+    private Timestamp creatTime;
 
     public Long getId() {
         return id;
@@ -38,19 +40,19 @@ public class GroupPO {
         this.name = name;
     }
 
-    public String getKey() {
-        return key;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Timestamp getCreatTime() {
+        return creatTime;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setCreatTime(Timestamp creatTime) {
+        this.creatTime = creatTime;
     }
 }

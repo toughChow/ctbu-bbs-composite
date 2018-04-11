@@ -16,7 +16,7 @@ public class AuthMenuPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "NAME")
     private String name;
@@ -25,13 +25,13 @@ public class AuthMenuPO {
     private String url;
 
     @Column(name = "SORT")
-    private int sort;
+    private Integer sort;
 
     @Column(name = "PERMISSION")
     private String permission;
 
     @Column(name = "PARENT_ID")
-    private long parentId;
+    private Long parentId;
 
     @Column(name = "PARENT_IDS")
     private String parentIds;
@@ -47,11 +47,11 @@ public class AuthMenuPO {
     @Transient
     private List<AuthMenuPO> children = new ArrayList<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -71,19 +71,11 @@ public class AuthMenuPO {
         this.url = url;
     }
 
-    public List<RolePO> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RolePO> roles) {
-        this.roles = roles;
-    }
-
-    public int getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(int sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 
@@ -95,20 +87,20 @@ public class AuthMenuPO {
         this.permission = permission;
     }
 
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
     public String getParentIds() {
         return parentIds;
     }
 
     public void setParentIds(String parentIds) {
         this.parentIds = parentIds;
-    }
-
-    public List<AuthMenuPO> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<AuthMenuPO> children) {
-        this.children = children;
     }
 
     public String getIcon() {
@@ -119,11 +111,19 @@ public class AuthMenuPO {
         this.icon = icon;
     }
 
-    public long getParentId() {
-        return parentId;
+    public List<RolePO> getRoles() {
+        return roles;
     }
 
-    public void setParentId(long parentId) {
-        this.parentId = parentId;
+    public void setRoles(List<RolePO> roles) {
+        this.roles = roles;
+    }
+
+    public List<AuthMenuPO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<AuthMenuPO> children) {
+        this.children = children;
     }
 }
