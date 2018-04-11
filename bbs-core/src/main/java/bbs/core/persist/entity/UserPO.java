@@ -46,8 +46,17 @@ public class UserPO {
     @Column(name = "LAST_LOGIN")
     private Date lastLogin;
 
+    @Column(name="USER_IP")
+    private String user_ip;
+
     @Column(name = "SIGNATURE")
     private String signature;
+
+    @Column(name = "ACTIVE_EMAIL")
+    private Integer activeEmail;
+
+    @Column(name = "STATUS")
+    private Integer status;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "T_PUB_USER_ROLE", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
@@ -58,12 +67,6 @@ public class UserPO {
     @JoinTable(name = "T_PUB_COLLECT_PAGE", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "POST_ID")})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private List<PostPO> posts = new ArrayList<>();
-
-    @Column(name = "ACTIVE_EMAIL")
-    private Integer activeEmail;
-
-    @Column(name = "STATUS")
-    private Integer status;
 
     public UserPO() {
 
@@ -199,5 +202,13 @@ public class UserPO {
 
     public void setPosts(List<PostPO> posts) {
         this.posts = posts;
+    }
+
+    public String getUser_ip() {
+        return user_ip;
+    }
+
+    public void setUser_ip(String user_ip) {
+        this.user_ip = user_ip;
     }
 }

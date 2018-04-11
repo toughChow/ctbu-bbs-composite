@@ -100,4 +100,12 @@ public class UserServiceImpl implements UserService {
 
         return BeanMapUtils.copy(userPO, 0);
     }
+
+    @Override
+    public boolean findUserByMobile(String phone) {
+        UserPO userPO = userDao.findByMobile(phone);
+        if(userPO != null)
+            return true; // this phone exist
+        return false;
+    }
 }

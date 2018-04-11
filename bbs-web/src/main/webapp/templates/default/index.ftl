@@ -72,9 +72,9 @@
                                             <@shiro.hasPermission name="admin">
                                                 <li><a href="${base}/admin">后台管理</a></li>
                                             </@shiro.hasPermission>
-                                            <@shiro.hasPermission name="user">
+                                            <#--<@shiro.hasPermission name="user">-->
                                                 <li><a href="${base}/admin">个人账户</a></li>
-                                            </@shiro.hasPermission>
+                                            <#--</@shiro.hasPermission>-->
 
                                             <li><a href="${base}/logout">退出</a></li>
                                         </ul>

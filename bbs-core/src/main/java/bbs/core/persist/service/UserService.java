@@ -11,4 +11,6 @@ public interface UserService {
     AccountProfile login(String username, String s);
 
     User register(User post);
+
+    boolean findUserByMobile(String phone);
 }
