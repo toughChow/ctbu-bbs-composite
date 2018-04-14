@@ -71,7 +71,7 @@ public class LoginController extends BaseController{
 //                user.setUser_ip(v4IP);
 //                userService.updateUser(user);
 //            }
-            redirectUrl = Views.INDEX;
+            redirectUrl = "redirect:/index";
         } catch (AuthenticationException e) {
             if (e instanceof UnknownAccountException) {
                 modelMap.put("message", "账户不存在");

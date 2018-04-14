@@ -44,4 +44,5 @@ public class Group implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

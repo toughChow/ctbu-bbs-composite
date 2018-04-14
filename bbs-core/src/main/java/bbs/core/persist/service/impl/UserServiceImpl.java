@@ -2,8 +2,12 @@ package bbs.core.persist.service.impl;
 
 import bbs.base.lang.Consts;
 import bbs.core.data.AccountProfile;
+import bbs.core.data.AuthMenu;
+import bbs.core.data.Group;
 import bbs.core.data.User;
+import bbs.core.persist.dao.AuthMenuDao;
 import bbs.core.persist.dao.UserDao;
+import bbs.core.persist.entity.AuthMenuPO;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.UserService;
 import bbs.core.persist.utils.BeanMapUtils;
@@ -14,17 +18,29 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private AuthMenuDao authMenuDao;
 
     @Override
     public AccountProfile getProfileByName(String username) {
@@ -46,7 +62,7 @@ public class UserServiceImpl implements UserService {
     public User getByUsername(String username) {
         UserPO userPO = userDao.findByUsername(username);
         User user = null;
-        if(userPO != null) {
+        if (userPO != null) {
             user = BeanMapUtils.copy(userPO, 1);
         }
         return user;
@@ -104,8 +120,55 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean findUserByMobile(String phone) {
         UserPO userPO = userDao.findByMobile(phone);
-        if(userPO != null)
+        if (userPO != null)
             return true; // this phone exist
         return false;
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<User> findUserPaging(Pageable pageable, String key) {
+        Page<UserPO> page
+                = userDao.findAll((Root<UserPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb) -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    if (StringUtils.isNotBlank(key)) {
+                        List<Predicate> subPredicates = new ArrayList<>();
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("username"), tag));
+                        subPredicates.add(cb.like(root.get("nickname"), tag));
+                        subPredicates.add(cb.like(root.get("mobile"), tag));
+                        predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+                    }
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, pageable
+        );
+
+        List<User> users = new ArrayList<>();
+        for (UserPO po : page.getContent()) {
+            User user = BeanMapUtils.copy(po, 1);
+            users.add(user);
+        }
+
+        return new PageImpl<>(users, pageable, page.getTotalElements());
+    }
+
+    @Override
+    public Page<Group> findGroupPaging(Pageable pageable, String key) {
+        return null;
+    }
+
+    @Override
+    public List<AuthMenu> findAllMenus() {
+        List<AuthMenuPO> authMenuPOS = authMenuDao.findAll();
+        List<AuthMenu> authMenus = new ArrayList<>();
+        authMenuPOS.forEach(authMenuPO -> {
+            AuthMenu authMenu = new AuthMenu();
+            if(authMenuPO.getSort() != 0) {
+                BeanUtils.copyProperties(authMenuPO, authMenu, new String[]{"permission", "parentIds", "icon"});
+                authMenus.add(authMenu);
+            }
+        });
+        return authMenus;
+    }
+
 }

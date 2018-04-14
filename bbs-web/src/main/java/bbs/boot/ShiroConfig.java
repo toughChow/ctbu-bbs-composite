@@ -97,18 +97,18 @@ public class ShiroConfig {
         Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/assets/**", "anon");
         hashMap.put("/login", "anon");
-        hashMap.put("/home*", "user");
-        hashMap.put("/home/**", "user");
-        hashMap.put("/post/**", "user");
-        hashMap.put("/account/**", "user");
+//        hashMap.put("/home*", "user");
+//        hashMap.put("/home/**", "user");
+//        hashMap.put("/post/**", "user");
+//        hashMap.put("/account/**", "user");
 
-        hashMap.put("/admin", "authc,perms[AdminController]");
-        hashMap.put("/admin/", "authc,perms[AdminController]");
-        hashMap.put("/admin/index", "authc,perms[AdminController]");
+        hashMap.put("/admin", "authc,perms[admin]");
+        hashMap.put("/admin/", "authc,perms[admin]");
+        hashMap.put("/admin/index", "authc,perms[admin]");
 //        hashMap.put("/AdminController/monitor", "authc,perms[monitor:view]");
-//
-//        /*用户管理*/
-//        hashMap.put("/AdminController/users/**", "authc,perms[users:view]");
+
+        /*用户管理*/
+        hashMap.put("/AdminController/users/**", "authc,perms[users:view]");
 //        hashMap.put("/AdminController/users/update**", "authc,perms[users:edit]");
 //        hashMap.put("/AdminController/users/pwd**", "authc,perms[users:edit]");
 //
