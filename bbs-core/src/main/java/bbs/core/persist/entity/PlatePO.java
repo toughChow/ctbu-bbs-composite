@@ -24,6 +24,12 @@ public class PlatePO {
     @Column(name = "CREATE_TIME")
     private Timestamp creatTime;
 
+    @Column(name = "PARENT_ID")
+    private Long parentId;
+
+    @Column(name = "STATUS")
+    private Integer status;
+
     public Long getId() {
         return id;
     }
@@ -54,5 +60,21 @@ public class PlatePO {
 
     public void setCreatTime(Timestamp creatTime) {
         this.creatTime = creatTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

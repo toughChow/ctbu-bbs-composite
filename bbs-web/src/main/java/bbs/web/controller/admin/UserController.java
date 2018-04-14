@@ -1,16 +1,20 @@
 package bbs.web.controller.admin;
 
 import bbs.core.data.AuthMenu;
+import bbs.core.persist.service.AuthMenuService;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,6 +23,11 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthMenuService authMenuService;
+
+    List<AuthMenu>  authMenuOnly = new ArrayList<>(); // 装生成节点树容器
 
     @GetMapping("/list")
     public String list(ModelMap model, String key, Integer pn) {
@@ -44,7 +53,52 @@ public class UserController extends BaseController {
     @RequestMapping("/getAllMenus")
     @ResponseBody
     public List<AuthMenu> getAllMenus(Integer pn){
-        List<AuthMenu> menus = userService.findAllMenus();
+        List<AuthMenu> menus = authMenuService.findAllMenu();
         return menus;
     }
+
+    /**
+     * toughchow
+     *
+     * @param pid
+     * @return
+     */
+    @GetMapping(value = {"/menu/add/pid/{pid}", "/menu/add"})
+    public String toAdd(@PathVariable(value = "pid", required = false) Long pid, ModelMap model) {
+        if(!authMenuOnly.isEmpty()){
+            authMenuOnly.clear();
+        }
+        List<AuthMenu> authMenuTmp = authMenuService.findAllMenu();
+        List<AuthMenu> authMenus = getRegionTree(authMenuTmp, 0L);
+        model.put("authMenus", authMenus);
+        if (pid != null) {
+            AuthMenu authMenu = authMenuService.get(pid);
+            model.put("authMenu", authMenu);
+        }
+        return "/admin/users/addMenu";
+    }
+
+    private List<AuthMenu> getRegionTree(List<AuthMenu> menus, Long parentId){
+        for(int i = 0; i < menus.size(); i ++) {
+            if(menus.get(i).getParentId() == parentId) {
+                authMenuOnly.add(menus.get(i));
+                getRegionTree(menus, menus.get(i).getId());
+            }
+        }
+        return authMenuOnly;
+    }
+
+    @RequestMapping("/menu/save")
+    public String save(AuthMenu authMenu, Model model) {
+        authMenuService.save(authMenu);
+        return "redirect:/admin/users/menu";
+    }
+
+    @RequestMapping("/menu/delete")
+    public String delete(Long id, Model model) {
+        authMenuService.delete(id);
+        return "redirect:/admin/users/menu";
+    }
+
+
 }

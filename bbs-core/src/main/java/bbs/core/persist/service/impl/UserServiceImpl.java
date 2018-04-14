@@ -157,18 +157,6 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Override
-    public List<AuthMenu> findAllMenus() {
-        List<AuthMenuPO> authMenuPOS = authMenuDao.findAll();
-        List<AuthMenu> authMenus = new ArrayList<>();
-        authMenuPOS.forEach(authMenuPO -> {
-            AuthMenu authMenu = new AuthMenu();
-            if(authMenuPO.getSort() != 0) {
-                BeanUtils.copyProperties(authMenuPO, authMenu, new String[]{"permission", "parentIds", "icon"});
-                authMenus.add(authMenu);
-            }
-        });
-        return authMenus;
-    }
+
 
 }

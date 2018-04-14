@@ -55,15 +55,17 @@ public class AuthMenuServiceImpl implements AuthMenuService {
     }
 
     @Override
-    public List<AuthMenu> listAll() {
-        List<AuthMenuPO> list = authMenuDao.findAll();
-        List<AuthMenu> rets = new ArrayList<>();
-        list.forEach(po -> {
-            AuthMenu a = new AuthMenu();
-            BeanUtils.copyProperties(po, a, "parent", "roles", "children");
-            rets.add(a);
+    public List<AuthMenu> findAllMenu() {
+        List<AuthMenuPO> authMenuPOS = authMenuDao.findAll();
+        List<AuthMenu> authMenus = new ArrayList<>();
+        authMenuPOS.forEach(authMenuPO -> {
+            AuthMenu authMenu = new AuthMenu();
+            if(authMenuPO.getSort() != 0) {
+                BeanUtils.copyProperties(authMenuPO, authMenu, new String[]{"permission", "parentIds", "icon"});
+                authMenus.add(authMenu);
+            }
         });
-        return rets;
+        return authMenus;
     }
 
     @Override

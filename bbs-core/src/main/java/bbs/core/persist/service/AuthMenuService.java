@@ -10,7 +10,7 @@ public interface AuthMenuService {
 
     List<AuthMenu> tree(Long id);
 
-    List<AuthMenu> listAll();
+    List<AuthMenu> findAllMenu();
 
     AuthMenu get(Long id);
 

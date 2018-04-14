@@ -24,5 +24,5 @@ public interface UserService {
 
     Page<Group> findGroupPaging(Pageable pageable, String key);
 
-    List<AuthMenu> findAllMenus();
+
 }

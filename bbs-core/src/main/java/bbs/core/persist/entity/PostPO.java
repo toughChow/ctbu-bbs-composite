@@ -28,6 +28,9 @@ public class PostPO {
     @Column(name = "is_verified")
     private Integer isVerified;
 
+    @Column(name = "status")
+    private Integer status;
+
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "CREATOR_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     private UserPO userPO; // 多对一
@@ -97,5 +100,13 @@ public class PostPO {
 
     public void setPlatePO(PlatePO platePO) {
         this.platePO = platePO;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

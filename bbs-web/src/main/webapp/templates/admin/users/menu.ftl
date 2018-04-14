@@ -11,8 +11,8 @@
 
                 <form action="/admin.php/admin/street_lamp/index.html" method="get">
                     <div class="toolbar-btn-action">
-                    <@shiro.hasPermission name="authMenus:edit">
-                        <a title="新增" class="btn btn-primary" href="${base}/admin/authMenus/view"><i
+                    <@shiro.hasPermission name="menu:edit">
+                        <a title="新增" class="btn btn-primary" href="${base}/admin/users/menu/add"><i
                                 class="fa fa-plus-circle"></i> 新增</a>
                     </@shiro.hasPermission>
                         <button title="展开所有节点" type="button" class="btn btn-success" id="expand-all"><i
@@ -70,19 +70,20 @@
                     }, function(index, layero){
                         //按钮【按钮一】的回调
                         layer.close(index);
-                        layer.load();
                         $.ajax({
-                            url: "/admin/authMenus/delete",
+                            url: "/admin/users/menu/delete",
                             type: "GET",
                             data: {'id': id},
                             success: function () {
+                                layer.load();
                                 layer.msg('删除成功!',{icon: 1});
                                 setTimeout(function () {
-                                    window.location.href = "${base}/admin/users/menus";
+                                    window.location.href = "${base}/admin/users/menu";
                                 }, 2000);
                             },
                             error: function () {
                                 layer.msg('网络异常,请稍后重试!',{icon: 2});
+                                layer.close();
                             }
                         });
                     }, function(index, layero){
@@ -91,16 +92,15 @@
                     });
                 })
             }, "json");
-
     }
     // 设置节点操作类型
     function getChildren(jsons) {
         for (var i = 0; i < jsons.length; i++) {
             if (jsons[i].children.length != 0) {
-                var htm = '<a href="${base}/admin/authMenus/add/pid/'+jsons[i].id+'"  data-toggle=\"tooltip\" data-original-title=\"新增\">' +
+                var htm = '<a href="${base}/admin/users/menu/add/pid/'+jsons[i].id+'"  data-toggle=\"tooltip\" data-original-title=\"新增\">' +
                         '<i class=\"list-icon fa fa-plus fa-fw\"></i>' +
                         '</a>' +
-                        '<a href="${base}/admin/authMenus/view?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                        '<a href="${base}/admin/menu/add?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +
@@ -110,7 +110,7 @@
                 $('#action' + count).append(htm);
                 getChildren(jsons[i].children);
             } else {
-                var htm = '<a href="${base}/admin/authMenus/add?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                var htm = '<a href="${base}/admin/menu/add?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +

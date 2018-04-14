@@ -25,10 +25,10 @@ public class GroupPO {
     private Timestamp create_time = new Timestamp(System.currentTimeMillis());
 
     @Column(name = "UPDATE_TIME", updatable = true, insertable = false)
-    private Timestamp update_time;
+    private Timestamp updateTime;
 
     @Column(name = "DELETE_TIME")
-    private Timestamp delete_time;
+    private Timestamp deleteTime;
 
     @Column(name = "USER_ID")
     private String userid;
@@ -60,20 +60,20 @@ public class GroupPO {
         this.create_time = create_time;
     }
 
-    public Timestamp getUpdate_time() {
-        return update_time;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdate_time(Timestamp update_time) {
-        this.update_time = update_time;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public Timestamp getDelete_time() {
-        return delete_time;
+    public Timestamp getDeleteTime() {
+        return deleteTime;
     }
 
-    public void setDelete_time(Timestamp delete_time) {
-        this.delete_time = delete_time;
+    public void setDeleteTime(Timestamp deleteTime) {
+        this.deleteTime = deleteTime;
     }
 
     public String getUserid() {
@@ -84,4 +84,11 @@ public class GroupPO {
         this.userid = userid;
     }
 
+    public List<UserPO> getUserPOList() {
+        return userPOList;
+    }
+
+    public void setUserPOList(List<UserPO> userPOList) {
+        this.userPOList = userPOList;
+    }
 }

@@ -22,6 +22,9 @@
     <script src="${base}/assets/vendors/nestable/jquery.nestable.js"></script>
     <link href="${base}/assets/vendors/nestable/jquery.nestable.css" rel="stylesheet">
     <link href="${base}/assets/vendors/nestable/dolphin.css" rel="stylesheet">
+    <!-- select2 -->
+    <link rel="stylesheet" href="${base}/assets/vendors/select2/select2.min.css">
+    <script src="${base}/assets/vendors/select2/select2.min.js"></script>
 
 </head>
 <body class="nav-md" style="overflow: hidden;">
