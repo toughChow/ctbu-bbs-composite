@@ -105,6 +105,7 @@
                                 <li><a href="${base}/logout"><i class="fa fa-sign-out pull-right"></i>登出</a></li>
                             </ul>
                         </li>
+                        <!-- here -->
                     </ul>
                 </nav>
             </div>

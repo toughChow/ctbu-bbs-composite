@@ -111,6 +111,11 @@ public class ShiroConfig {
         hashMap.put("/admin/users/**", "authc,perms[users:view]");
 //        hashMap.put("/AdminController/users/update**", "authc,perms[users:edit]");
 //        hashMap.put("/AdminController/users/pwd**", "authc,perms[users:edit]");
+
+        /*角色管理*/
+        hashMap.put("/admin/roles/list", "authc,perms[roles:view]");
+        hashMap.put("/admin/roles/save", "authc,perms[roles:edit]");
+        hashMap.put("/admin/roles/add", "authc,perms[roles:edit]");
 //
 //        /*控制器管理*/
 //        hashMap.put("/AdminController/control/**", "authc,perms[control:view]");
@@ -130,10 +135,7 @@ public class ShiroConfig {
 //        /*统计分析*/
 //        hashMap.put("/AdminController/statistics/**", "authc,perms[statistics:view]");
 //
-//        /*角色管理*/
-//        hashMap.put("/AdminController/roles/list", "authc,perms[roles:view]");
-//        hashMap.put("/AdminController/roles/save", "authc,perms[roles:edit]");
-//        hashMap.put("/AdminController/roles/view", "authc,perms[roles:edit]");
+
 //
 //        /*菜单管理*/
 //        hashMap.put("/AdminController/authMenus/list", "authc,perms[authMenus:view]");
