@@ -108,7 +108,7 @@ public class ShiroConfig {
 //        hashMap.put("/AdminController/monitor", "authc,perms[monitor:view]");
 
         /*用户管理*/
-        hashMap.put("/AdminController/users/**", "authc,perms[users:view]");
+        hashMap.put("/admin/users/**", "authc,perms[users:view]");
 //        hashMap.put("/AdminController/users/update**", "authc,perms[users:edit]");
 //        hashMap.put("/AdminController/users/pwd**", "authc,perms[users:edit]");
 //

@@ -100,7 +100,7 @@
                 var htm = '<a href="${base}/admin/users/menu/add/pid/'+jsons[i].id+'"  data-toggle=\"tooltip\" data-original-title=\"新增\">' +
                         '<i class=\"list-icon fa fa-plus fa-fw\"></i>' +
                         '</a>' +
-                        '<a href="${base}/admin/menu/add?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                        '<a href="${base}/admin/users/menu/edit?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +
@@ -110,7 +110,7 @@
                 $('#action' + count).append(htm);
                 getChildren(jsons[i].children);
             } else {
-                var htm = '<a href="${base}/admin/menu/add?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                var htm = '<a href="${base}/admin/users/menu/edit?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +

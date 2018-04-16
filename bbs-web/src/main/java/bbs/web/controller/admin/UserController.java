@@ -4,15 +4,13 @@ import bbs.core.data.AuthMenu;
 import bbs.core.persist.service.AuthMenuService;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +88,11 @@ public class UserController extends BaseController {
 
     @RequestMapping("/menu/save")
     public String save(AuthMenu authMenu, Model model) {
+        Long id = authMenu.getId();
+        if(id != null) {
+            AuthMenu menu = authMenuService.get(id);
+            BeanUtils.copyProperties(authMenu,menu,new String[]{"icon","parents"});
+        }
         authMenuService.save(authMenu);
         return "redirect:/admin/users/menu";
     }
@@ -100,5 +103,11 @@ public class UserController extends BaseController {
         return "redirect:/admin/users/menu";
     }
 
+    @GetMapping("/menu/edit")
+    public String toEdit(Long id, Model model) {
+        AuthMenu thisMenu = authMenuService.get(id);
+        model.addAttribute("authMenu", thisMenu);
+        return "/admin/users/editMenu";
+    }
 
 }
