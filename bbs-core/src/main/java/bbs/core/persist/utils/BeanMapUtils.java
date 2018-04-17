@@ -1,10 +1,8 @@
 package bbs.core.persist.utils;
 
-import bbs.core.data.AccountProfile;
-import bbs.core.data.AuthMenu;
-import bbs.core.data.Role;
-import bbs.core.data.User;
+import bbs.core.data.*;
 import bbs.core.persist.entity.AuthMenuPO;
+import bbs.core.persist.entity.PlatePO;
 import bbs.core.persist.entity.RolePO;
 import bbs.core.persist.entity.UserPO;
 import org.springframework.beans.BeanUtils;
@@ -53,6 +51,12 @@ public class BeanMapUtils {
             ret.setRoles(roles);
         }
         return ret;
+    }
+
+    public static Plate copy(PlatePO po) {
+        Plate plate = new Plate();
+        BeanUtils.copyProperties(po, plate);
+        return plate;
     }
 
     public static AccountProfile copyPassport(UserPO po) {

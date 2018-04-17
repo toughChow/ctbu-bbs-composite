@@ -34,7 +34,7 @@
     };
     $(document).ready(function () {
         jQuery.ajax({
-            url: "${base}/admin/authMenus/tree?roleId=${role.id}", success: function (data) {
+            url: "${base}/admin/roles/tree?roleId=${role.id}", success: function (data) {
                 $.fn.zTree.init($("#treeDemo"), setting, data);
                 console.log(data);
             }, dataType: "json"

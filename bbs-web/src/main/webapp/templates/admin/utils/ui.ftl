@@ -51,8 +51,8 @@
                                     <@shiro.hasPermission name=menu.permission>
                                         <li class="side-menu-unit">
                                             <a href="javascript:void(0);" nav="${menu.sort}"><i
-                                                    class="${menu.icon}"></i><span
-                                            >${menu.name}</span>
+                                                    class="${menu.icon}"></i>
+                                                <span>${menu.name}</span>
                                                 <span class="arrow"></span>
                                             </a>
                                             <ul class="nav child_menu aaaa">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <script>
-            $(".aaaa").eq(0).show();
+            // $(".aaaa").eq(0).show();
         </script>
         <!-- top navigation -->
         <div class="top_nav">

@@ -14,9 +14,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/roles")
@@ -48,7 +48,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "add")
     public String view(Role role, Model model) {
         model.addAttribute("role", role);
-        return "/admin/roles/add";
+        return "/admin/roles/view";
     }
 
     @RequestMapping("/save")
@@ -72,4 +72,38 @@ public class RoleController extends BaseController {
         roleService.delete(id);
         return "redirect:/admin/roles/list";
     }
+
+    @RequestMapping("tree")
+    @ResponseBody
+    public List<AuthMenu.Node> tree(@RequestParam(required = false) Long roleId) {
+        HashMap<Long, AuthMenu> map = new LinkedHashMap<>();
+
+        if (roleId != null && roleId != 0) {
+            Role role = roleService.get(roleId);
+            List<AuthMenu> authedMenus = role.getAuthMenus();
+
+            if (authedMenus != null)
+                authedMenus.forEach(n -> map.put(n.getId(), n));
+        }
+        List<AuthMenu> list = authMenuService.findAllMenu();
+
+        List<AuthMenu.Node> results = new LinkedList<>();
+
+        for (AuthMenu a : list) {
+            AuthMenu.Node m = a.toNode();
+
+            if (!map.isEmpty() && map.get(m.getId()) != null)
+                m.setChecked(true);
+
+            results.add(m);
+        }
+        return results;
+    }
+
+    @RequestMapping(value = "view")
+    public String viewSingle(Role role, Model model) {
+        model.addAttribute("role", role);
+        return "/admin/roles/view";
+    }
+
 }

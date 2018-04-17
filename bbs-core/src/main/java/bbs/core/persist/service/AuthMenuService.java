@@ -17,4 +17,5 @@ public interface AuthMenuService {
     void save(AuthMenu authMenu);
 
     void delete(Long id);
+
 }

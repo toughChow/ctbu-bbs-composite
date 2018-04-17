@@ -30,6 +30,10 @@ public class PlatePO {
     @Column(name = "STATUS")
     private Integer status;
 
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    private UserPO userPO; // 多对一
+
     public Long getId() {
         return id;
     }
@@ -76,5 +80,13 @@ public class PlatePO {
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public UserPO getUserPO() {
+        return userPO;
+    }
+
+    public void setUserPO(UserPO userPO) {
+        this.userPO = userPO;
     }
 }
