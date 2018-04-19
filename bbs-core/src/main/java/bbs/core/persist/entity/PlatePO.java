@@ -5,6 +5,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "T_PUB_PLATE")
@@ -30,9 +32,12 @@ public class PlatePO {
     @Column(name = "STATUS")
     private Integer status;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "MANAGER_ID", referencedColumnName = "ID")
     private UserPO userPO; // 多对一
+
+    @Transient
+    private List<AuthMenuPO> children = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -88,5 +93,13 @@ public class PlatePO {
 
     public void setUserPO(UserPO userPO) {
         this.userPO = userPO;
+    }
+
+    public List<AuthMenuPO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<AuthMenuPO> children) {
+        this.children = children;
     }
 }

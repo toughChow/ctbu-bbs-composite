@@ -26,7 +26,6 @@
 
                 <div class="dd" id="nestable3">
                 </div>
-
             </div>
         </div>
     </div>
@@ -78,7 +77,7 @@
                                     layer.load();
                                     layer.msg('删除成功!',{icon: 1});
                                     setTimeout(function () {
-                                        window.location.href = "${base}/admin/users/menu";
+                                        window.location.href = "${base}/admin/plates/list";
                                     }, 2000);
                                 },
                                 error: function () {
@@ -100,7 +99,7 @@
                 var htm = '<a href="${base}/admin/plates/add/pid/'+jsons[i].id+'"  data-toggle=\"tooltip\" data-original-title=\"新增\">' +
                         '<i class=\"list-icon fa fa-plus fa-fw\"></i>' +
                         '</a>' +
-                        '<a href="${base}/admin/plates/edit?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                        '<a href="${base}/admin/plates/edit/'+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +
@@ -110,7 +109,7 @@
                 $('#action' + count).append(htm);
                 getChildren(jsons[i].children);
             } else {
-                var htm = '<a href="${base}/admin/plates/edit?id='+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
+                var htm = '<a href="${base}/admin/plates/edit/'+jsons[i].id+'" data-toggle=\"tooltip\" data-original-title=\"编辑\">' +
                         '<i class=\"list-icon fa fa-pencil fa-fw\"></i>' +
                         '</a>' +
                         '<a href="javascript:void(0)" class=\"ajax-get\" data-id=\"'+jsons[i].id+'\" data-toggle=\"tooltip\" data-original-title=\"删除\">' +

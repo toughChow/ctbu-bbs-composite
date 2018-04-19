@@ -4,6 +4,7 @@ import bbs.core.data.AccountProfile;
 import bbs.core.data.AuthMenu;
 import bbs.core.data.Group;
 import bbs.core.data.User;
+import bbs.core.persist.entity.UserPO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -25,4 +26,7 @@ public interface UserService {
     Page<Group> findGroupPaging(Pageable pageable, String key);
 
 
+    List<User> findAllUsers();
+
+    UserPO findUserById(Long managerId);
 }

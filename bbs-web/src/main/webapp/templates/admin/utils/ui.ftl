@@ -27,7 +27,7 @@
     <script src="${base}/assets/vendors/select2/select2.min.js"></script>
 
 </head>
-<body class="nav-md" style="overflow: hidden;">
+<body class="nav-md">
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">

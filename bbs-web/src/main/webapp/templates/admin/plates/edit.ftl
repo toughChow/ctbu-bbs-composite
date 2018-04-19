@@ -80,7 +80,7 @@
                                             <label for="name" class="col-lg-2 control-label">模板名称：</label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" placeholder="请输入模板名称"
-                                                       name="name">
+                                                       value="${plate.name}" name="name">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -96,8 +96,10 @@
                                         </div>
 
                                         <div class="form-group col-md-12 col-lg-12">
+                                            <input type="hidden" name="id" value="${plate.id}">
+                                            <input type="hidden" id="manager-id" name="managerId" value="${plate.managerId}">
                                             <input type="hidden" id="hide-code" name="parentId"
-                                                   value="<#if plate??>${plate.id}</#if>">
+                                                   value="<#if plate??>${plate.parentId}</#if>">
                                             <div class="col-md-10 col-md-offset-2" style="padding-left: 5px">
                                                 <button class="btn btn-minw btn-primary ajax-post"
                                                         target-form="form-builder" type="submit">
@@ -121,6 +123,18 @@
 </div>
 
 <script>
+
+    $(function(){
+        var managerId = $('#manager-id').val();
+        if(managerId != null && managerId != ''){
+            $('select[name="managerId"] option[value="' + managerId + '"]').attr('selected', true);
+        }
+        $('select[name="managerId"]').on('change',function(){
+            var thisVal = $(this).val();
+            $('#manager-id').val(thisVal);
+        });
+    })
+
     $(document).ready(function () {
         $.post("${base}/admin/plates/findAll",
                 {},

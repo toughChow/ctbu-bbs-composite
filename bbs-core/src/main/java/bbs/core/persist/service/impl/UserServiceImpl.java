@@ -157,6 +157,21 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public List<User> findAllUsers() {
+        List<UserPO> userPOS = userDao.findAll();
+        List<User> user = new ArrayList<>();
+        userPOS.forEach(userPO -> {
+            User userTmp = BeanMapUtils.copy(userPO, 0);
+            user.add(userTmp);
+        });
+        return user;
+    }
+
+    @Override
+    public UserPO findUserById(Long managerId) {
+        return userDao.findOne(managerId);
+    }
 
 
 }
