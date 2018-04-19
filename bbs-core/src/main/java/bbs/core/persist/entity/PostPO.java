@@ -31,6 +31,10 @@ public class PostPO {
     @Column(name = "status")
     private Integer status;
 
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "POST_TYPE_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    private PostTypePO postTypePOP;
+
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "CREATOR_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     private UserPO userPO; // 多对一
@@ -38,12 +42,6 @@ public class PostPO {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "PLATE_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     private PlatePO platePO; // 多对一
-
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_PUB_COLLECT_PAGE", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "USER_ID")})
-    @Fetch(FetchMode.SUBSELECT)
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private List<UserPO> users = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -78,14 +76,6 @@ public class PostPO {
         this.isVerified = isVerified;
     }
 
-    public List<UserPO> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<UserPO> users) {
-        this.users = users;
-    }
-
     public UserPO getUserPO() {
         return userPO;
     }
@@ -108,5 +98,13 @@ public class PostPO {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public PostTypePO getPostTypePOP() {
+        return postTypePOP;
+    }
+
+    public void setPostTypePOP(PostTypePO postTypePOP) {
+        this.postTypePOP = postTypePOP;
     }
 }
