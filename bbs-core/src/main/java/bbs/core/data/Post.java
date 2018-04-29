@@ -1,11 +1,7 @@
 package bbs.core.data;
 
-import bbs.core.data.User;
-import bbs.core.persist.entity.UserPO;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 public class Post implements Serializable{
 
@@ -13,7 +9,7 @@ public class Post implements Serializable{
 
     private Long id;
 
-    private String content;
+    private String name;
 
     private Timestamp createTime;
 
@@ -35,12 +31,12 @@ public class Post implements Serializable{
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Timestamp getCreateTime() {

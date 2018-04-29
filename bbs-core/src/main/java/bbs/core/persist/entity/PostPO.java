@@ -20,7 +20,7 @@ public class PostPO {
     private Long id;
 
     @Column(name = "CONTENT")
-    private String content;
+    private String name;
 
     @Column(name = "CREATE_TIME")
     private Timestamp createTime;
@@ -46,12 +46,12 @@ public class PostPO {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Timestamp getCreateTime() {

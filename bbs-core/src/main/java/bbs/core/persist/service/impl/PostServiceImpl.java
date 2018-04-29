@@ -1,9 +1,16 @@
 package bbs.core.persist.service.impl;
 
 import bbs.base.data.Data;
+import bbs.core.data.Post;
 import bbs.core.data.PostType;
+import bbs.core.persist.dao.PlateDao;
+import bbs.core.persist.dao.PostDao;
 import bbs.core.persist.dao.PostTypeDao;
+import bbs.core.persist.dao.UserDao;
+import bbs.core.persist.entity.PlatePO;
+import bbs.core.persist.entity.PostPO;
 import bbs.core.persist.entity.PostTypePO;
+import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.PostService;
 import bbs.core.persist.utils.BeanMapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +35,15 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostTypeDao postTypeDao;
+
+    @Autowired
+    private PostDao postDao;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private PlateDao plateDao;
 
     @Override
     public Page<PostType> findTypeList(Pageable pageable, String key) {
@@ -71,5 +87,42 @@ public class PostServiceImpl implements PostService {
         BeanUtils.copyProperties(type,po);
         po.setCreateTime(new Timestamp(System.currentTimeMillis()));
         postTypeDao.save(po);
+    }
+
+    @Override
+    public Page<Post> findPostListByManager(Pageable pageable, String key, String username) {
+        // get current manager id
+        UserPO userPO = userDao.findByUsername(username);
+        Long managerId = userPO.getId();
+        List<PlatePO> platePOS = plateDao.findByUserPO(userPO);
+
+        Page<PostPO> page = postDao.findAll(
+                (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                        -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    List<Predicate> subPredicates = new ArrayList<>();
+
+                    if(platePOS != null && platePOS.size() > 0) {
+//                        CriteriaBuilder.In<Long> in = cb.in(root.get("plateId"));
+                        platePOS.forEach(po -> {
+                        subPredicates.add(cb.equal(root.get("plateId"),po.getId()));
+//                            in.value(po.getId());
+                        });
+//                        predicates.add(in);
+                    }
+
+                    if (StringUtils.isNotBlank(key)) {
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("content"), tag));
+                    }
+                    predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, pageable
+        );
+        List<Post> posts = new ArrayList<>();
+        page.getContent().forEach(po -> {
+            posts.add(BeanMapUtils.copy(po));
+        });
+        return new PageImpl<>(posts, pageable, page.getTotalElements());
     }
 }

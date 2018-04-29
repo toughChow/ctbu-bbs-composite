@@ -92,4 +92,10 @@ public class BeanMapUtils {
         BeanUtils.copyProperties(po,postType);
         return postType;
     }
+
+    public static Post copy(PostPO po) {
+        Post post = new Post();
+        BeanUtils.copyProperties(po,post);
+        return post;
+    }
 }

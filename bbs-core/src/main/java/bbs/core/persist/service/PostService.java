@@ -1,6 +1,7 @@
 package bbs.core.persist.service;
 
 import bbs.base.data.Data;
+import bbs.core.data.Post;
 import bbs.core.data.PostType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,4 +14,6 @@ public interface PostService {
     Data deletePostType(Long id);
 
     void savePostType(PostType type);
+
+    Page<Post> findPostListByManager(Pageable pageable, String key, String username);
 }

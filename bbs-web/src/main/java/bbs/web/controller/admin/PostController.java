@@ -2,6 +2,7 @@ package bbs.web.controller.admin;
 
 import bbs.base.data.Data;
 import bbs.core.data.AccountProfile;
+import bbs.core.data.Post;
 import bbs.core.data.PostType;
 import bbs.core.persist.service.PostService;
 import bbs.web.controller.BaseController;
@@ -49,5 +50,19 @@ public class PostController extends BaseController {
         type.setTypeCreator(username);
         postService.savePostType(type);
         return "redirect:/admin/posts/type";
+    }
+
+    /*
+        the following are post management
+     */
+
+    @GetMapping("/list")
+    public String toList(ModelMap model, String key, Integer pn){
+        AccountProfile profile = getSubject().getProfile();
+        String username = profile.getUsername();
+        Page<Post> page = postService.findPostListByManager(wrapPageable(pn, 10, 0, null), key, username);
+        model.put("page",page);
+        model.put("key",key);
+        return "/admin/posts/list";
     }
 }
