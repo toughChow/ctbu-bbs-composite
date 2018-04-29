@@ -1,8 +1,13 @@
 package bbs.core.data;
 
+import bbs.core.persist.entity.UserPO;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Plate {
+public class Plate implements Serializable{
+
+    private static final long serialVersionUID = -5543814189798811079L;
 
     private Long id;
 
@@ -73,4 +78,5 @@ public class Plate {
     public void setManagerId(Long managerId) {
         this.managerId = managerId;
     }
+
 }

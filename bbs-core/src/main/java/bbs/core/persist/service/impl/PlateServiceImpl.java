@@ -1,6 +1,7 @@
 package bbs.core.persist.service.impl;
 
 import bbs.core.data.Plate;
+import bbs.core.data.User;
 import bbs.core.persist.dao.PlateDao;
 import bbs.core.persist.entity.PlatePO;
 import bbs.core.persist.entity.UserPO;
@@ -36,7 +37,10 @@ public class PlateServiceImpl implements PlateService{
     @Override
     public Plate findOne(Long id) {
         PlatePO one = plateDao.findOne(id);
-        return BeanMapUtils.copy(one);
+        UserPO userPO = one.getUserPO();
+        Plate plate = BeanMapUtils.copy(one);
+        plate.setManagerId(userPO.getId());
+        return plate;
     }
 
     @Override

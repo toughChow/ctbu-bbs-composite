@@ -9,22 +9,35 @@ import java.util.List;
  * qinyl push test
  */
 public class User implements Serializable {
+
     private static final long serialVersionUID = 107193816173103116L;
 
     private long id;
+
     private String username;
+
     private String password;
+
     private String avatar;
+
     private String nickname;
+
     private String email;
+
     private String mobile;
+
     private Date created;
+
     private Date lastLogin;
+
     private String signature;
+
     private Long groupId;
 
     private int status;
+
     private int activeEmail;
+
     private int isAdmin;
 
     private Integer isGroupManager;

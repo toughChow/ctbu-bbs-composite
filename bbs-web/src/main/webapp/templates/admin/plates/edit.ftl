@@ -73,6 +73,7 @@
                                                 <select name="parentId" class="form-control"
                                                         id="select-pid">
                                                     <option></option>
+                                                    <option value="0">顶级节点</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -141,15 +142,11 @@
                 function (data) {
                     var ul = createTree(data, 0);
                     var selectedReg = $('#hide-code').val();
-                    // $('#select-pid').find('option[value="13"]').attr('selected', true);
-                    // $('#select-pid').find('option[value="13"]').val("adsf");
                     $('select[name="parentId"] option[value="' + selectedReg + '"]').attr('selected', true);
                     $('#select-pid').select2({
                         placeholder: '请选择上级区域',
                         allowClear:true
                     })
-                    // console.log(ul)
-                    // $('#select-pid').append(ul)
                 }, "json");
 
         //主方法，运用递归实现
