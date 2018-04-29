@@ -31,17 +31,11 @@ public class PostPO {
     @Column(name = "status")
     private Integer status;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "POST_TYPE_ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    private PostTypePO postTypePOP;
+    @Column(name = "postType_id")
+    private Long postTypeId;
 
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CREATOR_ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    private UserPO userPO; // 多对一
-
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PLATE_ID", referencedColumnName = "ID", insertable = false, updatable = false)
-    private PlatePO platePO; // 多对一
+    @Column(name = "plate_id")
+    private Long plateId;
 
     public Long getId() {
         return id;
@@ -76,20 +70,20 @@ public class PostPO {
         this.isVerified = isVerified;
     }
 
-    public UserPO getUserPO() {
-        return userPO;
+    public Long getPostTypeId() {
+        return postTypeId;
     }
 
-    public void setUserPO(UserPO userPO) {
-        this.userPO = userPO;
+    public void setPostTypeId(Long postTypeId) {
+        this.postTypeId = postTypeId;
     }
 
-    public PlatePO getPlatePO() {
-        return platePO;
+    public Long getPlateId() {
+        return plateId;
     }
 
-    public void setPlatePO(PlatePO platePO) {
-        this.platePO = platePO;
+    public void setPlateId(Long plateId) {
+        this.plateId = plateId;
     }
 
     public Integer getStatus() {
@@ -100,11 +94,4 @@ public class PostPO {
         this.status = status;
     }
 
-    public PostTypePO getPostTypePOP() {
-        return postTypePOP;
-    }
-
-    public void setPostTypePOP(PostTypePO postTypePOP) {
-        this.postTypePOP = postTypePOP;
-    }
 }

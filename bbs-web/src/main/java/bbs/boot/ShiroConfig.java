@@ -121,8 +121,9 @@ public class ShiroConfig {
         hashMap.put("/admin/plates/**", "authc,perms[plates:view]");
         hashMap.put("/admin/plates/add", "authc,perms[plates:edit]");
 //
-//        /*维修管理*/
-//        hashMap.put("/AdminController/repair/**", "authc,perms[repair:view]");
+        /*帖子管理*/
+        hashMap.put("/admin/posts/**", "authc,perms[plates:view]");
+        hashMap.put("/admin/posts/add", "authc,perms[plates:edit]");
 //
 //        /*监控管理*/
 //        hashMap.put("/AdminController/monitor/**", "authc,perms[monitor:view]");

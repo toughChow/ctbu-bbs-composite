@@ -12,10 +12,10 @@ public class PostTypePO {
     private Long id;
 
     @Column(name = "TYPE")
-    private Integer type;
+    private String name;
 
     @Column(name = "TYPE_CREATOR")
-    private Integer typeCreator;
+    private String typeCreator;
 
     @Column(name = "CREATE_TIME")
     private Timestamp createTime;
@@ -28,19 +28,19 @@ public class PostTypePO {
         this.id = id;
     }
 
-    public Integer getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getTypeCreator() {
+    public String getTypeCreator() {
         return typeCreator;
     }
 
-    public void setTypeCreator(Integer typeCreator) {
+    public void setTypeCreator(String typeCreator) {
         this.typeCreator = typeCreator;
     }
 

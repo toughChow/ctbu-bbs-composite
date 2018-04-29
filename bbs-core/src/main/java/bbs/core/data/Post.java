@@ -3,10 +3,14 @@ package bbs.core.data;
 import bbs.core.data.User;
 import bbs.core.persist.entity.UserPO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-public class Post {
+public class Post implements Serializable{
+
+    private static final long serialVersionUID = 7376960406814509745L;
+
     private Long id;
 
     private String content;
@@ -19,9 +23,9 @@ public class Post {
 
     private User userPO; // 多对一
 
-    private Plate platePO; // 多对一
+    private Long plateId; // 多对一
 
-    private PostType postType; // 一对一
+    private Long postTypeId; // 一对一
 
     public Long getId() {
         return id;
@@ -71,19 +75,19 @@ public class Post {
         this.userPO = userPO;
     }
 
-    public Plate getPlatePO() {
-        return platePO;
+    public Long getPlateId() {
+        return plateId;
     }
 
-    public void setPlatePO(Plate platePO) {
-        this.platePO = platePO;
+    public void setPlateId(Long plateId) {
+        this.plateId = plateId;
     }
 
-    public PostType getPostType() {
-        return postType;
+    public Long getPostTypeId() {
+        return postTypeId;
     }
 
-    public void setPostType(PostType postType) {
-        this.postType = postType;
+    public void setPostTypeId(Long postTypeId) {
+        this.postTypeId = postTypeId;
     }
 }
