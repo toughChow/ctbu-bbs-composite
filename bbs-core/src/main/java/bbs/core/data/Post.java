@@ -9,19 +9,17 @@ public class Post implements Serializable{
 
     private Long id;
 
-    private String name;
+    private String content;
 
     private Timestamp createTime;
 
-    private Integer isVerified;
-
     private Integer status;
-
-    private User userPO; // 多对一
 
     private Long plateId; // 多对一
 
     private Long postTypeId; // 一对一
+
+    private String user;
 
     public Long getId() {
         return id;
@@ -31,12 +29,12 @@ public class Post implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getCreateTime() {
@@ -47,28 +45,12 @@ public class Post implements Serializable{
         this.createTime = createTime;
     }
 
-    public Integer getIsVerified() {
-        return isVerified;
-    }
-
-    public void setIsVerified(Integer isVerified) {
-        this.isVerified = isVerified;
-    }
-
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public User getUserPO() {
-        return userPO;
-    }
-
-    public void setUserPO(User userPO) {
-        this.userPO = userPO;
     }
 
     public Long getPlateId() {
@@ -85,5 +67,13 @@ public class Post implements Serializable{
 
     public void setPostTypeId(Long postTypeId) {
         this.postTypeId = postTypeId;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

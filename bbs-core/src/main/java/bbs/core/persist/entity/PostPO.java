@@ -20,22 +20,22 @@ public class PostPO {
     private Long id;
 
     @Column(name = "CONTENT")
-    private String name;
+    private String content;
 
     @Column(name = "CREATE_TIME")
     private Timestamp createTime;
 
-    @Column(name = "is_verified")
-    private Integer isVerified;
-
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private Integer status;
 
-    @Column(name = "postType_id")
+    @Column(name = "POSTTYPE_ID")
     private Long postTypeId;
 
-    @Column(name = "plate_id")
+    @Column(name = "PLATE_ID")
     private Long plateId;
+
+    @Column(name = "USER_ID")
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -46,12 +46,12 @@ public class PostPO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getCreateTime() {
@@ -60,18 +60,6 @@ public class PostPO {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
-    }
-
-    public Integer getIsVerified() {
-        return isVerified;
-    }
-
-    public void setIsVerified(Integer isVerified) {
-        this.isVerified = isVerified;
-    }
-
-    public Long getPostTypeId() {
-        return postTypeId;
     }
 
     public void setPostTypeId(Long postTypeId) {
@@ -94,4 +82,15 @@ public class PostPO {
         this.status = status;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getPostTypeId() {
+        return postTypeId;
+    }
 }

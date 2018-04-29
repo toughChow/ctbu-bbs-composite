@@ -22,7 +22,8 @@
                     <thead>
                     <tr>
                         <th width="80" style="text-align: center">#</th>
-                        <th>类型名称</th>
+                        <th>帖子内容</th>
+                        <th>作者</th>
                         <th width="300" style="text-align: center">操作</th>
                     </tr>
                     </thead>
@@ -31,13 +32,14 @@
                         <tr>
                             <td class="text-center">${row.id}</td>
                             <td>${row.name}</td>
+                            <td>${row.user}</td>
                             <td class="text-center">
                                 <@shiro.hasPermission name="roles:edit">
-                                    <a href="javascript:void(0);" id="edit_postType" class="btn btn-xs btn-primary addGroupa" data-name="${row.content}" data-id="${row.id}"
-                                       data-action="close">
-                                        <i class="fa fa-edit"></i> 修改
-                                    </a>
-                                    <a href="javascript:void(0);" id="delete_postType" class="btn btn-xs btn-danger delete_postType" data-id="${row.id}"
+                                    <#--<a href="javascript:void(0);" id="edit_postType" class="btn btn-xs btn-primary addGroupa" data-name="${row.content}" data-id="${row.id}"-->
+                                       <#--data-action="close">-->
+                                        <#--<i class="fa fa-edit"></i> 修改-->
+                                    <#--</a>-->
+                                    <a href="javascript:void(0);" id="delete_post" class="btn btn-xs btn-danger delete_post" data-id="${row.id}"
                                        data-action="close">
                                         <i class="fa fa-close"></i> 删除
                                     </a>
@@ -97,13 +99,13 @@
     $(function () {
 
     //删除
-    $(".delete_postType").on('click', function () {
+    $(".delete_post").on('click', function () {
         var id = $(this).attr('data-id');
         layer.confirm('确定要执行该操作吗？', {
             btn: ['确定', '取消'], //按钮
             shade: false //不显示遮罩
         }, function () {
-            J.getJSON('${base}/admin/posts/delete_postType', {
+            J.getJSON('${base}/admin/posts/delete_post', {
                 id: id
             }, ajaxReload);
         }, function () {
