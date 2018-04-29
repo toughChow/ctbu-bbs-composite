@@ -29,4 +29,22 @@ public interface UserService {
     List<User> findAllUsers();
 
     UserPO findUserById(Long managerId);
+
+    Page<Group> findGroupList(Pageable pageable, String key);
+
+    void saveGroup(Group userGroup);
+
+    Boolean deleteGroup(String userGroupId);
+
+    Page<User> pagingGroupMember(Pageable pageable, Long groupId, String key);
+
+    Group findById(long groupId);
+
+    List<User> findGroupPOIsNull();
+
+    Boolean setUserGroupManager(Long userId, Long groupId);
+
+    void addMembers(Long l, Long groupId);
+
+    void removeGroupMember(Long l);
 }

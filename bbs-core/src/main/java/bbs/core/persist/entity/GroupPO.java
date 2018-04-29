@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
+@Entity
 @Table(name = "T_PUB_GROUP")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class GroupPO {

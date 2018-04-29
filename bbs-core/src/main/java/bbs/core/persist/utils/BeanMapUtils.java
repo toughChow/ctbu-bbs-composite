@@ -1,10 +1,7 @@
 package bbs.core.persist.utils;
 
 import bbs.core.data.*;
-import bbs.core.persist.entity.AuthMenuPO;
-import bbs.core.persist.entity.PlatePO;
-import bbs.core.persist.entity.RolePO;
-import bbs.core.persist.entity.UserPO;
+import bbs.core.persist.entity.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
@@ -83,4 +80,10 @@ public class BeanMapUtils {
         return passport;
     }
 
+
+    public static Group copy(GroupPO po) {
+        Group ug = new Group();
+        BeanUtils.copyProperties(po, ug);
+        return ug;
+    }
 }

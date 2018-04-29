@@ -25,6 +25,8 @@
     <!-- select2 -->
     <link rel="stylesheet" href="${base}/assets/vendors/select2/select2.min.css">
     <script src="${base}/assets/vendors/select2/select2.min.js"></script>
+    <!-- multiselect -->
+    <script src="${base}/assets/vendors/multiselect/multiselect.min.js"></script>
 
 </head>
 <body class="nav-md">

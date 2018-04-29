@@ -58,6 +58,13 @@ public class UserPO {
     @Column(name = "STATUS")
     private Integer status;
 
+    @Column(name="USER_GROUP_ID")
+    private Long groupId;
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REFRESH)
+    @JoinColumn(name="USER_GROUP_ID",referencedColumnName = "ID",insertable = false, updatable = false)
+    private GroupPO groupPO;
+
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "T_PUB_USER_ROLE", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -210,5 +217,21 @@ public class UserPO {
 
     public void setUser_ip(String user_ip) {
         this.user_ip = user_ip;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public GroupPO getGroupPO() {
+        return groupPO;
+    }
+
+    public void setGroupPO(GroupPO groupPO) {
+        this.groupPO = groupPO;
     }
 }

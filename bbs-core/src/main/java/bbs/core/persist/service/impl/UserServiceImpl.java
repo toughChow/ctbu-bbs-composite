@@ -1,13 +1,14 @@
 package bbs.core.persist.service.impl;
 
 import bbs.base.lang.Consts;
+import bbs.base.print.Printer;
 import bbs.core.data.AccountProfile;
-import bbs.core.data.AuthMenu;
 import bbs.core.data.Group;
 import bbs.core.data.User;
 import bbs.core.persist.dao.AuthMenuDao;
+import bbs.core.persist.dao.GroupDao;
 import bbs.core.persist.dao.UserDao;
-import bbs.core.persist.entity.AuthMenuPO;
+import bbs.core.persist.entity.GroupPO;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.UserService;
 import bbs.core.persist.utils.BeanMapUtils;
@@ -18,9 +19,11 @@ import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -29,6 +32,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,6 +45,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AuthMenuDao authMenuDao;
+
+    @Autowired
+    private GroupDao groupDao;
 
     @Override
     public AccountProfile getProfileByName(String username) {
@@ -171,6 +178,175 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserPO findUserById(Long managerId) {
         return userDao.findOne(managerId);
+    }
+
+    /**
+     * 查询群组列表
+     *
+     * @param pageable
+     * @return 返回page封装对象
+     */
+    @Override
+    @Transactional(readOnly = true)
+    @CacheEvict(value = "GroupList", key = "#key")
+    public Page<Group> findGroupList(Pageable pageable, String key) {
+        Page<GroupPO> page = groupDao.findAll(
+                (Root<GroupPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                        -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    if (StringUtils.isNotBlank(key)) {
+                        List<Predicate> subPredicates = new ArrayList<>();
+                        Boolean result = key.matches("^[0-9]*$");
+                        if (result) {
+                            String tag = "%" + key + "%";
+                            subPredicates.add(cb.equal(root.get("id").as(Integer.class), key));
+                        } else {
+                            String tag = "%" + key + "%";
+                            subPredicates.add(cb.like(root.get("name"), tag));
+                        }
+                        predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+                    }
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, pageable
+        );
+        groupDao.findAll();
+        List<Group> userGroups = new ArrayList<>();
+        List userGroupNum = new ArrayList();
+        for (GroupPO userGroupPO : page.getContent()) {
+            Group userGroup = BeanMapUtils.copy(userGroupPO);
+            Long num = userDao.countNumberByGroupId(userGroup.getId());
+            userGroup.setCountNum(num);
+            if (userGroup.getUserid() != null) {
+                UserPO userPO = userDao.findOne(Long.parseLong(userGroup.getUserid()));
+                if (userPO != null) {
+                    userGroup.setMobile(userPO.getMobile());
+                    userGroup.setUserGroupName(userPO.getUsername());
+                } else {
+                    Printer.info("数据库表字段类型不匹配");
+                }
+            } else {
+                Printer.info("用户组暂时没有群主");
+            }
+            userGroups.add(userGroup);
+        }
+
+        return new PageImpl<>(userGroups, pageable, page.getTotalElements());
+    }
+
+    @Override
+    public void saveGroup(Group userGroup) {
+        GroupPO userGroupPO = new GroupPO();
+        BeanUtils.copyProperties(userGroup, userGroupPO);
+        userGroupPO.setCreate_time(new Timestamp(System.currentTimeMillis()));
+        groupDao.save(userGroupPO);
+    }
+
+    @Override
+    public Boolean deleteGroup(String ids) {
+        if (ids != null) {
+            String id[] = ids.split(",");
+            for (int i = 0; i < id.length; i++) {
+                String groupId = id[i];
+                List<UserPO> user = userDao.findByGroupId(Long.parseLong(groupId));
+                if (user.size() != 0) {
+                    for (int j = 0; j < user.size(); j++) {
+                        user.get(j).setGroupId(null);
+                        userDao.save(user.get(j));
+                        if (j == (user.size() - 1)) {
+                            Long gid = Long.parseLong(groupId);
+                            groupDao.delete(gid);
+                        }
+                    }
+                } else {
+                    Long gid = Long.parseLong(groupId);
+                    groupDao.delete(gid);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Page<User> pagingGroupMember(Pageable pageable, Long groupId, String key) {
+        Specification specification = new Specification() {
+            @Override
+            public Predicate toPredicate(Root root, CriteriaQuery query, CriteriaBuilder cb) {
+                List<Predicate> predicates = new ArrayList<>();
+                if (StringUtils.isNotBlank(key)) {
+                    String tag = "%" + key + "%";
+                    predicates.add(cb.and(cb.like(root.get("username"), tag)));
+                }
+                predicates.add(cb.equal(root.get("groupPO").get("id"), groupId));
+                return cb.and(predicates.toArray(new Predicate[]{}));
+            }
+        };
+        Page<UserPO> page = userDao.findAll(specification, pageable);
+        List<User> users = new ArrayList<>();
+        for (UserPO userPO : page.getContent()) {
+            User user = new User();
+            BeanUtils.copyProperties(userPO, user);
+            GroupPO userGroupPO = groupDao.findById(groupId);
+            Long userId = null;
+            if (userGroupPO.getUserid() != null) {
+                userId = Long.parseLong(userGroupPO.getUserid());
+            }
+            if (user.getId() == userId) {
+                user.setIsGroupManager(0);  //0表示群主  1表示普通成员
+            } else {
+                user.setIsGroupManager(1);
+            }
+            users.add(user);
+        }
+        return new PageImpl<>(users, pageable, page.getTotalElements());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Group findById(long groupId) {
+        GroupPO userGroupP = groupDao.findById(groupId);
+        Group userGroup = new Group();
+        BeanUtils.copyProperties(userGroupP, userGroup);
+        return userGroup;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<User> findGroupPOIsNull() {
+        List<User> userlist = new ArrayList<>();
+        List<UserPO> userPOS = userDao.findByGroupPOIsNull();
+        for (UserPO userPO : userPOS) {
+            User user = new User();
+            BeanUtils.copyProperties(userPO, user, "password", "avatar", "roles", "activeEmail");
+            userlist.add(user);
+        }
+        return userlist;
+    }
+
+    @Override
+    @Transactional
+    public Boolean setUserGroupManager(Long userId, Long groupId) {
+        GroupPO userGroupPo = groupDao.findById(groupId);
+        userGroupPo.setUserid(userId.toString());
+        groupDao.save(userGroupPo);
+        UserPO userPO = userDao.findOne(userId);
+        userPO.setGroupId(groupId);
+        userDao.save(userPO);
+        return true;
+    }
+
+    @Override
+    public void addMembers(Long id, Long groupId) {
+        UserPO user = userDao.findOne(id);
+        user.setGroupId(groupId);
+        userDao.save(user);
+    }
+
+    @Override
+    public void removeGroupMember(Long id) {
+        UserPO user = userDao.findOne(id);
+        user.setGroupId(null);
+        userDao.save(user);
     }
 
 

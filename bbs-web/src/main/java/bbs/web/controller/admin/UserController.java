@@ -1,12 +1,16 @@
 package bbs.web.controller.admin;
 
+import bbs.base.data.Data;
 import bbs.core.data.AuthMenu;
+import bbs.core.data.Group;
+import bbs.core.data.User;
 import bbs.core.persist.service.AuthMenuService;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,13 +36,6 @@ public class UserController extends BaseController {
         model.put("page", userService.findUserPaging(wrapPageable(pn, 10, 1, null), key));
         model.put("key", key);
         return "/admin/users/list";
-    }
-
-    @GetMapping("/group")
-    public String group(ModelMap model ,String key, Integer pn) {
-        model.put("page", userService.findGroupPaging(wrapPageable(pn, 5, 0, null), key));
-        model.put("key",key);
-        return "/admin/users/group";
     }
 
     @GetMapping("/menu")
@@ -110,4 +107,127 @@ public class UserController extends BaseController {
         return "/admin/users/editMenu";
     }
 
+    /**
+     * 显示群组分页操作
+     *
+     * @param model
+     * @param key
+     * @param pn
+     * @return
+     */
+    @RequestMapping("/group")
+    public String group(ModelMap model, String key, Integer pn) {
+        model.put("page", userService.findGroupList(wrapPageable(pn, 10, 0, null), key));
+        model.put("key", key);
+        return "/admin/users/group";
+    }
+
+    /**
+     * 添加一个群组
+     *
+     * @param userGroup
+     * @param map
+     * @return
+     */
+    @PostMapping("/add_group")
+    public String add_group(Group userGroup, ModelMap map) {
+        userService.saveGroup(userGroup);
+
+        return "redirect:/admin/users/group";
+    }
+
+    /**
+     * 删除群组曹组
+     *
+     * @param userGroupId
+     * @return
+     */
+    @RequestMapping("/delete_group")
+    @ResponseBody
+    public Data delete_group(String userGroupId) {
+        Boolean result = userService.deleteGroup(userGroupId);
+        if (result) {
+            return Data.success("删除成功", Data.NOOP);
+        } else {
+            return Data.failure("删除失败");
+        }
+    }
+
+    /**
+     * 用户群组管理的显示
+     *
+     * @param groupId
+     * @return
+     */
+    @RequestMapping("/group/id/{id}")
+    public String getAllByGroupId(@PathVariable(value = "id") Long groupId, ModelMap model, String key) {
+        Pageable pageable = wrapPageable();
+        Page<User> page = userService.pagingGroupMember(pageable, groupId,key);
+        model.put("page", page);
+        model.put("groupId", groupId);
+        model.put("key", key);
+        return "/admin/users/group_members";
+    }
+
+    /**
+     * 群组信息按钮点击后显示
+     *
+     * @param groupId
+     * @return
+     */
+    @GetMapping("/group_info")
+    @ResponseBody
+    public Group GroupInfo(long groupId) {
+        return userService.findById(groupId);
+    }
+
+    /**
+     * 添加群成员 的时候显示用户GroupId为空的数据显示
+     *
+     * @return
+     */
+    @GetMapping("/add_group_member_view")
+    @ResponseBody
+    public List<User> add_group_member_view() {
+        return userService.findGroupPOIsNull();
+    }
+
+    /**
+     * 设置群主的操作
+     *
+     * @param userId
+     * @param groupId
+     * @return
+     */
+    @RequestMapping("/group/member/lord")
+    @ResponseBody
+    public Data setGroupManager(Long userId, Long groupId) {
+        Boolean result = userService.setUserGroupManager(userId, groupId);
+        if (result) {
+            return Data.success("群主设置成功", Data.NOOP);
+        } else {
+            return Data.failure("群主已存在操作失败");
+        }
+
+    }
+
+    @RequestMapping("/group/member/add")
+    @ResponseBody
+    public Data addMembers(String ids, Long groupId) {
+        String[] str = ids.split(",");
+        for (int i = 0; i < str.length; i++) {
+            userService.addMembers(Long.parseLong(str[i]), groupId);
+        }
+        return Data.success("操作成功", null);
+    }
+
+    @RequestMapping("/group/member/removeIds")
+    @ResponseBody
+    public Data removeMembers(String ids) {
+        String[] str = ids.split(",");
+        for (int i = 0; i < str.length; i++) {
+            userService.removeGroupMember(Long.parseLong(str[i]));
+        }
+        return Data.success("操作成功", null);
+    }
 }

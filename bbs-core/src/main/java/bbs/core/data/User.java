@@ -21,10 +21,13 @@ public class User implements Serializable {
     private Date created;
     private Date lastLogin;
     private String signature;
+    private Long groupId;
 
     private int status;
     private int activeEmail;
     private int isAdmin;
+
+    private Integer isGroupManager;
 
     private List<Role> roles = new ArrayList<>();
 
@@ -138,5 +141,21 @@ public class User implements Serializable {
 
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public Integer getIsGroupManager() {
+        return isGroupManager;
+    }
+
+    public void setIsGroupManager(Integer isGroupManager) {
+        this.isGroupManager = isGroupManager;
     }
 }
