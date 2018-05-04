@@ -349,5 +349,59 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+    @Override
+    public List<User> findUserLike(String username) {
+        List<UserPO> usersPO = userDao.findAll((Root<UserPO> root, CriteriaQuery<?> query, CriteriaBuilder cb) -> {
+            return cb.and(cb.like(root.get("username"), "%" + username + "%"));
+        });
+        List<User> users = new ArrayList<>();
+        usersPO.forEach(po -> {
+            User user = new User();
+            user.setId(po.getId());
+            user.setUsername(po.getUsername());
+            users.add(user);
+        });
+        return users;
+    }
+
+    @Override
+    public User findUserByName(String username) {
+
+        User user = new User();
+        try {
+            UserPO userPO = userDao.findByUsername(username);
+            user.setUsername(userPO.getUsername());
+            user.setId(userPO.getId());
+        } catch (NullPointerException e) {
+        }
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getUsersByGroupId(Long groupId) {
+        List<UserPO> users = userDao.findGroupId(groupId);
+        List<String> usernames = new ArrayList<>();
+        users.forEach(userPO -> {
+            usernames.add(userPO.getUsername());
+        });
+        return usernames;
+    }
+
+    @Override
+    public List<Group> findAllGroup() {
+        List<GroupPO> userGroupPOS = groupDao.findAll();
+        List<Group> userGroups = new ArrayList<>();
+        userGroupPOS.forEach(userGroupTemp -> {
+            Group userGroup = new Group();
+            userGroup.setId(userGroupTemp.getId());
+            userGroup.setName(userGroupTemp.getName());
+            userGroups.add(userGroup);
+        });
+        return userGroups;
+    }
+
 
 }

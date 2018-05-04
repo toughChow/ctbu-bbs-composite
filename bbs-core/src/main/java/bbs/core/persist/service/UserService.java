@@ -47,4 +47,12 @@ public interface UserService {
     void addMembers(Long l, Long groupId);
 
     void removeGroupMember(Long l);
+
+    List<User> findUserLike(String username);
+
+    User findUserByName(String username);
+
+    List<String> getUsersByGroupId(Long groupId);
+
+    List<Group> findAllGroup();
 }

@@ -27,6 +27,10 @@
     <script src="${base}/assets/vendors/select2/select2.min.js"></script>
     <!-- multiselect -->
     <script src="${base}/assets/vendors/multiselect/multiselect.min.js"></script>
+    <!-- WebSocket -->
+    <script src="${base}/assets/js/sockjs.min.js"></script>
+    <script src="${base}/assets/js/stomp.min.js"></script>
+    <script src="${base}/assets/js/modules/websock.js"></script>
 
 </head>
 <body class="nav-md">

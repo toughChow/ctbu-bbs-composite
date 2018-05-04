@@ -230,4 +230,35 @@ public class UserController extends BaseController {
         }
         return Data.success("操作成功", null);
     }
+
+    /**
+     * message center
+     */
+    @ResponseBody
+    @RequestMapping(value = "/search")
+    public List<User> searchUser(String username) {
+        List<User> users = userService.findUserLike(username);
+        List<User> userList = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++) {
+            User user = new User();
+            user.setUsername(users.get(i).getUsername());
+            user.setId(users.get(i).getId());
+            userList.add(user);
+        }
+        if (userList == null)
+            return null;
+        else
+            return userList;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/searchSingle")
+    public String searchSingle(String username) {
+        User user = userService.findUserByName(username);
+        String result = user.getUsername();
+        if (result == null) { // 不存在返回1
+            return "1";
+        } else
+            return "0";
+    }
 }
