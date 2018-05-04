@@ -132,7 +132,7 @@ public class ShiroConfig {
 //        hashMap.put("/AdminController/contingency/**", "authc,perms[contingency:view]");
 //
 //        /*消息中心*/
-//        hashMap.put("/AdminController/message/**", "authc,perms[message:view]");
+        hashMap.put("/AdminController/message/**", "authc,perms[message:view]");
 //
 //        /*统计分析*/
 //        hashMap.put("/AdminController/statistics/**", "authc,perms[statistics:view]");
