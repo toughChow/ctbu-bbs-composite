@@ -65,11 +65,4 @@ public class PostController extends BaseController {
         model.put("key",key);
         return "/admin/posts/list";
     }
-
-    @GetMapping("/delete_post")
-    @ResponseBody
-    public Data deletePost(Long id){
-        Data data = postService.deletePost(id);
-        return data;
-    }
 }

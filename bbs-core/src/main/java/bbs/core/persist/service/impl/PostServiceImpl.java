@@ -45,7 +45,6 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PlateDao plateDao;
 
-
     @Override
     public Page<PostType> findTypeList(Pageable pageable, String key) {
         Page<PostTypePO> page = postTypeDao.findAll(
@@ -94,6 +93,7 @@ public class PostServiceImpl implements PostService {
     public Page<Post> findPostListByManager(Pageable pageable, String key, String username) {
         // get current manager id
         UserPO userPO = userDao.findByUsername(username);
+        Long managerId = userPO.getId();
         List<PlatePO> platePOS = plateDao.findByUserPO(userPO);
 
         Page<PostPO> page = postDao.findAll(
@@ -121,21 +121,8 @@ public class PostServiceImpl implements PostService {
         );
         List<Post> posts = new ArrayList<>();
         page.getContent().forEach(po -> {
-            Post copy = BeanMapUtils.copy(po);
-            // get username
-            Long userId = po.getUserId();
-            UserPO one = userDao.findOne(userId);
-            String name = one.getUsername();
-            copy.setUser(name);
-
-            posts.add(copy);
+            posts.add(BeanMapUtils.copy(po));
         });
         return new PageImpl<>(posts, pageable, page.getTotalElements());
-    }
-
-    @Override
-    public Data deletePost(Long id) {
-        postDao.delete(id);
-        return Data.success("删除成功", Data.NOOP);
     }
 }
