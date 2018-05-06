@@ -23,4 +23,6 @@ public interface UserDao extends JpaRepository<UserPO, Long>, JpaSpecificationEx
 
     @Query(value = "SELECT * FROM T_PUB_USER U WHERE U.USER_GROUP_ID=?1", nativeQuery = true)
     List<UserPO> findGroupId(Long groupId);
+
+    UserPO findById(long id);
 }

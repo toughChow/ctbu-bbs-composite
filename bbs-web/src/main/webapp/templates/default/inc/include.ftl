@@ -23,8 +23,8 @@ ${site_metas}
 <script type="text/javascript" src="${base}/assets/js/sea.config.js"></script>
 
 <!-- Favicons -->
-<link rel="apple-touch-icon-precomposed" href="http://smartlamp.com/dist/images/logo.png"/>
-<link rel="shortcut icon" href="http://smartlamp.com/dist/images/logo.png"/>
+<#--<link rel="apple-touch-icon-precomposed" href="http://smartlamp.com/dist/images/logo.png"/>-->
+<#--<link rel="shortcut icon" href="http://smartlamp.com/dist/images/logo.png"/>-->
 
 <script type="text/javascript">
     var _base_path = '$!{base}';

@@ -20,6 +20,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.security.auth.login.AccountNotFoundException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -401,6 +403,48 @@ public class UserServiceImpl implements UserService {
             userGroups.add(userGroup);
         });
         return userGroups;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @Cacheable(value = "usersCaches", key = "#userId")
+    public User get(Long id) {
+        UserPO userPO = userDao.findOne(id);
+        User ret = null;
+        if (userPO != null) {
+            ret = BeanMapUtils.copy(userPO, 1);
+        }
+        return ret;
+    }
+
+    @Override
+    public AccountProfile update(User user) {
+        UserPO userPO = userDao.findOne(user.getId());
+        if (userPO != null) {
+            userPO.setNickname(user.getNickname());
+            userPO.setSignature(user.getSignature());
+            userDao.save(userPO);
+        }
+        return BeanMapUtils.copyPassport(userPO);
+    }
+
+    @Override
+    public void updatePassword(long id, String oldPassword, String password) {
+        if (StringUtils.isBlank(password)) {
+            throw new IllegalArgumentException();
+        }
+
+        UserPO userPO = userDao.findById(id);
+        if (userPO == null) {
+            try {
+                throw new AccountNotFoundException();
+            } catch (AccountNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        // TODO: 2018/4/28 是否加setCityId
+        userPO.setPassword(DigestUtils.sha1Hex(password));
+        userDao.save(userPO);
     }
 
 

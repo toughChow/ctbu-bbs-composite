@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand logo" href="${base}/index"><img
-                        src="${base}/assets/images/logo/logo_full.png"></a>
+                        src="${base}/assets/img/logo/logo_full.png"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

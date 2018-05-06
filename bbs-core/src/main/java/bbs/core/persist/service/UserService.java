@@ -55,4 +55,10 @@ public interface UserService {
     List<String> getUsersByGroupId(Long groupId);
 
     List<Group> findAllGroup();
+
+    User get(Long id);
+
+    AccountProfile update(User user);
+
+    void updatePassword(long id, String oldPassword, String password);
 }

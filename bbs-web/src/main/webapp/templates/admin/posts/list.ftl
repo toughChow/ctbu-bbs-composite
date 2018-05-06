@@ -33,10 +33,6 @@
                             <td>${row.name}</td>
                             <td class="text-center">
                                 <@shiro.hasPermission name="roles:edit">
-                                    <a href="javascript:void(0);" id="edit_postType" class="btn btn-xs btn-primary addGroupa" data-name="${row.content}" data-id="${row.id}"
-                                       data-action="close">
-                                        <i class="fa fa-edit"></i> 修改
-                                    </a>
                                     <a href="javascript:void(0);" id="delete_postType" class="btn btn-xs btn-danger delete_postType" data-id="${row.id}"
                                        data-action="close">
                                         <i class="fa fa-close"></i> 删除

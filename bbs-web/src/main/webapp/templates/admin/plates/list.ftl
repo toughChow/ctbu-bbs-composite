@@ -8,7 +8,6 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-
                 <form action="/admin.php/admin/street_lamp/index.html" method="get">
                     <div class="toolbar-btn-action">
                     <@shiro.hasPermission name="menu:edit">
