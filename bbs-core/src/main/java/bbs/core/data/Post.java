@@ -9,7 +9,9 @@ public class Post implements Serializable{
 
     private Long id;
 
-    private String name;
+    private String title;
+
+    private String content;
 
     private Timestamp createTime;
 
@@ -17,9 +19,9 @@ public class Post implements Serializable{
 
     private Integer status;
 
-    private User userPO; // 多对一
-
     private Long plateId; // 多对一
+
+    private String owner;
 
     private Long postTypeId; // 一对一
 
@@ -31,12 +33,20 @@ public class Post implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getCreateTime() {
@@ -63,20 +73,20 @@ public class Post implements Serializable{
         this.status = status;
     }
 
-    public User getUserPO() {
-        return userPO;
-    }
-
-    public void setUserPO(User userPO) {
-        this.userPO = userPO;
-    }
-
     public Long getPlateId() {
         return plateId;
     }
 
     public void setPlateId(Long plateId) {
         this.plateId = plateId;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public Long getPostTypeId() {

@@ -121,7 +121,10 @@ public class PostServiceImpl implements PostService {
         );
         List<Post> posts = new ArrayList<>();
         page.getContent().forEach(po -> {
+            Long userId = po.getUserId();
+            UserPO one = userDao.findOne(userId);
             posts.add(BeanMapUtils.copy(po));
+
         });
         return new PageImpl<>(posts, pageable, page.getTotalElements());
     }

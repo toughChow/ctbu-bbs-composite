@@ -34,7 +34,7 @@
                             <td>${row.name}</td>
                             <td class="text-center">
                                 <@shiro.hasPermission name="roles:edit">
-                                    <a href="javascript:void(0);" id="edit_postType" class="btn btn-xs btn-primary addGroupa" data-name="${row.name}" data-id="${row.id}"
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-primary addGroupa edit_postType" data-name="${row.name}" data-id="${row.id}"
                                        data-action="close">
                                         <i class="fa fa-edit"></i> 修改
                                     </a>
@@ -137,7 +137,7 @@
     });
 
     //编辑
-    $("#edit_postType").on('click', function () {
+    $(".edit_postType").on('click', function () {
         var name = $(this).attr('data-name');
         var id = $(this).attr('data-id');
         $('#inputTypeName').val(name);

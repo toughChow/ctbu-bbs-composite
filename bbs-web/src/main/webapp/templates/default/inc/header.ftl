@@ -62,7 +62,7 @@
                 <ul class="nav navbar-nav">
                 <#if profile??>
                     <li data="home">
-                        <a href="${base}/home" nav="home">我的主页</a>
+                        <a href="${base}/admin" nav="home">我的主页</a>
                     </li>
                 </#if>
                 <#list groups as row>
@@ -84,6 +84,7 @@
                     <li class="dropdown">
                         <a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
                             <img class="img-circle" src="${base}${profile.avatar}">
+                            ${profile.name}
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>

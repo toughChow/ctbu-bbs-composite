@@ -22,7 +22,10 @@
                     <thead>
                     <tr>
                         <th width="80" style="text-align: center">#</th>
-                        <th>类型名称</th>
+                        <th>标题</th>
+                        <th>内容</th>
+                        <th>作者</th>
+                        <th>发布时间</th>
                         <th width="300" style="text-align: center">操作</th>
                     </tr>
                     </thead>
@@ -30,7 +33,10 @@
                         <#list page.content as row>
                         <tr>
                             <td class="text-center">${row.id}</td>
-                            <td>${row.name}</td>
+                            <td>${row.title}</td>
+                            <td>${row.content}</td>
+                            <td>${row.owner}</td>
+                            <td>${row.createTime}</td>
                             <td class="text-center">
                                 <@shiro.hasPermission name="roles:edit">
                                     <a href="javascript:void(0);" id="delete_postType" class="btn btn-xs btn-danger delete_postType" data-id="${row.id}"
@@ -56,7 +62,7 @@
                               onsubmit="return submitTest()">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <lable class="col-sm-2 control-label" for="inputGroupName">类型名称<em>*</em></lable>
+                                    <lable class="col-sm-2 control-label" for="inputGroupName">内容<em>*</em></lable>
                                     <div class="col-sm-8">
                                         <input type="hidden" id="typeId" name="id">
                                         <input id="inputTypeName" name="name" class="form-control" type="text">

@@ -19,8 +19,11 @@ public class PostPO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "TITLE")
+    private String title;
+
     @Column(name = "CONTENT")
-    private String name;
+    private String content;
 
     @Column(name = "CREATE_TIME")
     private Timestamp createTime;
@@ -37,6 +40,9 @@ public class PostPO {
     @Column(name = "plate_id")
     private Long plateId;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     public Long getId() {
         return id;
         
@@ -46,12 +52,20 @@ public class PostPO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getCreateTime() {
@@ -94,4 +108,11 @@ public class PostPO {
         this.status = status;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
