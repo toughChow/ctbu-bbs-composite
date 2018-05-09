@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>帖子列表</h2>
+                <h2>帖子审核</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -44,9 +44,13 @@
                             <td>${row.createTime}</td>
                             <td class="text-center">
                                 <@shiro.hasPermission name="roles:edit">
+                                    <a href="javascript:void(0);" id="delete_postType" class="btn btn-xs btn-success pass_post" data-id="${row.id}"
+                                       data-action="close">
+                                        <i class="fa fa-edit"></i> 通过
+                                    </a>
                                     <a href="javascript:void(0);" id="delete_postType" class="btn btn-xs btn-danger delete_postType" data-id="${row.id}"
                                        data-action="close">
-                                        <i class="fa fa-close"></i> 删除
+                                        <i class="fa fa-close"></i> 拒绝
                                     </a>
                                 </@shiro.hasPermission>
                             </td>
@@ -105,7 +109,22 @@
 
     $(function () {
 
-    //删除
+    //通过
+    $(".pass_post").on('click', function () {
+        var id = $(this).attr('data-id');
+        layer.confirm('确定要执行该操作吗？', {
+            btn: ['确定', '取消'], //按钮
+            shade: false //不显示遮罩
+        }, function () {
+            J.getJSON('${base}/admin/posts/delete_postType', {
+                id: id
+            }, ajaxReload);
+        }, function () {
+        });
+        return false;
+    });
+
+    //拒绝
     $(".delete_postType").on('click', function () {
         var id = $(this).attr('data-id');
         layer.confirm('确定要执行该操作吗？', {

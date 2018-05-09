@@ -59,10 +59,22 @@ public class PostController extends BaseController {
     @GetMapping("/list")
     public String toList(ModelMap model, String key, Integer pn){
         AccountProfile profile = getSubject().getProfile();
+        Integer status = 1;
         String username = profile.getUsername();
-        Page<Post> page = postService.findPostListByManager(wrapPageable(pn, 10, 0, null), key, username);
+        Page<Post> page = postService.findPostListByManagerAndStatus(wrapPageable(pn, 10, 0, null), key, username,status);
         model.put("page",page);
         model.put("key",key);
         return "/admin/posts/list";
+    }
+
+    @GetMapping("/check")
+    public String toVerify(ModelMap model, String key, Integer pn){
+        AccountProfile profile = getSubject().getProfile();
+        Integer status = 0;
+        String username = profile.getUsername();
+        Page<Post> page = postService.findPostListByManagerAndStatus(wrapPageable(pn, 10, 0, null), key, username,status);
+        model.put("page",page);
+        model.put("key",key);
+        return "/admin/posts/verify";
     }
 }
