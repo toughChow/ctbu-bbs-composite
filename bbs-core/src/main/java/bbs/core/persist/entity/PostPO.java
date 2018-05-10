@@ -49,6 +49,12 @@ public class PostPO {
     @Column(name = "UPVOTE")
     private Integer upvote;
 
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_PUB_COLLECT_PAGE", joinColumns = {@JoinColumn(name = "POST_ID")}, inverseJoinColumns = {@JoinColumn(name = "USER_ID")})
+    @Fetch(FetchMode.SUBSELECT)
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private List<UserPO> userPOS = new ArrayList<>();
+
     public Long getId() {
         return id;
         
@@ -136,5 +142,13 @@ public class PostPO {
 
     public void setUpvote(Integer upvote) {
         this.upvote = upvote;
+    }
+
+    public List<UserPO> getUserPOS() {
+        return userPOS;
+    }
+
+    public void setUserPOS(List<UserPO> userPOS) {
+        this.userPOS = userPOS;
     }
 }

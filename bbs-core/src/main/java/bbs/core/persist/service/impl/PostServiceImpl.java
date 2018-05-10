@@ -21,10 +21,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -213,5 +210,83 @@ public class PostServiceImpl implements PostService {
             posts.add(copy);
         });
         return new PageImpl<>(posts, pageable, page.getTotalElements());
+    }
+
+    // Mine Model
+
+    @Override
+    public Page<Post> findPostListByUser(Pageable pageable, String key, String username) {
+        UserPO userPO = userDao.findByUsername(username);
+        Long id = userPO.getId();
+        Page<PostPO> page = postDao.findAll(
+                (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                        -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    List<Predicate> subPredicates = new ArrayList<>();
+                    subPredicates.add(cb.equal(root.get("userId"),id));
+                    predicates.add(cb.and(subPredicates.toArray(new Predicate[]{})));
+                    if (StringUtils.isNotBlank(key)) {
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("content"), tag));
+                    }
+                    predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, pageable
+        );
+        List<Post> posts = new ArrayList<>();
+        page.getContent().forEach(po -> {
+            Post copy = BeanMapUtils.copy(po);
+            posts.add(copy);
+        });
+        return new PageImpl<>(posts, pageable, page.getTotalElements());
+
+    }
+
+    @Override
+    public void updatePost(Post post) {
+        Long id = post.getId();
+        PostPO one = postDao.findOne(id);
+        one.setTitle(post.getTitle());
+        one.setContent(post.getContent());
+        one.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        postDao.save(one);
+    }
+
+    @Override
+    public Page<Post> findCollectedPosts(Pageable pageable, String key, String username) {
+        UserPO userPO = userDao.findByUsername(username);
+        Long id = userPO.getId();
+
+        Page<PostPO> postPOS=postDao.findAll(
+                (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                ->{
+                    List<Predicate> predicates = new ArrayList<>();
+                    List<Predicate> subpredicates = new ArrayList<>();
+                    ListJoin<PostPO,UserPO> join  = root.join(root.getModel().getList("userPOS",UserPO.class),JoinType.LEFT);
+                    Predicate predicate=cb.equal(join.get("id").as(Long.class),id);
+                    predicates.add(cb.and(predicate));
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                },pageable
+        );
+        List<Post> posts = new ArrayList<>();
+        postPOS.getContent().forEach(po -> {
+            Long userId = po.getUserId();
+            UserPO one = userDao.findOne(userId);
+            Post copy = BeanMapUtils.copy(po);
+            copy.setOwner(one.getUsername());
+            posts.add(copy);
+        });
+        return new PageImpl<>(posts, pageable, postPOS.getTotalElements());
+    }
+
+    @Override
+    public Data undoCollect(Long id, long userId) {
+        PostPO one = postDao.findOne(id);
+        UserPO userPO = userDao.findOne(userId);
+        List<UserPO> userPOS = one.getUserPOS();
+        userPOS.remove(userPO);
+        one.setUserPOS(userPOS);
+        postDao.save(one);
+        return Data.success("操作成功", Data.NOOP);
     }
 }

@@ -124,6 +124,9 @@ public class ShiroConfig {
         /*帖子管理*/
         hashMap.put("/admin/posts/**", "authc,perms[plates:view]");
         hashMap.put("/admin/posts/add", "authc,perms[plates:edit]");
+
+        /*我的帖子管理*/
+        hashMap.put("/admin/mine/**", "authc,perms[mine:view]");
 //
 //        /*监控管理*/
 //        hashMap.put("/AdminController/monitor/**", "authc,perms[monitor:view]");

@@ -23,4 +23,11 @@ public interface PostService {
 
     Page<Post> findPostListByTipOffAndStatus(Pageable pageable, String key, String username, Integer status);
 
+    Page<Post> findPostListByUser(Pageable pageable, String key, String username);
+
+    void updatePost(Post post);
+
+    Page<Post> findCollectedPosts(Pageable pageable, String key, String username);
+
+    Data undoCollect(Long id, long userId);
 }
