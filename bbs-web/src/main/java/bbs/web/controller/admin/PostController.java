@@ -56,6 +56,13 @@ public class PostController extends BaseController {
         the following are post management
      */
 
+    /**
+     * 查看所有帖子 status 为1
+     * @param model
+     * @param key
+     * @param pn
+     * @return
+     */
     @GetMapping("/list")
     public String toList(ModelMap model, String key, Integer pn){
         AccountProfile profile = getSubject().getProfile();
@@ -67,6 +74,13 @@ public class PostController extends BaseController {
         return "/admin/posts/list";
     }
 
+    /**
+     * 审阅帖子 status 为0
+     * @param model
+     * @param key
+     * @param pn
+     * @return
+     */
     @GetMapping("/check")
     public String toVerify(ModelMap model, String key, Integer pn){
         AccountProfile profile = getSubject().getProfile();
@@ -77,4 +91,42 @@ public class PostController extends BaseController {
         model.put("key",key);
         return "/admin/posts/verify";
     }
+
+    @RequestMapping("/passCheck")
+    @ResponseBody
+    public Data pass(Long id){
+        Integer status = 1;
+        Data data = postService.updatePostStatus(id,status);
+        return data;
+    }
+
+    @RequestMapping("/refuseCheck")
+    @ResponseBody
+    public Data refuse(Long id){
+        Integer status = 2;
+        Data data = postService.updatePostStatus(id,status);
+        return data;
+    }
+
+    // 举报审核
+
+    /**
+     *
+     * @param model
+     * @param key
+     * @param pn
+     * @return
+     */
+    @GetMapping("/tipoff")
+    public String toTipOff(ModelMap model, String key, Integer pn){
+        AccountProfile profile = getSubject().getProfile();
+        String username = profile.getUsername();
+        Integer status = 1;
+        Page<Post> page = postService.findPostListByTipOffAndStatus(wrapPageable(pn, 10, 0, null), key, username,status);
+        model.put("page",page);
+        model.put("key",key);
+        return "/admin/posts/tipoff";
+    }
+
+
 }

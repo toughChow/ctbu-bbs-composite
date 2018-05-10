@@ -85,4 +85,15 @@ public class RegController extends BaseController{
 
         return 1; // "验证码已发送,请注意查收!";
     }
+
+    @RequestMapping("/valiUser")
+    @ResponseBody
+    public Integer valiUser(String username){
+        User user = userService.findUserByName(username);
+        if(user != null)
+            return 1; // user name exist
+        return 0;
+
+
+    }
 }

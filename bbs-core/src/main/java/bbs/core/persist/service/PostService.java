@@ -15,7 +15,12 @@ public interface PostService {
 
     void savePostType(PostType type);
 
-    Page<Post> findPostListByManager(Pageable pageable, String key, String username);
+//    Page<Post> findPostListByManager(Pageable pageable, String key, String username);
 
     Page<Post> findPostListByManagerAndStatus(Pageable pageable, String key, String username, Integer status);
+
+    Data updatePostStatus(Long id, Integer status);
+
+    Page<Post> findPostListByTipOffAndStatus(Pageable pageable, String key, String username, Integer status);
+
 }

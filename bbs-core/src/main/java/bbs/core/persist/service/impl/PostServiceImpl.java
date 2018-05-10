@@ -89,8 +89,45 @@ public class PostServiceImpl implements PostService {
         postTypeDao.save(po);
     }
 
+//    @Override
+//    public Page<Post> findPostListByManager(Pageable pageable, String key, String username) {
+//        UserPO userPO = userDao.findByUsername(username);
+//        List<PlatePO> platePOS = plateDao.findByUserPO(userPO);
+//
+//        Page<PostPO> page = postDao.findAll(
+//                (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+//                        -> {
+//                    List<Predicate> predicates = new ArrayList<>();
+//                    List<Predicate> subPredicates = new ArrayList<>();
+//
+//                    if(platePOS != null && platePOS.size() > 0) {
+//                        platePOS.forEach(po -> {
+//                        subPredicates.add(cb.equal(root.get("plateId"),po.getId()));
+//                        });
+//                    }
+//
+//                    if (StringUtils.isNotBlank(key)) {
+//                        String tag = "%" + key + "%";
+//                        subPredicates.add(cb.like(root.get("content"), tag));
+//                    }
+//                    predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+//                    return cb.and(predicates.toArray(new Predicate[]{}));
+//                }, pageable
+//        );
+//        List<Post> posts = new ArrayList<>();
+//        page.getContent().forEach(po -> {
+//            Long userId = po.getUserId();
+//            UserPO one = userDao.findOne(userId);
+//            Post copy = BeanMapUtils.copy(po);
+//            copy.setOwner(one.getUsername());
+//            posts.add(copy);
+//
+//        });
+//        return new PageImpl<>(posts, pageable, page.getTotalElements());
+//    }
+
     @Override
-    public Page<Post> findPostListByManager(Pageable pageable, String key, String username) {
+    public Page<Post> findPostListByManagerAndStatus(Pageable pageable, String key, String username, Integer status) {
         UserPO userPO = userDao.findByUsername(username);
         List<PlatePO> platePOS = plateDao.findByUserPO(userPO);
 
@@ -100,9 +137,13 @@ public class PostServiceImpl implements PostService {
                     List<Predicate> predicates = new ArrayList<>();
                     List<Predicate> subPredicates = new ArrayList<>();
 
+                    subPredicates.add(cb.equal(root.get("status"),status));
+                    predicates.add(cb.and(subPredicates.toArray(new Predicate[]{})));
+
+
                     if(platePOS != null && platePOS.size() > 0) {
                         platePOS.forEach(po -> {
-                        subPredicates.add(cb.equal(root.get("plateId"),po.getId()));
+                            subPredicates.add(cb.equal(root.get("plateId"),po.getId()));
                         });
                     }
 
@@ -121,13 +162,20 @@ public class PostServiceImpl implements PostService {
             Post copy = BeanMapUtils.copy(po);
             copy.setOwner(one.getUsername());
             posts.add(copy);
-
         });
         return new PageImpl<>(posts, pageable, page.getTotalElements());
     }
 
     @Override
-    public Page<Post> findPostListByManagerAndStatus(Pageable pageable, String key, String username, Integer status) {
+    public Data updatePostStatus(Long id, Integer status) {
+        PostPO one = postDao.getOne(id);
+        one.setStatus(status);
+        postDao.save(one);
+        return Data.success("执行成功", Data.NOOP);
+    }
+
+    @Override
+    public Page<Post> findPostListByTipOffAndStatus(Pageable pageable, String key, String username, Integer status) {
         UserPO userPO = userDao.findByUsername(username);
         List<PlatePO> platePOS = plateDao.findByUserPO(userPO);
 
@@ -138,6 +186,7 @@ public class PostServiceImpl implements PostService {
                     List<Predicate> subPredicates = new ArrayList<>();
 
                     subPredicates.add(cb.equal(root.get("status"),status));
+                    subPredicates.add(cb.gt(root.get("tipOff"),10));
                     predicates.add(cb.and(subPredicates.toArray(new Predicate[]{})));
 
 

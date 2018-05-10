@@ -15,9 +15,9 @@
 
 <#macro albShow att>
     <#if att.store == 1>
-    <img src="${base}/assets/images/spinner-overlay.png" data-original="${att.preview}"/>
+    <img src="${base}/assets/img/spinner-overlay.png" data-original="${att.preview}"/>
     <#else>
-    <img src="${base}/assets/images/spinner-overlay.png" data-original="<@resource src=att.preview />"/>
+    <img src="${base}/assets/img/spinner-overlay.png" data-original="<@resource src=att.preview />"/>
     </#if>
 </#macro>
 

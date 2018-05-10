@@ -25,6 +25,10 @@ public class Post implements Serializable{
 
     private Long postTypeId; // 一对一
 
+    private Integer tipOff;
+
+    private Integer upvote;
+
     public Long getId() {
         return id;
     }
@@ -95,5 +99,21 @@ public class Post implements Serializable{
 
     public void setPostTypeId(Long postTypeId) {
         this.postTypeId = postTypeId;
+    }
+
+    public Integer getTipOff() {
+        return tipOff;
+    }
+
+    public void setTipOff(Integer tipOff) {
+        this.tipOff = tipOff;
+    }
+
+    public Integer getUpvote() {
+        return upvote;
+    }
+
+    public void setUpvote(Integer upvote) {
+        this.upvote = upvote;
     }
 }

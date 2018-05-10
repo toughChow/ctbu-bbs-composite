@@ -7,8 +7,10 @@ import bbs.core.data.Group;
 import bbs.core.data.User;
 import bbs.core.persist.dao.AuthMenuDao;
 import bbs.core.persist.dao.GroupDao;
+import bbs.core.persist.dao.RoleDao;
 import bbs.core.persist.dao.UserDao;
 import bbs.core.persist.entity.GroupPO;
+import bbs.core.persist.entity.RolePO;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.UserService;
 import bbs.core.persist.utils.BeanMapUtils;
@@ -50,6 +52,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private GroupDao groupDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Override
     public AccountProfile getProfileByName(String username) {
@@ -121,6 +126,11 @@ public class UserServiceImpl implements UserService {
         userPO.setStatus(Consts.USER_ENABLED);
         userPO.setActiveEmail(Consts.USER_ENABLED);
         userPO.setCreated(Calendar.getInstance().getTime());
+        // set role
+        List<RolePO> rolePOS = new ArrayList<>();
+        RolePO one = roleDao.findOne(2L);
+        rolePOS.add(one);
+        userPO.setRoles(rolePOS);
         userDao.save(userPO);
 
         return BeanMapUtils.copy(userPO, 0);

@@ -43,6 +43,12 @@ public class PostPO {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "TIP_OFF")
+    private Integer tipOff;
+
+    @Column(name = "UPVOTE")
+    private Integer upvote;
+
     public Long getId() {
         return id;
         
@@ -114,5 +120,21 @@ public class PostPO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Integer getTipOff() {
+        return tipOff;
+    }
+
+    public void setTipOff(Integer tipOff) {
+        this.tipOff = tipOff;
+    }
+
+    public Integer getUpvote() {
+        return upvote;
+    }
+
+    public void setUpvote(Integer upvote) {
+        this.upvote = upvote;
     }
 }
