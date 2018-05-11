@@ -1,0 +1,14 @@
+.open>.dropdown-menu {
+    display: block;
+    margin-top: 20px;
+}
+.img-circle {
+    border-radius: 50%;
+    width: 38px;
+}
+#eis_toptb .y a, #eis_toptb .y strong {
+    color: #999;
+    float: left;
+    line-height: 40px;
+    padding: 0 10px;
+}

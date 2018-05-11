@@ -1,38 +1,45 @@
-<footer>
-    <div class="footer-nav">
-        <div class="container">
-            <ul class="about-ul list-inline clearfix">
-                <li><a href="${base}/about">关于我们</a></li>
-                <li><a href="${base}/joinus">联系我们</a></li>
-                <li><a href="${base}/faqs">常见问题</a></li>
-                <li>
-                    <script>
-                        var _hmt = _hmt || [];
-                        (function () {
-                            var hm = document.createElement("script");
-                            hm.src = "//hm.baidu.com/hm.js?a029e6c6dddf427f4cbfb2b00d7d5311";
-                            var s = document.getElementsByTagName("script")[0];
-                            s.parentNode.insertBefore(hm, s);
-                        })();
-                    </script>
-                </li>
-            </ul>
+<div class="eis_wp988">
+    <div class="eis_footer_l">
+        <div class="eis_footer_r">
+            <div class="eis_footer_c"><a href="https://cssauw.org/forum/forum.php?mod=misc&amp;action=showdarkroom">小黑屋</a><span class="pipe">|</span><a href="https://cssauw.org/forum/forum.php?mobile=yes">手机版</a><span class="pipe">|</span><a href="https://cssauw.org/forum/archiver/">Archiver</a><span class="pipe">|</span><strong><a href="https://cssauw.org/forum/" target="_blank">重庆工商大学校园论坛
+            </a></strong>
+                &nbsp;<a href="http://discuz.qq.com/service/security" target="_blank" title="防水墙保卫网站远离侵害"><img src="/assets/img/bbs/security.png"></a>&nbsp;&nbsp;<span id="tcss"></span><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"54066420","ui":0,"rt":"forum","md":"index","pn":1,"qq":"000","logo":11},"extraParams":""});</script>                        </div>
         </div>
     </div>
-    <div class="container copy-right">
-		<span>${site_copyright} <a
-                href="http://www.miitbeian.gov.cn/" target="_blank">${site_icp}</a>
-		</span>
-        <span class="pull-right">Powered By <a href="http://www.mingairui.org"
-                                               target="_blank">toughChow</a></span>
+</div>
+    <div class="eis_footer">
+        <p>
+            Powered by <strong><a href="http://www.discuz.net/" target="_blank">Discuz!</a></strong> <em>X3.2</em>© 2001-2013 <a href="http://www.comsenz.com/" target="_blank">Comsenz
+
+            Inc.</a>&nbsp;&nbsp;Skin by <a href="http://www.eisdl.com/" target="_blank">恩斯道</a>    </p>
+        <p class="xs0">
+            GMT-7, 2018-5-10 23:50      <span id="debuginfo">. This page is cached  at 23:50:28  .</span>
+        </p>
     </div>
 
-</footer>
 
-<a href="#" class="site-scroll-top"></a>
 
-<script type="text/javascript">
-    seajs.use('main', function (main) {
-        main.init();
-    });
-</script>
+
+    <div id="ft" class="wp cl" style="border:0px; ">
+
+
+    </div></div></div>
+    <style type="text/css">
+        #scrolltop { margin-left:11px;}
+        #ft { padding:0px; border:0px; }
+    </style>
+    <script src="/assets/img/bbs/home.php" type="text/javascript"></script>
+    <div id="scrolltop" style="left: 1154px; visibility: visible;">
+<span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo(&#39;0&#39;,&#39;0&#39;)" class="scrolltopa"><b>返回顶部
+
+</b></a></span>
+    </div>
+    <script type="text/javascript">_attachEvent(window, 'scroll', function () { showTopLink(); });checkBlind();</script>
+    <div id="discuz_tips" style="display:none;"></div>
+    <script type="text/javascript">
+        var tipsinfo = '54066420|X3.2|0.6||0||0|7|1526021428|bb12bf48c1fd30c3e4a801c3a2d71100|2';
+    </script><script type="text/javascript">
+    if($('debuginfo')) {
+        $('debuginfo').innerHTML = '. This page is cached  at 23:50:28  .';
+    }
+</script></div></body></html>
