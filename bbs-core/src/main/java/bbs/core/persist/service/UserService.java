@@ -61,4 +61,6 @@ public interface UserService {
     AccountProfile update(User user);
 
     void updatePassword(long id, String oldPassword, String password);
+
+    User findByPostId(Long id);
 }

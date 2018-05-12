@@ -128,5 +128,11 @@ public class PostController extends BaseController {
         return "/admin/posts/tipoff";
     }
 
+    // 发帖
+
+    @RequestMapping("/send")
+    public String sendPost(){
+        return "/admin/posts/send";
+    }
 
 }

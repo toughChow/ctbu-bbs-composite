@@ -1,6 +1,7 @@
 package bbs.core.persist.service;
 
 import bbs.base.data.Data;
+import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
 import org.springframework.data.domain.Page;
@@ -34,4 +35,10 @@ public interface PostService {
     Data undoCollect(Long id, long userId);
 
     List<Post> findPostListByTime();
+
+    Page<Post> findByPlateIdOrderByCreateTimeDesc(Pageable pageable, String key,Long pid,Integer status);
+
+    Plate findPlateByPost(Long id);
+
+    Post findOne(Long id);
 }

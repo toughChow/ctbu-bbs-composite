@@ -5,11 +5,9 @@ import bbs.base.print.Printer;
 import bbs.core.data.AccountProfile;
 import bbs.core.data.Group;
 import bbs.core.data.User;
-import bbs.core.persist.dao.AuthMenuDao;
-import bbs.core.persist.dao.GroupDao;
-import bbs.core.persist.dao.RoleDao;
-import bbs.core.persist.dao.UserDao;
+import bbs.core.persist.dao.*;
 import bbs.core.persist.entity.GroupPO;
+import bbs.core.persist.entity.PostPO;
 import bbs.core.persist.entity.RolePO;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.UserService;
@@ -55,6 +53,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleDao roleDao;
+
+    @Autowired
+    private PostDao postDao;
 
     @Override
     public AccountProfile getProfileByName(String username) {
@@ -455,6 +456,15 @@ public class UserServiceImpl implements UserService {
         // TODO: 2018/4/28 是否加setCityId
         userPO.setPassword(DigestUtils.sha1Hex(password));
         userDao.save(userPO);
+    }
+
+    @Override
+    public User findByPostId(Long id) {
+        PostPO one = postDao.findOne(id);
+        Long userId = one.getUserId();
+        UserPO userPO = userDao.findOne(userId);
+        User copy = BeanMapUtils.copy(userPO, 0);
+        return copy;
     }
 
 

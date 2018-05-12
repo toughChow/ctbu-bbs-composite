@@ -16,6 +16,7 @@
     <base href=".">
     <link rel="stylesheet" type="text/css" href="/assets/css/style_2_common.css">
     <link rel="stylesheet" type="text/css" href="/assets/img/bbs/style_2_forum_index.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style_2_forum_forumdisplay.css">
     <link rel="stylesheet" id="css_extstyle" type="text/css" href="/assets/img/bbs/style.css">
     <#--<script src="/assets/img/bbs/common.js.下载" type="text/javascript"></script>-->
     <meta name="application-name" content="重庆工商大学校园论坛">

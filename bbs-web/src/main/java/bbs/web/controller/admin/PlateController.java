@@ -1,12 +1,15 @@
 package bbs.web.controller.admin;
 
 import bbs.core.data.Plate;
+import bbs.core.data.Post;
 import bbs.core.data.User;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.PlateService;
+import bbs.core.persist.service.PostService;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,9 @@ public class PlateController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PostService postService;
 
     @GetMapping("/list")
     public String list() {
@@ -69,5 +75,7 @@ public class PlateController extends BaseController {
         plateService.delete(id);
         return "1";
     }
+
+
 
 }

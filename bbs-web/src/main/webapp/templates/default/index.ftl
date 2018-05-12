@@ -36,8 +36,8 @@
                                                         href="https://cssauw.org/forum/space-username-%E9%98%BF%E5%BC%A6%E5%A6%9E"
                                                         target="_blank">阿弦妞</a></em></p>
                                             <div class="y">
-                                                <a href="https://cssauw.org/forum/forum.php?mod=guide&amp;view=new"
-                                                   title="最新回复" class="xi2">最新回复</a></div>
+                                                <a href="${base}/admin/posts/send"
+                                                   title="发帖" class="xi2">发帖</a></div>
                                         </div>
                                     </div>
                                     <div class="eis_sg_c cl">
@@ -195,7 +195,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div><!--[/diy]--></div>
+                                            </div><!--[/diy]-->
+                                        </div>
                                         <!--[diy=eis_fdm]-->
                                         <div id="eis_fdm" class="area">
                                             <div id="tabxaWzYW" class="eis_t1 frame-tab move-span cl">
@@ -248,7 +249,7 @@
                                                     href="javascript:void(0)" class="notabs"
                                                     c="1" mid="card_7036" class="notabs" c="1"
                                                     mid="card_922">${row.manager}</a></span>
-                                            <h2 class="on"><strong><a href="${base}/plate/${row.id}"
+                                            <h2 class="on"><strong><a href="javascript:void(0)"
                                                                       style="">${row.name}</a></strong></h2>
                                         </div>
                                     <div id="category_1" class="bm_c" style="">
@@ -259,14 +260,14 @@
                                                     <#if row2.name == "公告区">
                                         <tr>
                                             <td class="fl_icn">
-                                                <a href="${base}/plate/${row2.id}"><img
+                                                <a href="${base}/plates/${row2.id}"><img
                                                         src="/assets/img/bbs/forum.gif"
                                                         alt="公告区 (Announcements)"></a>
                                             </td>
                                             <td class="eis_fl_forum">
-                                                <a href="${base}/plate/${row2.id}"
+                                                <a href="${base}/plates/${row2.id}"
                                                    class="eis_fn">${row2_index}</a>
-                                                <h2><a href="${base}/plate/${row2.id}"
+                                                <h2><a href="${base}/plates/${row2.id}"
                                                        style="color: #0099FF;">${row2.name}</a></h2>
                                                 <p class="xg2">暂无描述</p></td>
                                             <td class="fl_i">
@@ -283,14 +284,14 @@
                                                     <#else>
                                         <tr class="fl_row">
                                             <td class="fl_icn">
-                                                <a href="${base}/plate/${row2.id}"><img
+                                                <a href="${base}/plates/${row2.id}"><img
                                                         src="/assets/img/bbs/forum.gif"
                                                         alt="新生会 (New Students)"></a>
                                             </td>
                                             <td class="eis_fl_forum">
-                                                <a href="${base}/plate/${row2.id}"
+                                                <a href="${base}/plates/${row2.id}"
                                                    class="eis_fn">${row2_index}</a>
-                                                <h2><a href="${base}/plate/${row2.id}"
+                                                <h2><a href="${base}/plates/${row2.id}"
                                                        style="color: #602464;">${row2.name}</a></h2>
                                                 <p class="xg2">暂无描述</p></td>
                                             <td class="fl_i">

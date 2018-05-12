@@ -100,6 +100,15 @@ public class PlateServiceImpl implements PlateService{
         return plateTree;
     }
 
+    @Override
+    public Plate findByParent(Long id) {
+        PlatePO platePOS = plateDao.findOne(id);
+        Long parentId = platePOS.getParentId();
+        PlatePO one = plateDao.findOne(parentId);
+        Plate copy = BeanMapUtils.copy(one);
+        return copy;
+    }
+
     List<Plate>  palteOnly = new ArrayList<>();
     private List<Plate> getPlateTree(List<Plate> menus, Long parentId){
         for(int i = 0; i < menus.size(); i ++) {

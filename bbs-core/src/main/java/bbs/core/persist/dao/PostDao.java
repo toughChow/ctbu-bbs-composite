@@ -15,9 +15,11 @@ public interface PostDao extends JpaRepository<PostPO,Long>,JpaSpecificationExec
 //    @Query(value = "SELECT FROM t_pub_post t ")
 //    List<PostPO> findTimeAndLimit7();
 
-    List<PostPO> findByStatusOrderByCreateTimeAsc(int i);
+    List<PostPO> findByStatusOrderByCreateTimeDesc(int i);
 
     List<PostPO> findByPlateId(Long id);
+
+    List<PostPO> findByPlateIdAndStatusOrderByCreateTimeDesc(Long pid, Integer status);
 
     //SELECT * FROM T_PUB_USER U WHERE U.USER_GROUP_ID=?1", nativeQuery = true
 }

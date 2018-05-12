@@ -1,6 +1,7 @@
 package bbs.core.persist.service.impl;
 
 import bbs.base.data.Data;
+import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
 import bbs.core.persist.dao.PlateDao;
@@ -16,9 +17,7 @@ import bbs.core.persist.utils.BeanMapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
@@ -293,7 +292,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findPostListByTime() {
 //        List<PostPO> postPOSs = postDao.findTimeAndLimit7();
-        List<PostPO> postPOS = postDao.findByStatusOrderByCreateTimeAsc(1);
+        List<PostPO> postPOS = postDao.findByStatusOrderByCreateTimeDesc(1);
         List<Post> posts = new ArrayList<>();
         for(int i = 0; i < 7; i++){
             PostPO postPO = postPOS.get(i);
@@ -305,5 +304,60 @@ public class PostServiceImpl implements PostService {
             posts.add(copy);
         }
         return posts;
+    }
+
+    @Override
+    public Page<Post> findByPlateIdOrderByCreateTimeDesc(Pageable pageable, String key, Long pid,Integer status) {
+//        List<PostPO> postPOS = postDao.findByPlateIdAndStatusOrderByCreateTimeDesc(pid,status);
+//        List<Post> posts = new ArrayList<>();
+//        postPOS.forEach(po -> {
+//            Post copy = BeanMapUtils.copy(po);
+//            posts.add(copy);
+//        });
+        Pageable p=new PageRequest(pageable.getPageNumber(),pageable.getPageSize(), Sort.Direction.DESC,"createTime");
+        Page<PostPO> page = postDao.findAll(
+                (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                        -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    List<Predicate> subPredicates = new ArrayList<>();
+
+                    subPredicates.add(cb.equal(root.get("plateId"),pid));
+                    subPredicates.add(cb.equal(root.get("status"),status));
+                    predicates.add((cb.and(subPredicates.toArray(new Predicate[]{}))));
+
+                    if (StringUtils.isNotBlank(key)) {
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("content"), tag));
+                    }
+                    predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, p
+        );
+        List<Post> posts = new ArrayList<>();
+        page.getContent().forEach(po -> {
+            Post copy = BeanMapUtils.copy(po);
+            Long userId = po.getUserId();
+            UserPO one = userDao.findOne(userId);
+            copy.setOwner(one.getUsername());
+            posts.add(copy);
+        });
+        return new PageImpl<>(posts, pageable, page.getTotalElements());
+    }
+
+    @Override
+    public Plate findPlateByPost(Long id) {
+        PostPO one = postDao.findOne(id);
+        Long plateId = one.getPlateId();
+        PlatePO platePO = plateDao.findOne(plateId);
+        Plate plate = BeanMapUtils.copy(platePO);
+        return plate;
+    }
+
+    @Override
+    public Post findOne(Long id) {
+        PostPO one = postDao.findOne(id);
+        Post copy = BeanMapUtils.copy(one);
+        return copy;
     }
 }
