@@ -41,6 +41,7 @@
                                         </div>
                                     </div>
                                     <div class="eis_sg_c cl">
+                                        <!-- 轮播图 -->
                                         <div class="eis_dtd_l"><!--[diy=eis_fdl]-->
                                             <div id="eis_fdl" class="area">
                                                 <div id="frameS2Z0DT" class="cl_frame_bm frame move-span cl frame-1">
@@ -126,6 +127,7 @@
                                                     </div>
                                                 </div>
                                             </div><!--[/diy]--></div>
+                                        <!-- 活跃会员 -->
                                         <div class="eis_dtd_r"><!--[diy=eis_fdr]-->
                                             <div id="eis_fdr" class="area">
                                                 <div id="frameQKqppo" class="eis_topuser frame move-span cl frame-1">
@@ -207,6 +209,7 @@
                                                     </ul>
                                                 </div>
                                                 <div id="tabxaWzYW_content" class="tb-c">
+                                                    <!-- 最新帖子 -->
                                                     <div id="portal_block_4_content" class="dxb_bc">
                                                         <ul class="eis_toplist">
                                                         <#list newPosts as row>
@@ -220,144 +223,6 @@
                                                                 </a>
                                                             </li>
                                                         </#list>
-                                                        </ul>
-                                                    </div>
-                                                    <div id="portal_block_5_content" class="dxb_bc"
-                                                         style="display: none;">
-                                                        <ul class="eis_toplist">
-                                                            <li>
-                                                                <span>6</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63316"
-                                                                         target="_blank">nili</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31798-1-1"
-                                                                   target="_blank">求租： 华大附近 6月到8月 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>5</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63298"
-                                                                         target="_blank">majorn</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31768-1-1"
-                                                                   target="_blank">求租9月开始近华大的房子 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>2</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-14229"
-                                                                         target="_blank">elise</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-7-1"
-                                                                           target="_blank">[本地交易 (For
-                                                                    Sale)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31783-1-1"
-                                                                   target="_blank">Moving sale 第二波 沙发+茶几+婴儿床+自行 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>2</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63306"
-                                                                         target="_blank">mq_cs</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31781-1-1"
-                                                                   target="_blank">九月中旬开始，下学年UW步行范围内找房/找 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>2</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-60498"
-                                                                         target="_blank">yiliang</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31780-1-1"
-                                                                   target="_blank">非常好住的studio，6月中旬起转租 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>2</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-41093"
-                                                                         target="_blank">yangzhou_2014</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31779-1-1"
-                                                                   target="_blank">求租 学校附近的房子 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>2</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63300"
-                                                                         target="_blank">grace_uw</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31772-1-1"
-                                                                   target="_blank">求租9月-11月底房子 </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div id="portal_block_6_content" class="dxb_bc"
-                                                         style="display: none;">
-                                                        <ul class="eis_toplist">
-                                                            <li>
-                                                                <span>10</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63078"
-                                                                         target="_blank">magicLynn</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31421-1-1"
-                                                                   target="_blank">2018 fall UW PhD求租房 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>8</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-37022"
-                                                                         target="_blank">findapartment</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-27341-1-1"
-                                                                   target="_blank">方便去uw和downtown的独卫房子暑 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>7</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63119"
-                                                                         target="_blank">imperfection</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31544-1-1"
-                                                                   target="_blank">求房源，要求： 九月开始+ 近Ama </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>7</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-55735"
-                                                                         target="_blank">lava1191</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-27835-1-1"
-                                                                   target="_blank">9月求租房 （女） </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>6</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-63316"
-                                                                         target="_blank">nili</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31798-1-1"
-                                                                   target="_blank">求租： 华大附近 6月到8月 </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>6</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-53049"
-                                                                         target="_blank">xuxiaoxushihan</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-6-1"
-                                                                           target="_blank">[租房住宿 (Housing)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-31567-1-1"
-                                                                   target="_blank">超大一室一厅675sqf </a>
-                                                            </li>
-                                                            <li>
-                                                                <span>6</span>
-                                                                <span><a href="https://cssauw.org/forum/space-uid-38508"
-                                                                         target="_blank">luming</a></span>
-                                                                <strong><a href="https://cssauw.org/forum/forum-7-1"
-                                                                           target="_blank">[本地交易 (For
-                                                                    Sale)]</a></strong>
-                                                                <a href="https://cssauw.org/forum/thread-30548-1-1"
-                                                                   target="_blank">搬家甩货，家具电视物品等 </a>
-                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -394,38 +259,38 @@
                                                     <#if row2.name == "公告区">
                                         <tr>
                                             <td class="fl_icn">
-                                                <a href="https://cssauw.org/forum/forum-2-1"><img
+                                                <a href="${base}/plate/${row2.id}"><img
                                                         src="/assets/img/bbs/forum.gif"
                                                         alt="公告区 (Announcements)"></a>
                                             </td>
                                             <td class="eis_fl_forum">
-                                                <a href="https://cssauw.org/forum/forum-2-1"
+                                                <a href="${base}/plate/${row2.id}"
                                                    class="eis_fn">${row2_index}</a>
-                                                <h2><a href="https://cssauw.org/forum/forum-2-1"
+                                                <h2><a href="${base}/plate/${row2.id}"
                                                        style="color: #0099FF;">${row2.name}</a></h2>
                                                 <p class="xg2">暂无描述</p></td>
                                             <td class="fl_i">
                                                 <span class="xi2">新帖</span><span class="xg1"> / 总贴</span></td>
                                             <td class="fl_by">
                                                 <div>
-                                                    <a href="https://cssauw.org/forum/forum.php?mod=redirect&amp;tid=31221&amp;goto=lastpost#lastpost"
+                                                    <a href="javascript:void(0)"
                                                        class="xi2">最新帖子</a> <cite>时间
                                                     05:28 <a
-                                                            href="https://cssauw.org/forum/space-username-sdbaby">作者</a></cite>
+                                                            href="javascript:void(0)">作者</a></cite>
                                                 </div>
                                             </td>
                                         </tr>
                                                     <#else>
                                         <tr class="fl_row">
                                             <td class="fl_icn">
-                                                <a href="https://cssauw.org/forum/forum-4-1"><img
+                                                <a href="${base}/plate/${row2.id}"><img
                                                         src="/assets/img/bbs/forum.gif"
                                                         alt="新生会 (New Students)"></a>
                                             </td>
                                             <td class="eis_fl_forum">
-                                                <a href="https://cssauw.org/forum/forum-4-1"
-                                                   class="eis_fn">2</a>
-                                                <h2><a href="https://cssauw.org/forum/forum-4-1"
+                                                <a href="${base}/plate/${row2.id}"
+                                                   class="eis_fn">${row2_index}</a>
+                                                <h2><a href="${base}/plate/${row2.id}"
                                                        style="color: #602464;">${row2.name}</a></h2>
                                                 <p class="xg2">暂无描述</p></td>
                                             <td class="fl_i">
