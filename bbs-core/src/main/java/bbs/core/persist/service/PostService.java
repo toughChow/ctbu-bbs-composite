@@ -6,6 +6,8 @@ import bbs.core.data.PostType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface PostService {
     Page<PostType> findTypeList(Pageable pageable, String key);
 
@@ -30,4 +32,6 @@ public interface PostService {
     Page<Post> findCollectedPosts(Pageable pageable, String key, String username);
 
     Data undoCollect(Long id, long userId);
+
+    List<Post> findPostListByTime();
 }

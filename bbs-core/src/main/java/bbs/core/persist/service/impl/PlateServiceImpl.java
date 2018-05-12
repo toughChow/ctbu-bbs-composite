@@ -3,7 +3,9 @@ package bbs.core.persist.service.impl;
 import bbs.core.data.Plate;
 import bbs.core.data.User;
 import bbs.core.persist.dao.PlateDao;
+import bbs.core.persist.dao.PostDao;
 import bbs.core.persist.entity.PlatePO;
+import bbs.core.persist.entity.PostPO;
 import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.PlateService;
 import bbs.core.persist.utils.BeanMapUtils;
@@ -22,6 +24,9 @@ public class PlateServiceImpl implements PlateService{
 
     @Autowired
     private PlateDao plateDao;
+
+    @Autowired
+    private PostDao postDao;
 
     @Override
     public List<Plate> findAll() {
@@ -72,6 +77,38 @@ public class PlateServiceImpl implements PlateService{
             deleteItAndChildren(id);
             plateDao.delete(one);
         }
+    }
+
+    @Override
+    public List<Plate> findByParent() {
+        List<PlatePO> all = plateDao.findAll();
+        List<Plate> plates = new ArrayList<>();
+        all.forEach(po -> {
+            Plate copy = BeanMapUtils.copy(po);
+            // get manager name
+            Long parentId = po.getParentId();
+            if(parentId == 0) {
+                UserPO userPO = po.getUserPO();
+                copy.setManager(userPO.getUsername());
+            }
+            plates.add(copy);
+        });
+        if(!palteOnly.isEmpty()){
+            palteOnly.clear();
+        }
+        List<Plate> plateTree = getPlateTree(plates, 0L);
+        return plateTree;
+    }
+
+    List<Plate>  palteOnly = new ArrayList<>();
+    private List<Plate> getPlateTree(List<Plate> menus, Long parentId){
+        for(int i = 0; i < menus.size(); i ++) {
+            if(menus.get(i).getParentId() == parentId) {
+                palteOnly.add(menus.get(i));
+                getPlateTree(menus, menus.get(i).getId());
+            }
+        }
+        return palteOnly;
     }
 
     public void deleteItAndChildren(Long id) {

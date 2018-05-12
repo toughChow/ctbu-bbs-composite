@@ -15,4 +15,5 @@ public interface PlateService {
 
     void delete(Long id);
 
+    List<Plate> findByParent();
 }

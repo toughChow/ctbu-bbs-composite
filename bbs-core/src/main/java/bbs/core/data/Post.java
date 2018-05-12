@@ -29,6 +29,16 @@ public class Post implements Serializable{
 
     private Integer upvote;
 
+    private String postType;
+
+    public String getPostType() {
+        return postType;
+    }
+
+    public void setPostType(String postType) {
+        this.postType = postType;
+    }
+
     public Long getId() {
         return id;
     }

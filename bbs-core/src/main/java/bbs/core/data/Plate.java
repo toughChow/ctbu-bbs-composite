@@ -23,6 +23,16 @@ public class Plate implements Serializable{
 
     private Long managerId;
 
+    private String manager;
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
+    }
+
     public Long getId() {
         return id;
     }

@@ -64,55 +64,55 @@
                     </div>
                     <div class="y">
                     </div>
-                <#--<#if profile??>-->
-                    <#--<li class="dropdown">-->
-                        <#--<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">-->
-                            <#--<img class="img-circle" src="${base}${profile.avatar}">-->
-                        <#--</a>-->
-                        <#--<ul class="dropdown-menu" role="menu" style="display: none;">-->
-                            <#--<li>-->
-                                <#--<a href="${base}/account/profile" class="ava">-->
-                                    <#--<@showAva profile.avatar "img-circle" />-->
-                                    <#--<span>${profile.name}</span>-->
-                                <#--</a>-->
-                            <#--</li>-->
-                            <#--&lt;#&ndash;<li class="divider"></li>&ndash;&gt;-->
+                <#if profile??>
+                    <li class="dropdown">
+                        <a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
+                            <img class="img-circle" src="${base}${profile.avatar}">
+                        </a>
+                        <ul class="dropdown-menu" role="menu" style="display: none;">
+                            <li>
+                                <a href="${base}/account/profile" class="ava">
+                                    <@showAva profile.avatar "img-circle" />
+                                    <span>${profile.name}</span>
+                                </a>
+                            </li>
+                            <#--<li class="divider"></li>-->
 
-                            <#--<@shiro.hasPermission name="admin">-->
-                                <#--<li><a href="${base}/admin">后台管理</a></li>-->
-                            <#--</@shiro.hasPermission>-->
+                            <@shiro.hasPermission name="admin">
+                                <li><a href="${base}/admin">后台管理</a></li>
+                            </@shiro.hasPermission>
 
-                            <#--<li><a href="${base}/logout">退出</a></li>-->
-                        <#--</ul>-->
-                    <#--</li>-->
-                <#--<#else>-->
-                    <#--<a href="${base}/login" title="登录">登录</a>-->
-                    <#--<a href="${base}/reg" title="注册">注册</a>-->
-                    <#--<a href="${base}/forgot/apply" title="找回密码">找回密码</a>-->
-                <#--</#if>-->
-                    <ul>
-                        <li class="dropdown">
+                            <li><a href="${base}/logout">退出</a></li>
+                        </ul>
+                    </li>
+                <#else>
+                    <a href="${base}/login" title="登录">登录</a>
+                    <a href="${base}/reg" title="注册">注册</a>
+                    <a href="${base}/forgot/apply" title="找回密码">找回密码</a>
+                </#if>
+                    <#--<ul>-->
+                        <#--<li class="dropdown">-->
 
-                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                       aria-expanded="false">
-                        <!-- 消息提示功能 -->
-                        <#--<img src="${base}${profile.avatar}" alt=""-->
-                             <#--class="popover-show"-->
-                             <#--title="消息中心" data-container="body"-->
-                             <#--data-toggle="popover" data-placement="bottom"-->
-                             <#--data-html="true"-->
-                             <#--data-content="您有新消息,点击<a href='/admin/message/inbox'>查看</a>"/>-->
-                        <img src="${base}${profile.avatar}"    style="width: 30px;height: 30px;">
-                    ${profile.username}
-                        <span class=" fa fa-angle-down"></span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <#--<li><a href="${base}/account/profile">我的</a></li>-->
-                        <li class="my_profile"><a href="javascript:void(0)">我的</a></li>
-                        <li><a href="${base}/logout"><i class="fa fa-sign-out pull-right"></i>登出</a></li>
-                    </ul>
-                        </li>
-                    </ul>
+                        <#--<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"-->
+                       <#--aria-expanded="false">-->
+                        <#--<!-- 消息提示功能 &ndash;&gt;-->
+                        <#--&lt;#&ndash;<img src="${base}${profile.avatar}" alt=""&ndash;&gt;-->
+                             <#--&lt;#&ndash;class="popover-show"&ndash;&gt;-->
+                             <#--&lt;#&ndash;title="消息中心" data-container="body"&ndash;&gt;-->
+                             <#--&lt;#&ndash;data-toggle="popover" data-placement="bottom"&ndash;&gt;-->
+                             <#--&lt;#&ndash;data-html="true"&ndash;&gt;-->
+                             <#--&lt;#&ndash;data-content="您有新消息,点击<a href='/admin/message/inbox'>查看</a>"/>&ndash;&gt;-->
+                        <#--<img src="${base}${profile.avatar}"    style="width: 30px;height: 30px;">-->
+                    <#--${profile.username}-->
+                        <#--<span class=" fa fa-angle-down"></span>-->
+                    <#--</a>-->
+                    <#--<ul class="dropdown-menu dropdown-usermenu pull-right">-->
+                    <#--&lt;#&ndash;<li><a href="${base}/account/profile">我的</a></li>&ndash;&gt;-->
+                        <#--<li class="my_profile"><a href="javascript:void(0)">我的</a></li>-->
+                        <#--<li><a href="${base}/logout"><i class="fa fa-sign-out pull-right"></i>登出</a></li>-->
+                    <#--</ul>-->
+                        <#--</li>-->
+                    <#--</ul>-->
                     </div>
                 </div>
             </div>

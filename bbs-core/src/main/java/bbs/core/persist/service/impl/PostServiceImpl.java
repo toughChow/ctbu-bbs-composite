@@ -289,4 +289,21 @@ public class PostServiceImpl implements PostService {
         postDao.save(one);
         return Data.success("操作成功", Data.NOOP);
     }
+
+    @Override
+    public List<Post> findPostListByTime() {
+//        List<PostPO> postPOSs = postDao.findTimeAndLimit7();
+        List<PostPO> postPOS = postDao.findByStatusOrderByCreateTimeAsc(1);
+        List<Post> posts = new ArrayList<>();
+        for(int i = 0; i < 7; i++){
+            PostPO postPO = postPOS.get(i);
+            Long postTypeId = postPO.getPostTypeId();
+            PostTypePO one = postTypeDao.findOne(postTypeId);
+            String name = one.getName();
+            Post copy = BeanMapUtils.copy(postPO);
+            copy.setPostType(name);
+            posts.add(copy);
+        }
+        return posts;
+    }
 }
