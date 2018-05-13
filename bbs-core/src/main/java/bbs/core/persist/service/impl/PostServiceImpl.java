@@ -1,6 +1,7 @@
 package bbs.core.persist.service.impl;
 
 import bbs.base.data.Data;
+import bbs.core.data.AccountProfile;
 import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
@@ -359,5 +360,28 @@ public class PostServiceImpl implements PostService {
         PostPO one = postDao.findOne(id);
         Post copy = BeanMapUtils.copy(one);
         return copy;
+    }
+
+    @Override
+    public List<PostType> findTypeList() {
+        List<PostTypePO> all = postTypeDao.findAll();
+        List<PostType> types = new ArrayList<>();
+        all.forEach(po -> {
+            PostType copy = BeanMapUtils.copy(po);
+            types.add(copy);
+        });
+        return types;
+    }
+
+    @Override
+    public void save(Post post, AccountProfile profile) {
+        PostPO po = new PostPO();
+        BeanUtils.copyProperties(post,po);
+        po.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        po.setIsVerified(0);
+        po.setStatus(0);
+        po.setUserId(profile.getId());
+
+        postDao.save(po);
     }
 }

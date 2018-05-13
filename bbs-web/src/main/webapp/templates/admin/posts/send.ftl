@@ -27,39 +27,35 @@
                     <div id="ct" class="wp cl">
                         <div id="f_pst" class="bm">
                             <div class="bm_c">
-                                <form class="form-horizontal" role="form">
+                                <form class="form-horizontal" id="pForm" action="${base}/admin/posts/send" method="post" role="form">
                                     <div class="form-group">
                                         <label for="firstname">主题</label>
-                                            <input type="text" class="form-control" id="firstname" placeholder="请输入标题">
+                                            <input type="text" name="title" class="form-control" id="firstname" placeholder="请输入标题">
                                     </div>
                                     <div class="form-group">
                                         <label for="name">内容</label>
-                                        <textarea class="form-control" placeholder="请输入内容"></textarea>
+                                        <textarea name="content" class="form-control" placeholder="请输入内容"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">帖子类型</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select name="postTypeId" class="form-control">
+                                            <#list postTypes as row>
+                                                <option name="postTypeId" value="${row.id}">${row.name}</option>
+                                            </#list>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">所属板块</label>
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select name="plateId" class="form-control">
+                                            <#list plates as row>
+                                                <option name="plateId" value="${row.id}">${row.name}</option>
+                                            </#list>
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <div>
-                                            <button type="submit" class="btn btn-default">发布</button>
+                                            <button type="button" class="btn btn-default send-post">发布</button>
                                         </div>
                                     </div>
                                 </form>
@@ -71,5 +67,14 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('.send-post').on('click',function () {
+        layer.msg("发布成功，等待管理员审核，即将跳转到首页",{icon:1});
+        setTimeout(function () {
+            $('#pForm').submit();
+        },3000)
+    })
+</script>
 
 <#include "/default/inc/footer.ftl">

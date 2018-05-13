@@ -20,8 +20,7 @@
     <link rel="stylesheet" id="css_extstyle" type="text/css" href="/assets/img/bbs/style.css">
     <#--<script src="/assets/img/bbs/common.js.下载" type="text/javascript"></script>-->
     <meta name="application-name" content="重庆工商大学校园论坛">
-    <meta name="msapplication-tooltip" content="重庆工商大学校园论坛"
-    ">
+    <meta name="msapplication-tooltip" content="重庆工商大学校园论坛">
     <meta name="msapplication-task"
           content="name=论坛;action-uri=https://cssauw.org/forum/forum.php;icon-uri=https://cssauw.org/forum/static/image/common/bbs.ico">
     <link rel="archives" title="重庆工商大学校园论坛" href="https://localhost:8088/index">
@@ -50,6 +49,8 @@
     <link rel="stylesheet" href="${base}/assets/css/user/head.css"/>
     <!-- own js -->
     <script type="text/javascript" src="${base}/assets/js/user/head.js"></script>
+    <!-- layer -->
+    <script src="${base}/assets/vendors/layer/layer.js"></script>
 </head>
 
 

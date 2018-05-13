@@ -1,6 +1,7 @@
 package bbs.core.persist.service;
 
 import bbs.base.data.Data;
+import bbs.core.data.AccountProfile;
 import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
@@ -41,4 +42,8 @@ public interface PostService {
     Plate findPlateByPost(Long id);
 
     Post findOne(Long id);
+
+    List<PostType> findTypeList();
+
+    void save(Post post, AccountProfile profile);
 }

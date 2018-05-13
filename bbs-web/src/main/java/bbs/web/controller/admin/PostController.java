@@ -2,8 +2,10 @@ package bbs.web.controller.admin;
 
 import bbs.base.data.Data;
 import bbs.core.data.AccountProfile;
+import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
+import bbs.core.persist.service.PlateService;
 import bbs.core.persist.service.PostService;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/admin/posts")
 public class PostController extends BaseController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private PlateService plateService;
 
     @GetMapping("/type")
     public String toType(ModelMap model, String key, Integer pn){
@@ -130,9 +139,35 @@ public class PostController extends BaseController {
 
     // 发帖
 
-    @RequestMapping("/send")
-    public String sendPost(){
+    @GetMapping("/send")
+    public String sendPost(ModelMap model){
+        // 获取帖子类型
+        List<PostType> postTypeList = postService.findTypeList();
+        model.put("postTypes",postTypeList);
+
+        // 获取板块类型
+        List<Plate> plateList = plateService.findAll();
+//        plateList.forEach( p -> {
+//            if (p.getParentId() == 0) {
+//                plateList.remove(p);
+//            }
+//        });
+        for (int i = 0; i < plateList.size(); i ++) {
+            if(plateList.get(i).getParentId() == 0) {
+                plateList.remove(i);
+            }
+        }
+
+        model.put("plates",plateList);
         return "/admin/posts/send";
+    }
+
+    @PostMapping("/send")
+    public String send(Post post, ModelMap model) {
+        AccountProfile profile = getSubject().getProfile();
+
+        postService.save(post, profile);
+        return "redirect:/";
     }
 
 }

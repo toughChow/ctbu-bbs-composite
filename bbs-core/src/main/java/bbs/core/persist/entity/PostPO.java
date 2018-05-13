@@ -34,7 +34,7 @@ public class PostPO {
     @Column(name = "status")
     private Integer status;
 
-    @Column(name = "postType_id")
+    @Column(name = "POSTTYPE_ID")
     private Long postTypeId;
 
     @Column(name = "plate_id")
