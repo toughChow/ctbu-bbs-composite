@@ -397,7 +397,9 @@ public class PostServiceImpl implements PostService {
         commentPO.setCommentorId(commentorId);
         commentPO.setPostId(id);
         commentPO.setCommentTime(new Timestamp(System.currentTimeMillis()));
-
+        commentPO.setTipOff(0);
+        commentPO.setUpvote(0);
+        commentPO.setPostId(0L);
         commentDao.save(commentPO);
         return Data.success("评论成功", Data.NOOP);
     }
