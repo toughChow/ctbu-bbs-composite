@@ -218,7 +218,7 @@
                                                                 <span>${row.createTime}</span>
                                                                 <strong><a
                                                                         href="javascript:void(0)">[${row.postType}]</a></strong>
-                                                                <a href="${base}/posts/id"
+                                                                <a href="${base}/post/${row.id}"
                                                                    target="_blank"><font
                                                                         style="font-weight: 900;color: #0000CC;">${row.title}</font>
                                                                 </a>

@@ -1,5 +1,6 @@
 package bbs.web.controller.desk.post;
 
+import bbs.core.data.AccountProfile;
 import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.User;
@@ -53,6 +54,10 @@ public class PublicPlateController extends BaseController{
 
         User user = userService.findByPostId(id);
         model.put("author",user);
+
+        // 验证是否授权
+        AccountProfile profile = getSubject().getProfile();
+        model.put("profile",profile);
         return "/default/plate/detail";
     }
 }

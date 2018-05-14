@@ -131,14 +131,11 @@
                                     <div class="po hin">
                                         <div class="pob cl">
                                             <em>
-                                                <a class="fastre"
-                                                   href="forum.php?mod=post&amp;action=reply&amp;fid=28&amp;tid=31229&amp;reppost=93017&amp;extra=page%3D1&amp;page=1"
-                                                   onclick="showWindow('reply', this.href)">回复</a>
+                                                <a href="javascript:void(0)" id="upvote">点赞</a>
                                             </em>
 
                                             <p>
-                                                <a href="javascript:;"
-                                                   onclick="showWindow('miscreport93017', 'misc.php?mod=report&amp;rtype=post&amp;rid=93017&amp;tid=31229&amp;fid=28', 'get', -1);return false;">举报</a>
+                                                <a href="javascript:void(0)" id="tipoff">举报</a>
                                             </p>
 
                                         </div>
@@ -165,6 +162,8 @@
                         <h2>快速回帖</h2>
                     </div>
                     <div class="bm_c">
+                        <#if !profile??>
+
                         <form method="post" autocomplete="off" id="fastpostform"
                               action="forum.php?mod=post&amp;action=newthread&amp;fid=28&amp;topicsubmit=yes&amp;infloat=yes&amp;handlekey=fastnewpost"
                               onsubmit="return fastpostvalidate(this)">
@@ -176,7 +175,6 @@
                                        onkeyup="strLenCalc(this, 'checklen', 80);" tabindex="11" style="width: 25em">
                                 <span>还可输入 <strong id="checklen">80</strong> 个字符</span>
                             </div>
-
                             <div class="cl">
                                 <div id="fastposteditor">
                                     <div class="tedt">
@@ -206,11 +204,9 @@
                                 </div>
                                 <div id="seccheck_fastpost">
                                 </div>
-
                                 <input type="hidden" name="formhash" value="0995f66b">
                                 <input type="hidden" name="usesig" value="">
                             </div>
-
 
                             <p class="ptm pnpost">
                                 <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=28" class="y"
@@ -221,12 +217,14 @@
                                         class="pn pnc"><strong>发表帖子</strong></button>
                             </p>
                         </form>
+                            <#else>
+                            666
+                        </#if>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-</div>
     </div>
 </div>
 

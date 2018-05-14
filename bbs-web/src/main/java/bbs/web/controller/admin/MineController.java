@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/admin/mine")
-public class MineCollection extends BaseController {
+public class MineController extends BaseController {
 
     @Autowired
     private PostService postService;

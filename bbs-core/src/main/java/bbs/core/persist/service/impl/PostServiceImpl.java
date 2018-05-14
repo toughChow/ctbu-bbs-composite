@@ -218,6 +218,7 @@ public class PostServiceImpl implements PostService {
     public Page<Post> findPostListByUser(Pageable pageable, String key, String username) {
         UserPO userPO = userDao.findByUsername(username);
         Long id = userPO.getId();
+        Pageable p=new PageRequest(pageable.getPageNumber(),pageable.getPageSize(), Sort.Direction.DESC,"createTime");
         Page<PostPO> page = postDao.findAll(
                 (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
                         -> {
@@ -231,7 +232,7 @@ public class PostServiceImpl implements PostService {
                     }
                     predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
                     return cb.and(predicates.toArray(new Predicate[]{}));
-                }, pageable
+                }, p
         );
         List<Post> posts = new ArrayList<>();
         page.getContent().forEach(po -> {
@@ -295,26 +296,32 @@ public class PostServiceImpl implements PostService {
 //        List<PostPO> postPOSs = postDao.findTimeAndLimit7();
         List<PostPO> postPOS = postDao.findByStatusOrderByCreateTimeDesc(1);
         List<Post> posts = new ArrayList<>();
-        for(int i = 0; i < 7; i++){
-            PostPO postPO = postPOS.get(i);
-            Long postTypeId = postPO.getPostTypeId();
-            PostTypePO one = postTypeDao.findOne(postTypeId);
-            String name = one.getName();
-            Post copy = BeanMapUtils.copy(postPO);
-            copy.setPostType(name);
-            posts.add(copy);
+        if(postPOS.size()>7) {
+            for (int i = 0; i < 7; i++) {
+                PostPO postPO = postPOS.get(i);
+                Long postTypeId = postPO.getPostTypeId();
+                PostTypePO one = postTypeDao.findOne(postTypeId);
+                String name = one.getName();
+                Post copy = BeanMapUtils.copy(postPO);
+                copy.setPostType(name);
+                posts.add(copy);
+            }
+        } else {
+            for (int i = 0; i < postPOS.size(); i++) {
+                PostPO postPO = postPOS.get(i);
+                Long postTypeId = postPO.getPostTypeId();
+                PostTypePO one = postTypeDao.findOne(postTypeId);
+                String name = one.getName();
+                Post copy = BeanMapUtils.copy(postPO);
+                copy.setPostType(name);
+                posts.add(copy);
+            }
         }
         return posts;
     }
 
     @Override
     public Page<Post> findByPlateIdOrderByCreateTimeDesc(Pageable pageable, String key, Long pid,Integer status) {
-//        List<PostPO> postPOS = postDao.findByPlateIdAndStatusOrderByCreateTimeDesc(pid,status);
-//        List<Post> posts = new ArrayList<>();
-//        postPOS.forEach(po -> {
-//            Post copy = BeanMapUtils.copy(po);
-//            posts.add(copy);
-//        });
         Pageable p=new PageRequest(pageable.getPageNumber(),pageable.getPageSize(), Sort.Direction.DESC,"createTime");
         Page<PostPO> page = postDao.findAll(
                 (Root<PostPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
@@ -381,7 +388,8 @@ public class PostServiceImpl implements PostService {
         po.setIsVerified(0);
         po.setStatus(0);
         po.setUserId(profile.getId());
-
+        po.setTipOff(0);
+        po.setUpvote(0);
         postDao.save(po);
     }
 }
