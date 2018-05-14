@@ -116,24 +116,7 @@
                                     </td>
                                  </tr>
 
-                                <tr id="_postposition93017"></tr>
-                                <tr>
-                                    <td class="pls"></td>
-                                    <td class="plc" style="overflow:visible;">
-                                        <div class="po hin">
-                                            <div class="pob cl">
-                                                <em>
-                                                    <a href="javascript:void(0)" id="upvote">点赞</a>
-                                                </em>
-
-                                                <p>
-                                                    <a href="javascript:void(0)" id="tipoff">举报</a>
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <tr></tr><tr><td></td><td></td><td><a href="javascript:void(0)" id="upvote">点赞</a>&emsp;<a href="javascript:void(0)" id="tipoff">举报</a></td></tr>
                             </tbody>
                             </table>
                         </div>
@@ -283,10 +266,9 @@
                             '                                                    <td class="t_f" id="postmessage_93017">\n' +
                             '                                                        <!-- 内容 -->\n' +
                             '                                                    ' + data[i].content + '<br><br>\n' +
-                            '                                                        <i class="pstatus"> 评论最后由 ' + data[i].user.username + '\n' +
+                            '                                                        <br><i class="pstatus"> 评论最后由 ' + data[i].user.username + '\n' +
                             '                                                            于 ' + data[i].commentTime + '\n' +
                             '                                                            编辑 </i>\n' +
-                            '                                                        <br><br><a href="javascript:void(0)">点赞</a>   <a href="javascript:void(0)">踩踩</a>\n' +
                             '                                                    </td>\n' +
                             '                                                </tr>\n' +
                             '                                                </tbody>\n' +
@@ -295,9 +277,10 @@
                             '                                    </div>\n' +
                             '                                </td>\n' +
                             '                            </tr>\n' +
-                            '                            </tbody>\n' +
+                            '                           <tr></tr><tr><td></td><td></td><td><a href="javascript:void(0)" id="upvote">点赞</a>&emsp;<a href="javascript:void(0)" id="tipoff">举报</a></td></tr>\n'+
+                            '                           </tbody>\n' +
                             '                        </table>\n' +
-                            '</div>';
+                            '                   </div>';
 
                             commentContent = commentContent + html;
                         }
