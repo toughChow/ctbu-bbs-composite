@@ -165,18 +165,10 @@ public class PostController extends BaseController {
     @RequestMapping("/commentPost")
     @ResponseBody
     public Data commentPost(Long id,String content){
-        System.out.println(1);
         AccountProfile profile = getSubject().getProfile();
         long commentorId = profile.getId();
         Data data = postService.commentPost(id,content,commentorId);
         return data;
-    }
-
-    @RequestMapping("/findCommentById")
-    @ResponseBody
-    public List<Comment> getAllComments(Long postId){
-        List<Comment> list = postService.findCommentByPostId(postId);
-        return list;
     }
 
 }

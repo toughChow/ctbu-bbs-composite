@@ -47,11 +47,12 @@
                                 </div>
                                 <table id="pid93017" class="plhin" summary="pid93017" cellspacing="0" cellpadding="0">
                                     <tbody>
+                                    <input type="hidden" value="${post.id}" id="thisId"/>
                                     <tr>
                                         <td class="pls" rowspan="2">
                                             <div id="favatar93017" class="pls favatar">
                                                 <div class="pi">
-                                                    <div class="authi">作者：<a href="space-uid-32942" target="_blank"
+                                                    <div class="authi">作者：<a href="javascript:void(0)" target="_blank"
                                                                              class="xw1"
                                                                              style="color: #FF66FF">${author.nickname}</a>
                                                     </div>
@@ -64,7 +65,7 @@
 
                                                 </div>
                                                 <div>
-                                                    <div class="avatar" onmouseover="showauthor(this, 'userinfo93017')">
+                                                    <div class="avatar">
                                                         <a href="space-uid-32942" class="avtm" target="_blank"><img
                                                                 src="${base}${author.avatar};size=middle"></a>
                                                     </div>
@@ -99,7 +100,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td class="t_f" id="postmessage_93017">
-                                                                <i class="pstatus"> 本帖最后由 ${author.nickname}
+                                                                <i class="pstatus"> 本帖最后由 ${author.username}
                                                                     于 ${post.createTime}
                                                                     编辑 </i><br>
                                                                 <br>
@@ -110,33 +111,29 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div id="comment_93017" class="cm">
-                                                </div>
-
-                                                <div id="post_rate_div_93017"></div>
                                             </div>
-                            </div>
-                            </td>
-                            </tr>
-
-                            <tr id="_postposition93017"></tr>
-                            <tr>
-                                <td class="pls"></td>
-                                <td class="plc" style="overflow:visible;">
-                                    <div class="po hin">
-                                        <div class="pob cl">
-                                            <em>
-                                                <a href="javascript:void(0)" id="upvote">点赞</a>
-                                            </em>
-
-                                            <p>
-                                                <a href="javascript:void(0)" id="tipoff">举报</a>
-                                            </p>
-
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                 </tr>
+
+                                <tr id="_postposition93017"></tr>
+                                <tr>
+                                    <td class="pls"></td>
+                                    <td class="plc" style="overflow:visible;">
+                                        <div class="po hin">
+                                            <div class="pob cl">
+                                                <em>
+                                                    <a href="javascript:void(0)" id="upvote">点赞</a>
+                                                </em>
+
+                                                <p>
+                                                    <a href="javascript:void(0)" id="tipoff">举报</a>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                             </table>
                         </div>
@@ -147,8 +144,8 @@
                     <div class="bm_h">
                         <h2>评论区</h2>
                     </div>
-                    <div class="bm_c">
-
+                    <div id="comment_area">
+                    </div>
                     </div>
                 </div>
 
@@ -159,66 +156,63 @@
                     <div class="bm_c">
                         <#if !profile??>
 
-                        <form method="post" autocomplete="off" id="fastpostform"
-                              action="forum.php?mod=post&amp;action=newthread&amp;fid=28&amp;topicsubmit=yes&amp;infloat=yes&amp;handlekey=fastnewpost"
-                              onsubmit="return fastpostvalidate(this)">
+                            <form method="post" autocomplete="off" id="fastpostform"
+                                  action="forum.php?mod=post&amp;action=newthread&amp;fid=28&amp;topicsubmit=yes&amp;infloat=yes&amp;handlekey=fastnewpost"
+                                  onsubmit="return fastpostvalidate(this)">
 
-                            <div id="fastpostreturn" style="margin:-5px 0 5px"></div>
-
-                            <div class="pbt cl">
-                                <input type="text" id="subject" name="subject" class="px" value=""
-                                       onkeyup="strLenCalc(this, 'checklen', 80);" tabindex="11" style="width: 25em">
-                                <span>还可输入 <strong id="checklen">80</strong> 个字符</span>
-                            </div>
-                            <div class="cl">
-                                <div id="fastposteditor">
-                                    <div class="tedt">
-                                        <div class="bar">
-                                            <div class="fpd">
-                                                <a href="javascript:;" title="文字加粗" class="fbld">B</a>
-                                                <a href="javascript:;" title="设置文字颜色" class="fclr"
-                                                   id="fastpostforecolor">Color</a>
-                                                <a id="fastpostimg" href="javascript:;" title="图片" class="fmg">Image</a>
-                                                <a id="fastposturl" href="javascript:;" title="添加链接"
-                                                   class="flnk">Link</a>
-                                                <a id="fastpostquote" href="javascript:;" title="引用"
-                                                   class="fqt">Quote</a>
-                                                <a id="fastpostcode" href="javascript:;" title="代码" class="fcd">Code</a>
-                                                <a href="javascript:;" class="fsml" id="fastpostsml">Smilies</a>
+                                <div id="fastpostreturn" style="margin:-5px 0 5px"></div>
+                                <div class="cl">
+                                    <div id="fastposteditor">
+                                        <div class="tedt">
+                                            <div class="bar">
+                                                <div class="fpd">
+                                                    <a href="javascript:;" title="文字加粗" class="fbld">B</a>
+                                                    <a href="javascript:;" title="设置文字颜色" class="fclr"
+                                                       id="fastpostforecolor">Color</a>
+                                                    <a id="fastpostimg" href="javascript:;" title="图片"
+                                                       class="fmg">Image</a>
+                                                    <a id="fastposturl" href="javascript:;" title="添加链接"
+                                                       class="flnk">Link</a>
+                                                    <a id="fastpostquote" href="javascript:;" title="引用"
+                                                       class="fqt">Quote</a>
+                                                    <a id="fastpostcode" href="javascript:;" title="代码"
+                                                       class="fcd">Code</a>
+                                                    <a href="javascript:;" class="fsml" id="fastpostsml">Smilies</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="area">
-                                            <div class="pt hm">
-                                                您需要登录后才可以回帖 <a href="${base}/login" class="xi2">登录</a> | <a
-                                                    href="${base}/reg" class="xi2">注册</a>
+                                            <div class="area">
+                                                <div class="pt hm">
+                                                    您需要登录后才可以回帖 <a href="${base}/login" class="xi2">登录</a> | <a
+                                                        href="${base}/reg" class="xi2">注册</a>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="seccheck_fastpost">
+                                    </div>
+                                    <input type="hidden" name="formhash" value="0995f66b">
+                                    <input type="hidden" name="usesig" value="">
                                 </div>
-                                <div id="seccheck_fastpost">
-                                </div>
-                                <input type="hidden" name="formhash" value="0995f66b">
-                                <input type="hidden" name="usesig" value="">
-                            </div>
 
-                            <p class="ptm pnpost">
-                                <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=28" class="y"
-                                   target="_blank">本版积分规则</a>
-                                <button type="submit"
-                                        onmouseover="checkpostrule('seccheck_fastpost', 'ac=newthread');this.onmouseover=null"
-                                        name="topicsubmit" id="fastpostsubmit" value="topicsubmit" tabindex="13"
-                                        class="pn pnc"><strong>发表帖子</strong></button>
-                            </p>
-                        </form>
-                            <#else>
-                                <input type="hidden" value="${post.id}" id="thisId" />
+                                <p class="ptm pnpost">
+                                    <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=28" class="y"
+                                       target="_blank">本版积分规则</a>
+                                    <button type="submit"
+                                            onmouseover="checkpostrule('seccheck_fastpost', 'ac=newthread');this.onmouseover=null"
+                                            name="topicsubmit" id="fastpostsubmit" value="topicsubmit" tabindex="13"
+                                            class="pn pnc"><strong>发表帖子</strong></button>
+                                </p>
+                            </form>
+                        <#else>
                                 <div class="form-group">
-                                    <textarea name="content" id="thisComment" class="form-control" placeholder="请输入内容"></textarea>
+                                    <textarea name="content" id="thisComment" class="form-control"
+                                              placeholder="请输入内容"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div>
-                                        <button type="button" class="btn btn-default send-post" id="doComment">评论</button>
+                                        <button type="button" class="btn btn-default send-post" id="doComment">评论
+                                        </button>
                                     </div>
                                 </div>
                         </#if>
@@ -228,7 +222,6 @@
         </div>
     </div>
     <form id="qForm" class="form-inline">
-        <input type="hidden" name="pn" value="${page.pageNo}"/>
     </form>
 </div>
 <script type="text/javascript">
@@ -244,36 +237,128 @@
             layer.msg(json.message, {icon: 2});
         }
     }
+
+    function getComments(id) {
+        $.ajax({
+            url: "${base}/comments",
+            type: "post",
+            data: {"postId": id},
+            dataType: 'json',
+            success: function (data) {
+                for(var i = 0; i < data.length; i++){
+                    var dt = '/Date('+data[i].commentTime+')/';
+                    var formatTime = convertTime(dt, "yyyy-MM-dd hh:mm:ss");
+                    data[i].commentTime = formatTime;
+                }
+                        commentContent = '';
+                        for(var i = 0; i < data.length; i++){
+                            html = '<div class="bm_c">\n' +
+                            '<table id="pid93017" class="plhin" summary="pid93017" cellspacing="0" cellpadding="0">\n' +
+                            '                            <tbody>\n' +
+                            '                            <tr>\n' +
+                            '                                <td class="pls" rowspan="2">\n' +
+                            '                                    <div id="favatar93017" class="pls favatar">\n' +
+                            '\n' +
+                            '                                        <div class="p_pop blk bui card_gender_2" id="userinfo93017"\n' +
+                            '                                             style="display: none; margin-top: -11px;">\n' +
+                            '                                            <div class="m z">\n' +
+                            '                                                <div id="userinfo93017_ma"></div>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>\n' +
+                            '                                        <div>\n' +
+                            '                                            <div class="avatar" ' +
+                            '                                                <a href="javascript:void(0)" class="avtm" target="_blank"><img\n' +
+                            '                                                        src="${base}${author.avatar};size=middle"></a>\n' +
+                            '                                            </div>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                </td>\n' +
+                            '                                <td></td>\n' +
+                            '                                <td class="plc">\n' +
+                            '                                    <div class="pct">\n' +
+                            '                                        <div class="t_fsz">\n' +
+                            '                                            <table cellspacing="0" cellpadding="0">\n' +
+                            '                                                <tbody>\n' +
+                            '                                                <tr>\n' +
+                            '                                                    <td class="t_f" id="postmessage_93017">\n' +
+                            '                                                        <!-- 内容 -->\n' +
+                            '                                                    ' + data[i].content + '<br><br>\n' +
+                            '                                                        <i class="pstatus"> 评论最后由 ' + data[i].user.username + '\n' +
+                            '                                                            于 ' + data[i].commentTime + '\n' +
+                            '                                                            编辑 </i>\n' +
+                            '                                                        <br><br><a href="javascript:void(0)">点赞</a>   <a href="javascript:void(0)">踩踩</a>\n' +
+                            '                                                    </td>\n' +
+                            '                                                </tr>\n' +
+                            '                                                </tbody>\n' +
+                            '                                            </table>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                </td>\n' +
+                            '                            </tr>\n' +
+                            '                            </tbody>\n' +
+                            '                        </table>\n' +
+                            '</div>';
+
+                            commentContent = commentContent + html;
+                        }
+                        $('#comment_area').html(commentContent);
+                console.log(data);
+            },
+            error: function () {
+                alert("gg")
+            }
+        })
+    }
+
+    function convertTime(jsonTime, format) {
+        var date = new Date(parseInt(jsonTime.replace("/Date(", "").replace(")/", ""), 10));
+        var formatDate = date.format(format);
+        return formatDate;
+    }
+    Date.prototype.format = function (format) {
+        var date = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S+": this.getMilliseconds()
+        };
+
+        if (/(y+)/i.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+        }
+
+        for (var k in date) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+            }
+        }
+        return format;
+    }
+
     $(function () {
         var id = $('#thisId').val();
-        $.post("${base}/admin/posts/findCommentById",
-                {"postId":id},
-                function (data) {
-                alert();
-                    console.log(data);
-                }, "");
+        getComments(id);
 
         //删除
         $("#doComment").on('click', function () {
             var id = $('#thisId').val();
             var content = $('#thisComment').val();
-            if(content == null || content == ''){
-                layer.msg("请输入评论内容",{icon:2})
+            if (content == null || content == '') {
+                layer.msg("请输入评论内容", {icon: 2})
                 return false;
             }
-            layer.confirm('确定要执行该操作吗？', {
+            layer.confirm('确定要评论该帖吗？', {
                 btn: ['确定', '取消'], //按钮
                 shade: false //不显示遮罩
             }, function () {
                 J.getJSON('${base}/admin/posts/commentPost', {
-                    id: id,content:content
+                    id: id, content: content
                 }, ajaxReload);
                 // reload comment
-                $.post("${base}/admin/posts/findCommentById",
-                        {"postId":id},
-                        function (data) {
-                            console.log(data);
-                        }, "json");
+                getComments(id);
             }, function () {
             });
             return false;

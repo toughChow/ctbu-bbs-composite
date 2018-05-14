@@ -396,7 +396,6 @@ public class PostServiceImpl implements PostService {
         commentPO.setCommentTime(new Timestamp(System.currentTimeMillis()));
         commentPO.setTipOff(0);
         commentPO.setUpvote(0);
-        commentPO.setPostId(0L);
         commentDao.save(commentPO);
         return Data.success("评论成功", Data.NOOP);
     }
@@ -406,7 +405,12 @@ public class PostServiceImpl implements PostService {
         List<CommentPO> commentPOS = commentDao.findByPostId(postId);
         List<Comment> comments = new ArrayList<>();
         commentPOS.forEach(po -> {
+            // 获取评论者信息
+            Long commentorId = po.getCommentorId();
+            UserPO one = userDao.findOne(commentorId);
+            User copy = BeanMapUtils.copy(one, 0);
             Comment comment = BeanMapUtils.copy(po);
+            comment.setUser(copy);
             comments.add(comment);
         });
         return comments;

@@ -23,6 +23,8 @@ public class Comment implements Serializable{
 
     private Integer sequence;
 
+    public User user;
+
     public Long getId() {
         return id;
     }
@@ -93,5 +95,13 @@ public class Comment implements Serializable{
 
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
