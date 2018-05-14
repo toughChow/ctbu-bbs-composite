@@ -4,8 +4,6 @@
     <div class="eis_wp_l">
         <div class="eis_wp_r">
             <div class="eis_wp_t cl">
-
-
                 <div id="wp" class="wp cl">
                     <script type="text/javascript">var fid = parseInt('28'), tid = parseInt('31229');</script>
 
@@ -118,7 +116,6 @@
                                                 <div id="post_rate_div_93017"></div>
                                             </div>
                             </div>
-
                             </td>
                             </tr>
 
@@ -216,25 +213,24 @@
                             </p>
                         </form>
                             <#else>
-                                <form>
-                                    <input type="hidden" value="${post.id}" id="thisId" />
-                                    <form class="form-horizontal" id="pForm" action="${base}/admin/posts/send" method="post" role="form">
-                                        <div class="form-group">
-                                            <textarea name="content" id="thisComment" class="form-control" placeholder="请输入内容"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <div>
-                                                <button type="button" class="btn btn-default send-post">评论</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </form>
+                                <input type="hidden" value="${post.id}" id="thisId" />
+                                <div class="form-group">
+                                    <textarea name="content" id="thisComment" class="form-control" placeholder="请输入内容"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div>
+                                        <button type="button" class="btn btn-default send-post" id="doComment">评论</button>
+                                    </div>
+                                </div>
                         </#if>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <form id="qForm" class="form-inline">
+        <input type="hidden" name="pn" value="${page.pageNo}"/>
+    </form>
 </div>
 <script type="text/javascript">
     var J = jQuery;
@@ -252,7 +248,7 @@
     $(function () {
 
         //删除
-        $(".delete_postType").on('click', function () {
+        $("#doComment").on('click', function () {
             var id = $('#thisId').val();
             var content = $('#thisComment').val();
             if(content == null || content == ''){
@@ -266,6 +262,12 @@
                 J.getJSON('${base}/admin/posts/commentPost', {
                     id: id,content:content
                 }, ajaxReload);
+                // reload comment
+                $.post("${base}/admin/posts/findCommentById",
+                        {"postId":id},
+                        function (data) {
+                            console.log(data);
+                        }, "json");
             }, function () {
             });
             return false;

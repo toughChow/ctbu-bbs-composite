@@ -1,10 +1,7 @@
 package bbs.core.persist.service.impl;
 
 import bbs.base.data.Data;
-import bbs.core.data.AccountProfile;
-import bbs.core.data.Plate;
-import bbs.core.data.Post;
-import bbs.core.data.PostType;
+import bbs.core.data.*;
 import bbs.core.persist.dao.*;
 import bbs.core.persist.entity.*;
 import bbs.core.persist.service.PostService;
@@ -402,5 +399,16 @@ public class PostServiceImpl implements PostService {
         commentPO.setPostId(0L);
         commentDao.save(commentPO);
         return Data.success("评论成功", Data.NOOP);
+    }
+
+    @Override
+    public List<Comment> findCommentByPostId(Long postId) {
+        List<CommentPO> commentPOS = commentDao.findByPostId(postId);
+        List<Comment> comments = new ArrayList<>();
+        commentPOS.forEach(po -> {
+            Comment comment = BeanMapUtils.copy(po);
+            comments.add(comment);
+        });
+        return comments;
     }
 }

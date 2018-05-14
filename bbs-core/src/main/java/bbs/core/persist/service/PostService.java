@@ -1,10 +1,7 @@
 package bbs.core.persist.service;
 
 import bbs.base.data.Data;
-import bbs.core.data.AccountProfile;
-import bbs.core.data.Plate;
-import bbs.core.data.Post;
-import bbs.core.data.PostType;
+import bbs.core.data.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -48,4 +45,6 @@ public interface PostService {
     void save(Post post, AccountProfile profile);
 
     Data commentPost(Long id, String content, long commentorId);
+
+    List<Comment> findCommentByPostId(Long postId);
 }

@@ -98,4 +98,10 @@ public class BeanMapUtils {
         BeanUtils.copyProperties(po,post);
         return post;
     }
+
+    public static Comment copy(CommentPO po) {
+        Comment comment = new Comment();
+        BeanUtils.copyProperties(po,comment);
+        return comment;
+    }
 }

@@ -1,10 +1,7 @@
 package bbs.web.controller.admin;
 
 import bbs.base.data.Data;
-import bbs.core.data.AccountProfile;
-import bbs.core.data.Plate;
-import bbs.core.data.Post;
-import bbs.core.data.PostType;
+import bbs.core.data.*;
 import bbs.core.persist.service.PlateService;
 import bbs.core.persist.service.PostService;
 import bbs.web.controller.BaseController;
@@ -173,6 +170,11 @@ public class PostController extends BaseController {
         long commentorId = profile.getId();
         Data data = postService.commentPost(id,content,commentorId);
         return data;
+    }
+
+    public List<Comment> getAllComments(Long postId){
+        List<Comment> list = postService.findCommentByPostId(postId);
+        return null;
     }
 
 }
