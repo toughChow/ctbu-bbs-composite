@@ -336,7 +336,7 @@
                                                     <a href="javascript:void(0)">在线会员</a>
                                                 </strong>
                                                 <span class="xs1">- 总计 <span>122</span> 人在线
-- 最高记录是 <span>14010</span> 于 <span>2016-7-30</span>.</span>
+                                                    - 最高记录是 <span>14010</span> 于 <span>2016-7-30</span>.</span>
                                             </h2>
                                         </div>
                                     </div>

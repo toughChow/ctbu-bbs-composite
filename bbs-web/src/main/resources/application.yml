@@ -8,7 +8,7 @@ server:
 
 spring:
     profiles:
-        active: dev
+        active: test
 
 ---
 spring:
@@ -26,6 +26,71 @@ spring:
 
     datasource:
         url: jdbc:mysql://localhost:3306/db_ctbu_bbs?useSSL=false&characterEncoding=utf8
+        username: root
+        password: iyuyun
+        filters: stat
+        maxActive: 20
+        initialSize: 10
+        maxWait: 20
+        minIdle: 1
+        maxIdle: 10
+        timeBetweenEvictionRunsMillis: 3600000
+        minEvictableIdleTimeMillis: 18000000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+
+    jpa:
+        database: mysql
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate.format_sql: true
+            hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            hibernate.cache.use_second_level_cache: false
+            hibernate.search.default.directory_provider: filesystem
+            hibernate.search.default.indexBase: ./index es
+        open-in-view: true
+
+    servlet:
+        multipart:
+            max-file-size: 5MB
+
+    mail:
+        host: smtp.163.com
+        username: rock030995@163.com
+        password: rxd5201314
+        properties:
+            mail.smtp.auth: true
+            mail.smtp.ssl.enable: true
+            mail.smtp.starttls.enable: true
+            mail.smtp.starttls.required: true
+
+site.store.root: /data/ctbubbs
+site.store.repo: relative
+site.store.domain: false
+site.store.host: http://localhost:8000/smartlamp
+
+---
+spring:
+    profiles: test
+    freemarker:
+        template-loader-path:
+        - /templates/
+        - file:./templates/
+        cache: false
+        settings:
+            classic_compatible: true
+            template_update_delay: 0
+            datetime_format: yyyy-MM-dd HH:mm
+            number_format: 0.##
+
+    datasource:
+        url: jdbc:mysql://120.78.217.129:3306/db_ctbu_bbs?useSSL=false&characterEncoding=utf8
         username: root
         password: iyuyun
         filters: stat

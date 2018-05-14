@@ -1,9 +1,6 @@
 package bbs.web.controller.desk.post;
 
-import bbs.core.data.AccountProfile;
-import bbs.core.data.Plate;
-import bbs.core.data.Post;
-import bbs.core.data.User;
+import bbs.core.data.*;
 import bbs.core.persist.service.PlateService;
 import bbs.core.persist.service.PostService;
 import bbs.core.persist.service.UserService;
@@ -14,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 public class PublicPlateController extends BaseController{
@@ -37,6 +36,24 @@ public class PublicPlateController extends BaseController{
 
         Plate plate = plateService.findOne(id);
         model.put("plate",plate);
+
+        // 验证是否授权
+        AccountProfile profile = getSubject().getProfile();
+        model.put("profile",profile);
+
+        // 获取帖子类型
+        List<PostType> postTypeList = postService.findTypeList();
+        model.put("postTypes",postTypeList);
+
+        // 获取板块类型
+        List<Plate> plateList = plateService.findAll();
+        for (int i = 0; i < plateList.size(); i ++) {
+            if(plateList.get(i).getParentId() == 0) {
+                plateList.remove(i);
+            }
+        }
+        model.put("plates",plateList);
+
         return "/default/plate/list";
     }
 

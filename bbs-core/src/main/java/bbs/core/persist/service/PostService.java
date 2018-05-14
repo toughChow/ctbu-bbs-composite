@@ -46,4 +46,6 @@ public interface PostService {
     List<PostType> findTypeList();
 
     void save(Post post, AccountProfile profile);
+
+    Data commentPost(Long id, String content, long commentorId);
 }

@@ -5,14 +5,8 @@ import bbs.core.data.AccountProfile;
 import bbs.core.data.Plate;
 import bbs.core.data.Post;
 import bbs.core.data.PostType;
-import bbs.core.persist.dao.PlateDao;
-import bbs.core.persist.dao.PostDao;
-import bbs.core.persist.dao.PostTypeDao;
-import bbs.core.persist.dao.UserDao;
-import bbs.core.persist.entity.PlatePO;
-import bbs.core.persist.entity.PostPO;
-import bbs.core.persist.entity.PostTypePO;
-import bbs.core.persist.entity.UserPO;
+import bbs.core.persist.dao.*;
+import bbs.core.persist.entity.*;
 import bbs.core.persist.service.PostService;
 import bbs.core.persist.utils.BeanMapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +35,9 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PlateDao plateDao;
+
+    @Autowired
+    private CommentDao commentDao;
 
     @Override
     public Page<PostType> findTypeList(Pageable pageable, String key) {
@@ -391,5 +388,17 @@ public class PostServiceImpl implements PostService {
         po.setTipOff(0);
         po.setUpvote(0);
         postDao.save(po);
+    }
+
+    @Override
+    public Data commentPost(Long id, String content, long commentorId) {
+        CommentPO commentPO = new CommentPO();
+        commentPO.setContent(content);
+        commentPO.setCommentorId(commentorId);
+        commentPO.setPostId(id);
+        commentPO.setCommentTime(new Timestamp(System.currentTimeMillis()));
+
+        commentDao.save(commentPO);
+        return Data.success("评论成功", Data.NOOP);
     }
 }

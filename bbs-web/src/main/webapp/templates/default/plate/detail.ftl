@@ -111,8 +111,6 @@
                                                         </tr>
                                                         </tbody>
                                                     </table>
-
-
                                                 </div>
                                                 <div id="comment_93017" class="cm">
                                                 </div>
@@ -218,14 +216,62 @@
                             </p>
                         </form>
                             <#else>
-                            666
+                                <form>
+                                    <input type="hidden" value="${post.id}" id="thisId" />
+                                    <form class="form-horizontal" id="pForm" action="${base}/admin/posts/send" method="post" role="form">
+                                        <div class="form-group">
+                                            <textarea name="content" id="thisComment" class="form-control" placeholder="请输入内容"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div>
+                                                <button type="button" class="btn btn-default send-post">评论</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </form>
                         </#if>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var J = jQuery;
+
+    function ajaxReload(json) {
+        if (json.code >= 0) {
+            if (json.message != null && json.message != '') {
+                layer.msg(json.message, {icon: 1});
+            }
+            $('#qForm').submit();
+        } else {
+            layer.msg(json.message, {icon: 2});
+        }
+    }
+    $(function () {
+
+        //删除
+        $(".delete_postType").on('click', function () {
+            var id = $('#thisId').val();
+            var content = $('#thisComment').val();
+            if(content == null || content == ''){
+                layer.msg("请输入评论内容",{icon:2})
+                return false;
+            }
+            layer.confirm('确定要执行该操作吗？', {
+                btn: ['确定', '取消'], //按钮
+                shade: false //不显示遮罩
+            }, function () {
+                J.getJSON('${base}/admin/posts/commentPost', {
+                    id: id,content:content
+                }, ajaxReload);
+            }, function () {
+            });
+            return false;
+        });
+
+    });
+</script>
 
 <#include "/default/inc/footer.ftl">

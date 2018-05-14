@@ -127,12 +127,10 @@
                                 <script src="data/cache/autoloadpage.js?XB6" type="text/javascript"></script>
                                 <@pager "${base}/plates/${plate.id}" posts 5 key/>
                                 <div id="diyfastposttop" class="area"></div><!--[/diy]-->
-                                <script type="text/javascript">
-                                    var postminchars = parseInt('10');
-                                    var postmaxchars = parseInt('100000');
-                                    var disablepostctrl = parseInt('0');
-                                    var fid = parseInt('28');
-                                </script>
+
+
+                                <#if !profile??>
+
                                 <div id="f_pst" class="bm">
                                     <div class="bm_h">
                                         <h2>快速发帖</h2>
@@ -141,12 +139,6 @@
                                         <form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&amp;action=newthread&amp;fid=28&amp;topicsubmit=yes&amp;infloat=yes&amp;handlekey=fastnewpost" onsubmit="return fastpostvalidate(this)">
 
                                             <div id="fastpostreturn" style="margin:-5px 0 5px"></div>
-
-                                            <div class="pbt cl">
-                                                <input type="text" id="subject" name="subject" class="px" value="" onkeyup="strLenCalc(this, 'checklen', 80);" tabindex="11" style="width: 25em">
-                                                <span>还可输入 <strong id="checklen">80</strong> 个字符</span>
-                                            </div>
-
                                             <div class="cl">
                                                 <div id="fastposteditor">
                                                     <div class="tedt">
@@ -168,7 +160,6 @@
                                                         <div class="area">
                                                             <div class="pt hm">
                                                                 您需要登录后才可以发帖 <a href="${base}/login" class="xi2">登录</a> | <a href="${base}/reg" class="xi2">注册</a>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -188,8 +179,57 @@
                                         </form>
                                     </div>
                                 </div>
+                                <#else>
+                                <div id="f_pst" class="bm">
+                                    <div class="bm_h">
+                                        <h2>快速发帖</h2>
+                                    </div>
+                                    <div class="bm_c">
+                                        <form class="form-horizontal" id="pForm" action="${base}/admin/posts/send" method="post" role="form">
+                                            <div class="form-group">
+                                                <label for="firstname">主题</label>
+                                                <input type="text" name="title" class="form-control" id="firstname" placeholder="请输入标题">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">内容</label>
+                                                <textarea name="content" class="form-control" placeholder="请输入内容"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">帖子类型</label>
+                                                <select name="postTypeId" class="form-control">
+                                                <#list postTypes as row>
+                                                    <option name="postTypeId" value="${row.id}">${row.name}</option>
+                                                </#list>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">所属板块</label>
+                                                <select name="plateId" class="form-control">
+                                                <#list plates as row>
+                                                    <option name="plateId" value="${row.id}">${row.name}</option>
+                                                </#list>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <button type="button" class="btn btn-default send-post">发布</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                </#if>
                                 <!--[diy=diyforumdisplaybottom]--><div id="diyforumdisplaybottom" class="area"></div><!--[/diy]-->
                             </div>
+                            <script type="text/javascript">
+                                $('.send-post').on('click',function () {
+                                    layer.msg("发布成功，等待管理员审核，即将跳转到首页",{icon:1});
+                                    setTimeout(function () {
+                                        $('#pForm').submit();
+                                    },3000)
+                                })
+                            </script>
 
                         </div>
                     </div>
@@ -209,7 +249,8 @@
                     <div class="wp mtn">
                         <!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
                     </div>
-                    <script>fixed_top_nv();</script>	    </div>
+                    <script>fixed_top_nv();</script>
+            </div>
             </div>
         </div>
     </div>

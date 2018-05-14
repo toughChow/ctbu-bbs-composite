@@ -147,11 +147,6 @@ public class PostController extends BaseController {
 
         // 获取板块类型
         List<Plate> plateList = plateService.findAll();
-//        plateList.forEach( p -> {
-//            if (p.getParentId() == 0) {
-//                plateList.remove(p);
-//            }
-//        });
         for (int i = 0; i < plateList.size(); i ++) {
             if(plateList.get(i).getParentId() == 0) {
                 plateList.remove(i);
@@ -168,6 +163,16 @@ public class PostController extends BaseController {
 
         postService.save(post, profile);
         return "redirect:/";
+    }
+
+    @RequestMapping("/commentPost")
+    @ResponseBody
+    public Data commentPost(Long id,String content){
+        System.out.println(1);
+        AccountProfile profile = getSubject().getProfile();
+        long commentorId = profile.getId();
+        Data data = postService.commentPost(id,content,commentorId);
+        return data;
     }
 
 }
