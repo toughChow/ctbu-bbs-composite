@@ -174,7 +174,6 @@
                                 <div id="fastposteditor">
                                     <div class="tedt">
                                         <div class="bar">
-                                            <script src="data/cache/seditor.js?XB6" type="text/javascript"></script>
                                             <div class="fpd">
                                                 <a href="javascript:;" title="文字加粗" class="fbld">B</a>
                                                 <a href="javascript:;" title="设置文字颜色" class="fclr"
@@ -246,6 +245,13 @@
         }
     }
     $(function () {
+        var id = $('#thisId').val();
+        $.post("${base}/admin/posts/findCommentById",
+                {"postId":id},
+                function (data) {
+                alert();
+                    console.log(data);
+                }, "");
 
         //删除
         $("#doComment").on('click', function () {

@@ -147,7 +147,6 @@
                                                             <a href="forum.php?mod=post&amp;action=newthread&amp;fid=28"
                                                                onclick="switchAdvanceMode(this.href);doane(event);">高级模式</a>
                                                             </span>
-                                                            <script src="data/cache/seditor.js?XB6" type="text/javascript"></script>
                                                             <div class="fpd">
                                                                 <a href="javascript:;" title="文字加粗" class="fbld">B</a>
                                                                 <a href="javascript:;" title="设置文字颜色" class="fclr" id="fastpostforecolor">Color</a>

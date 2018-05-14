@@ -172,9 +172,11 @@ public class PostController extends BaseController {
         return data;
     }
 
+    @RequestMapping("/findCommentById")
+    @ResponseBody
     public List<Comment> getAllComments(Long postId){
         List<Comment> list = postService.findCommentByPostId(postId);
-        return null;
+        return list;
     }
 
 }
