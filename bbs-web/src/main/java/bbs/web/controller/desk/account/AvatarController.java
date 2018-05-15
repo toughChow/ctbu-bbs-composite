@@ -7,14 +7,18 @@ import bbs.core.data.AccountProfile;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import bbs.web.controller.desk.Views;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/account")
@@ -30,9 +34,28 @@ public class AvatarController extends BaseController {
     }
 
     @RequestMapping(value = "/avatar", method = RequestMethod.POST)
-    public String post(String path, Float x, Float y, Float width, Float height, ModelMap model) {
-
+    public String post(HttpServletRequest request, MultipartFile avatar) throws IOException {
+        AccountProfile accountProfile = getSubject().getProfile();
+        String s = uploadPic(request, avatar);
+        userService.updateAvatar(accountProfile.getId(),s);
+        getSubject().getSession().setAttribute("profile",userService.get(accountProfile.getId()));
         return "redirect:/account/profile";
+    }
+
+    public String uploadPic(HttpServletRequest request, MultipartFile avatar) throws IOException {
+        String fileName = avatar.getOriginalFilename();
+
+        String path = request.getServletContext().getRealPath("/uploadFiles");
+        if (!new File(path).exists()) {
+            new File(path).mkdirs();
+        }
+        //图片名：智慧路灯图片+yyyyMMddhhmmss+文件后缀
+        String newFileName = UUID.randomUUID() + fileName.substring(fileName.indexOf("."), fileName.length());
+        //图片存储地址
+        String descPath = path + File.separator + newFileName;
+        File newFile = new File(descPath);
+        avatar.transferTo(newFile);
+        return "/uploadFiles/" + newFileName;
     }
 
 

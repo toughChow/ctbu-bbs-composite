@@ -17,7 +17,7 @@
             <div class="upload-btn">
                 <label>
                     <span>头像修改</span>
-                    <input id="upload_btn" id="select_file" type="file" name="avater" accept="image/*" title="点击添加图片">
+                    <input id="upload_btn" id="select_file" type="file" name="avatar" accept="image/*" title="点击添加图片">
                 </label>
             </div>
             <div class="update_ava">
