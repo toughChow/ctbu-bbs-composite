@@ -415,4 +415,15 @@ public class PostServiceImpl implements PostService {
         });
         return comments;
     }
+
+    @Override
+    public Data collectPost(Long id, long thisUserId) {
+        UserPO one = userDao.findOne(thisUserId);
+        List<PostPO> posts = one.getPosts();
+        PostPO two = postDao.findOne(id);
+        posts.add(two);
+        one.setPosts(posts);
+        userDao.save(one);
+        return Data.success("收藏成功", Data.NOOP);
+    }
 }

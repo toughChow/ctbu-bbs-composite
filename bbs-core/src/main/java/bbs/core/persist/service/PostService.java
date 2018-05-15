@@ -47,4 +47,6 @@ public interface PostService {
     Data commentPost(Long id, String content, long commentorId);
 
     List<Comment> findCommentByPostId(Long postId);
+
+    Data collectPost(Long id, long thisUserId);
 }

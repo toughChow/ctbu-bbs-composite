@@ -171,4 +171,13 @@ public class PostController extends BaseController {
         return data;
     }
 
+    @RequestMapping("/collectPost")
+    @ResponseBody
+    public Data collectPost(Long id) {
+        AccountProfile profile = getSubject().getProfile();
+        long thisUserId = profile.getId();
+        Data data = postService.collectPost(id,thisUserId);
+        return data;
+    }
+
 }

@@ -54,7 +54,7 @@
                                                 <div class="pi">
                                                     <div class="authi">作者：<a href="javascript:void(0)" target="_blank"
                                                                              class="xw1"
-                                                                             style="color: #FF66FF">${author.nickname}</a>
+                                                                             style="color: #FF66FF">${author.username}</a>
                                                     </div>
                                                 </div>
                                                 <div class="p_pop blk bui card_gender_2" id="userinfo93017"
@@ -116,7 +116,12 @@
                                     </td>
                                  </tr>
 
-                                <tr></tr><tr><td></td><td></td><td><a href="javascript:void(0)" id="upvote">点赞</a>&emsp;<a href="javascript:void(0)" id="tipoff">举报</a></td></tr>
+                                <tr></tr><tr><td></td><td></td><td>
+                            <#if profile??>
+                            <a href="javascript:void(0)" id="collectPost">收藏</a>
+                            <a href="javascript:void(0)" id="upvote">点赞</a>&emsp;
+                            <a href="javascript:void(0)" id="tipoff">举报</a></td></tr>
+                            </#if>
                             </tbody>
                             </table>
                         </div>
@@ -277,7 +282,7 @@
                             '                                    </div>\n' +
                             '                                </td>\n' +
                             '                            </tr>\n' +
-                            '                           <tr></tr><tr><td></td><td></td><td><a href="javascript:void(0)" id="upvote">点赞</a>&emsp;<a href="javascript:void(0)" id="tipoff">举报</a></td></tr>\n'+
+                            '                           <tr></tr><tr><td></td><td></td><td><#if profile??><a href="javascript:void(0)" id="upvote">点赞</a>&emsp;<a href="javascript:void(0)" id="tipoff">举报</a></#if></td></tr>\n'+
                             '                           </tbody>\n' +
                             '                        </table>\n' +
                             '                   </div>';
@@ -325,7 +330,7 @@
         var id = $('#thisId').val();
         getComments(id);
 
-        //删除
+        //评论
         $("#doComment").on('click', function () {
             var id = $('#thisId').val();
             var content = $('#thisComment').val();
@@ -342,6 +347,21 @@
                 }, ajaxReload);
                 // reload comment
                 getComments(id);
+            }, function () {
+            });
+            return false;
+        });
+
+        //收藏
+        $("#collectPost").on('click', function () {
+            var id = $('#thisId').val();
+            layer.confirm('确定要收藏该帖吗？', {
+                btn: ['确定', '取消'], //按钮
+                shade: false //不显示遮罩
+            }, function () {
+                J.getJSON('${base}/admin/posts/collectPost', {
+                    id: id
+                }, ajaxReload);
             }, function () {
             });
             return false;
