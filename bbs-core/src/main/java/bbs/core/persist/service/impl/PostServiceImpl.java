@@ -501,4 +501,10 @@ public class PostServiceImpl implements PostService {
         commentDao.delete(id);
         return Data.success("删除成功", Data.NOOP);
     }
+
+    @Override
+    public Data deletePost(Long id){
+        postDao.delete(id);
+        return Data.success("删除成功", Data.NOOP);
+    }
 }

@@ -49,6 +49,13 @@ public class PostController extends BaseController {
         return data;
     }
 
+    @GetMapping("/delete_post")
+    @ResponseBody
+    public Data deletePost(Long id){
+        Data data = postService.deletePost(id);
+        return data;
+    }
+
     @PostMapping("/add_postType")
     public String addPostType(PostType type){
         AccountProfile profile = getSubject().getProfile();

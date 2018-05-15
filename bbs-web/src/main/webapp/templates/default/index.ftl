@@ -1,6 +1,6 @@
 <#include "/default/inc/header.ftl">
 
-
+<script type="text/javascript" src="${base}/assets/js/user/index.js"></script>
     <div class="eis_wp988">
         <div class="eis_wp_l">
             <div class="eis_wp_r">

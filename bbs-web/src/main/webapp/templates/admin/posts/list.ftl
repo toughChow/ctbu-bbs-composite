@@ -112,7 +112,7 @@
             btn: ['确定', '取消'], //按钮
             shade: false //不显示遮罩
         }, function () {
-            J.getJSON('${base}/admin/posts/delete_postType', {
+            J.getJSON('${base}/admin/posts/delete_post', {
                 id: id
             }, ajaxReload);
         }, function () {

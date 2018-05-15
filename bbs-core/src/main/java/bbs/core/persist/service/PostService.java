@@ -55,4 +55,6 @@ public interface PostService {
     Data replyComment(Long id, String content, long commentorId);
 
     Data deleteMyComment(Long id);
+
+    Data deletePost(Long id);
 }
