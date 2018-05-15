@@ -39,6 +39,9 @@ public class CommentPO {
     @Column(name = "SEQUENCE")
     private Integer sequence;
 
+    @Column(name = "RECEIVER_ID")
+    private Long receiverId;
+
     public Long getId() {
         return id;
     }
@@ -109,5 +112,13 @@ public class CommentPO {
 
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    public Long getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(Long receiverId) {
+        this.receiverId = receiverId;
     }
 }

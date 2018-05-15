@@ -9,4 +9,6 @@ import java.util.List;
 public interface CommentDao extends JpaRepository<CommentPO, Long>, JpaSpecificationExecutor<CommentPO> {
 
     List<CommentPO> findByPostId(Long postId);
+
+    CommentPO findByParentId(Long parentId);
 }

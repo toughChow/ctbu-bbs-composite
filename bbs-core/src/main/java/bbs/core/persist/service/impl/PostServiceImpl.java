@@ -389,13 +389,19 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Data commentPost(Long id, String content, long commentorId) {
+        // 获取post的user
+        PostPO one = postDao.findOne(id);
+        Long userId = one.getUserId();
+
         CommentPO commentPO = new CommentPO();
+        commentPO.setReceiverId(userId);
         commentPO.setContent(content);
         commentPO.setCommentorId(commentorId);
         commentPO.setPostId(id);
         commentPO.setCommentTime(new Timestamp(System.currentTimeMillis()));
         commentPO.setTipOff(0);
         commentPO.setUpvote(0);
+        commentPO.setParentId(0L);
         commentDao.save(commentPO);
         return Data.success("评论成功", Data.NOOP);
     }
@@ -425,5 +431,74 @@ public class PostServiceImpl implements PostService {
         one.setPosts(posts);
         userDao.save(one);
         return Data.success("收藏成功", Data.NOOP);
+    }
+
+    // 获取帖子的评论 以及 帖子的回复
+    @Override
+    public Page<Comment> findComments(Pageable pageable, String key, long userId) {
+        List<PostPO> posts = postDao.findByUserId(userId);
+        Pageable p=new PageRequest(pageable.getPageNumber(),pageable.getPageSize(), Sort.Direction.DESC,"commentTime");
+        Page<CommentPO> page = commentDao.findAll(
+                (Root<CommentPO> root, CriteriaQuery<?> cq, CriteriaBuilder cb)
+                        -> {
+                    List<Predicate> predicates = new ArrayList<>();
+                    List<Predicate> subPredicates = new ArrayList<>();
+
+                    posts.forEach( post -> {
+                        Long postId = post.getId();
+                        subPredicates.add(cb.equal(root.get("postId"),postId));
+//                        predicates.add((cb.and(subPredicates.toArray(new Predicate[]{}))));
+                    });
+
+                    // 接收者id
+                    subPredicates.add(cb.equal(root.get("receiverId"),userId));
+
+                    if (StringUtils.isNotBlank(key)) {
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("content"), tag));
+                    }
+                    predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
+
+                    return cb.and(predicates.toArray(new Predicate[]{}));
+                }, p
+        );
+        List<Comment> comments = new ArrayList<>();
+        page.getContent().forEach(po -> {
+            Comment copy = BeanMapUtils.copy(po);
+            comments.add(copy);
+        });
+        return new PageImpl<>(comments, pageable, page.getTotalElements());
+    }
+
+    @Override
+    public Data replyComment(Long id, String content, long commentorId) {
+
+        CommentPO commentOne = commentDao.findOne(id);
+        // 获取commentorId 设置为此次回复的 receiverId
+        Long parentId = commentOne.getParentId();
+        CommentPO comment = commentDao.findByParentId(parentId); // parent
+
+        Long thisReiveicerId = comment.getCommentorId();
+        CommentPO commentPO = new CommentPO();
+        commentPO.setReceiverId(thisReiveicerId);
+        commentPO.setContent(content);
+        commentPO.setCommentorId(commentorId);
+        commentPO.setPostId(comment.getPostId());
+        commentPO.setCommentTime(new Timestamp(System.currentTimeMillis()));
+        commentPO.setTipOff(0);
+        commentPO.setUpvote(0);
+        commentPO.setParentId(id);
+        commentDao.save(commentPO);
+//
+//        CommentPO one = commentDao.findOne(commentPO.getId());
+//        one.setParentId(one.getId());
+//        commentDao.save(one);
+        return Data.success("评论成功", Data.NOOP);
+    }
+
+    @Override
+    public Data deleteMyComment(Long id) {
+        commentDao.delete(id);
+        return Data.success("删除成功", Data.NOOP);
     }
 }

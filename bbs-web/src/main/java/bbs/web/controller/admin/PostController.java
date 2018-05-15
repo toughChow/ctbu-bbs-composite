@@ -162,12 +162,33 @@ public class PostController extends BaseController {
         return "redirect:/";
     }
 
+    /**
+     *
+     * @param id 帖子id
+     * @param content
+     * @return
+     */
     @RequestMapping("/commentPost")
     @ResponseBody
     public Data commentPost(Long id,String content){
         AccountProfile profile = getSubject().getProfile();
         long commentorId = profile.getId();
         Data data = postService.commentPost(id,content,commentorId);
+        return data;
+    }
+
+    /**
+     *
+     * @param id commentId
+     * @param content
+     * @return
+     */
+    @RequestMapping("/replyComment")
+    @ResponseBody
+    public Data replyComment(Long id,String content){
+        AccountProfile profile = getSubject().getProfile();
+        long commentorId = profile.getId();
+        Data data = postService.replyComment(id,content,commentorId);
         return data;
     }
 

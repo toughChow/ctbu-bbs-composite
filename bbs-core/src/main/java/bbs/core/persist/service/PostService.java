@@ -49,4 +49,10 @@ public interface PostService {
     List<Comment> findCommentByPostId(Long postId);
 
     Data collectPost(Long id, long thisUserId);
+
+    Page<Comment> findComments(Pageable pageable, String key, long userId);
+
+    Data replyComment(Long id, String content, long commentorId);
+
+    Data deleteMyComment(Long id);
 }

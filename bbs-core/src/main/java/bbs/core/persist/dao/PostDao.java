@@ -21,5 +21,7 @@ public interface PostDao extends JpaRepository<PostPO,Long>,JpaSpecificationExec
 
     List<PostPO> findByPlateIdAndStatusOrderByCreateTimeDesc(Long pid, Integer status);
 
+    List<PostPO> findByUserId(Long userId);
+
     //SELECT * FROM T_PUB_USER U WHERE U.USER_GROUP_ID=?1", nativeQuery = true
 }
