@@ -16,7 +16,7 @@
 
 <!--.site-main -->
 <div class="wrap" id="wrap">
-    <div class="container">
+    <div>
         <div class="row">
             <div class="main clearfix">
                 <div class="col-xs-12 col-md-12">
@@ -48,7 +48,7 @@
 
 <!--.site-main -->
 <div class="wrap" id="wrap">
-    <div class="container">
+    <div>
         <div class="row">
             <div class="main clearfix">
                 <!-- left -->
@@ -85,7 +85,7 @@
 
 <!--.site-main -->
 <div class="wrap" id="wrap">
-    <div class="container">
+    <div>
         <div class="row">
             <div class="main clearfix">
                 <!-- left -->

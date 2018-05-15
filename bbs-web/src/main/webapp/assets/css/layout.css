@@ -132,10 +132,12 @@
 /* main */
 .wrap {
     position: relative;
+    width: 980px;
     background-color: #f6f6f6;
     padding-top: 20px;
     padding-bottom: 30px;
     min-height: 520px;
+    margin: 0 auto;
 }
 
 .main {

@@ -385,6 +385,7 @@ public class UserServiceImpl implements UserService {
             UserPO userPO = userDao.findByUsername(username);
             user.setUsername(userPO.getUsername());
             user.setId(userPO.getId());
+            user.setMobile(userPO.getMobile());
         } catch (NullPointerException e) {
         }
         if (user != null) {
@@ -440,7 +441,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePassword(long id, String oldPassword, String password) {
+    public void updatePassword(long id, String password) {
         if (StringUtils.isBlank(password)) {
             throw new IllegalArgumentException();
         }
@@ -453,7 +454,6 @@ public class UserServiceImpl implements UserService {
                 e.printStackTrace();
             }
         }
-        // TODO: 2018/4/28 是否加setCityId
         userPO.setPassword(DigestUtils.sha1Hex(password));
         userDao.save(userPO);
     }

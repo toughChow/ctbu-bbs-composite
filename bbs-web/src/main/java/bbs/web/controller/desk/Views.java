@@ -13,6 +13,8 @@ public interface Views {
 
     String FORGOT_APPLY = "/forgot/apply";
     String FORGOT_RESET = "/forgot/reset";
+    //忘记密码的结果页面
+    String FORGOT_RESULT="/forgot/forgot_result";
 
     String INDEX = "/index";
 

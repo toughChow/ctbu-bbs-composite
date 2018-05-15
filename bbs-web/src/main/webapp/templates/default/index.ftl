@@ -43,8 +43,41 @@
                                     <div class="eis_sg_c cl">
                                         <!-- 轮播图 -->
                                         <div class="eis_dtd_l"><!--[diy=eis_fdl]-->
+                                            <div id="box">
+                                                <ul class="content-list">
+                                                    <li class="content-unit">
+                                                        <img class="imgss" src="${base}/assets/img/bbs/3bcae66589234bfad4bbd644c1a9d718.jpg" alt=""/>
+                                                        <p>凯美瑞便宜卖</p>
+                                                    </li>
+                                                    <li class="content-unit">
+                                                        <img class="imgss" src="${base}/assets/img/bbs/85c47bcc7a49e76e3806659cbf467ed5.jpg" alt=""/>
+                                                        <p>重商附近3室一厅的主卧~独立豪华浴室~8/1</p>
+                                                    </li>
+                                                    <li class="content-unit">
+                                                        <img class="imgss" src="${base}/assets/img/bbs/258004bcc2d86a810d53090a56dbf5dd.jpg" alt=""/>
+                                                        <p>单间五月起租，800/月，到CTBU</p>
+                                                    </li>
+                                                    <li class="content-unit">
+                                                        <img class="imgss" src="${base}/assets/img/bbs/c7942eeb8b837658dc392aa0e1f9152f.jpg" alt=""/>
+                                                        <p>2017独立新房 3室2.5卫 出租一楼</p>
+                                                    </li>
+                                                    <li class="content-unit">
+                                                        <img class="imgss" src="${base}/assets/img/bbs/f4972a474fe0863c4083dec5e6ae87c3.jpg" alt=""/>
+                                                        <p>CTBU步行距离两间Studio转租～短租长租均可</p>
+                                                    </li>
+                                                </ul>
+                                                <div class="bt-wrapper">
+                                                    <a href="javascript:void(0)" class="btna active" data-index="0"></a>
+                                                    <a href="javascript:void(0)" class="btna" data-index="1"></a>
+                                                    <a href="javascript:void(0)" class="btna" data-index="2"></a>
+                                                    <a href="javascript:void(0)" class="btna" data-index="3"></a>
+                                                    <a href="javascript:void(0)" class="btna" data-index="4"></a>
+                                                </div>
+                                                <a href="javascript:void(0)" class="ear left_ear" id="left_ear">&lt;</a>
+                                                <a href="javascript:void(0)" class="ear right_ear" id="right_ear">&gt;</a>
+                                            </div>
 
-                                            <!--[/diy]--></div>
+                                        <!--[/diy]--></div>
                                         <!-- 活跃会员 -->
                                         <div class="eis_dtd_r"><!--[diy=eis_fdr]-->
                                             <div id="eis_fdr" class="area">

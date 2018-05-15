@@ -28,7 +28,7 @@ public class PasswordController extends BaseController {
         Data data;
         try {
             AccountProfile profile = getSubject().getProfile();
-            userService.updatePassword(profile.getId(), oldPassword, password);
+            userService.updatePassword(profile.getId(), password);
 
             data = Data.success("操作成功", Data.NOOP);
         } catch (Exception e) {
