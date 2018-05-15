@@ -2,8 +2,10 @@ package bbs.web.controller;
 
 import bbs.base.lang.Consts;
 import bbs.base.print.Printer;
+import bbs.core.exceptions.UserException;
 import bbs.core.persist.service.UserService;
 import bbs.core.persist.utils.GeetestLib;
+import bbs.core.persist.utils.MessageHelper;
 import bbs.web.controller.desk.Views;
 import bbs.web.imagecode.GeetestConfig;
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +38,9 @@ public class LoginController extends BaseController{
     public String view(){
         return getView(Views.LOGIN);
     }
+
+    @Autowired
+    MessageHelper messageHelper;
 
     @PostMapping(value = "/login")
     public String login(String username, String password, @RequestParam(value = "rememberMe", defaultValue = "0") int rememberMe,
@@ -191,6 +196,21 @@ public class LoginController extends BaseController{
 
         PrintWriter out = response.getWriter();
         out.println(resStr);
+    }
+
+    @RequestMapping("/ipDifferValiCode")
+    @ResponseBody
+    public Integer sendVeryfyCode(String phone) throws IOException, UserException {
+        Integer code = (int) ((Math.random() * 9 + 1) * 100000);
+        String codeStr = code.toString();
+        session.setAttribute("verifyCode",codeStr);
+        try {
+            messageHelper.sendCodeDefinedByYourself(phone, codeStr);
+            session.setAttribute("msgKey",codeStr);
+        } catch (Exception e) {
+            return 0; // exception occured , send failed
+        }
+        return 1; // "验证码已发送,请注意查收!";
     }
 
 }

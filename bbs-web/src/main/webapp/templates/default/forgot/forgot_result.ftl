@@ -2,7 +2,7 @@
 <@layout "密码找回">
     <div class="login">
         <a href="${base}/index">
-            <img src="${base}/assets/images/logo/m90.png" height="72" width="72">
+            <img src="${base}/assets/img/logo/m90.png" height="72" width="72">
         </a>
 
         <form action="login" method="post">
