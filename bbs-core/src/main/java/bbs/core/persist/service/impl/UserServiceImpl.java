@@ -467,5 +467,17 @@ public class UserServiceImpl implements UserService {
         return copy;
     }
 
+    @Override
+    @Transactional
+    @CacheEvict(value = "usersCaches", key = "#id")
+    public AccountProfile updateAvatar(Long id, String path) {
+        UserPO userPO = userDao.findOne(id);
+        if (userPO != null) {
+            userPO.setAvatar(path);
+            userDao.save(userPO);
+        }
+        return BeanMapUtils.copyPassport(userPO);
+    }
+
 
 }

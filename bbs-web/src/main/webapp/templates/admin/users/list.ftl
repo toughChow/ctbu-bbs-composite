@@ -23,7 +23,7 @@
                         <th width="80">#</th>
                         <th>用户名</th>
                         <th>昵称</th>
-                        <th>邮箱</th>
+                        <th>电话</th>
                         <th>角色</th>
                         <th>状态</th>
                         <@shiro.hasPermission name="users:edit">
@@ -37,7 +37,7 @@
                             <td class="text-center">${row.id}</td>
                             <td>${row.username}</td>
                             <td>${row.nickname}</td>
-                            <td>${row.email}</td>
+                            <td>${row.mobile}</td>
                             <td>
                                 <#list row.roles as role>
                                     ${role.name}

@@ -63,4 +63,6 @@ public interface UserService {
     void updatePassword(long id, String password);
 
     User findByPostId(Long id);
+
+    AccountProfile updateAvatar(Long id, String path);
 }

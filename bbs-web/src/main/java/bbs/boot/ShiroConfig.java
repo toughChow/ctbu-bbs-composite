@@ -100,7 +100,7 @@ public class ShiroConfig {
 //        hashMap.put("/home*", "user");
 //        hashMap.put("/home/**", "user");
 //        hashMap.put("/post/**", "user");
-//        hashMap.put("/account/**", "user");
+        hashMap.put("/account/**", "user");
 
         hashMap.put("/admin", "authc,perms[admin]");
         hashMap.put("/admin/", "authc,perms[admin]");

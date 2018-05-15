@@ -50,7 +50,7 @@ public class RegController extends BaseController{
             post.setAvatar(Consts.AVATAR);
             User user = userService.register(post);
 
-            data = Data.success("恭喜您! 注册成功, 已经给您的邮箱发了验证码, 赶紧去完成邮箱绑定吧。", Data.NOOP);
+            data = Data.success("恭喜您 注册成功!", Data.NOOP);
             data.addLink("login", "先去登陆尝尝鲜");
 
             ret = getView(Views.REG_RESULT);

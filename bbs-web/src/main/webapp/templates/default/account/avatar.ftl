@@ -13,12 +13,7 @@
         <div id="message">
             <#include "/default/inc/action_message.ftl"/>
         </div>
-        <form class="form-horizontal" action="avatar" method="post" enctype="multipart/form-data">
-            <#--<input type="hidden" id="x" name="x" value=""/>
-            <input type="hidden" id="y" name="y" value=""/>
-            <input type="hidden" id="width" name="width" value=""/>
-            <input type="hidden" id="height" name="height" value=""/>
-            <input type="hidden" id="path" name="path" value=""/>-->
+        <form class="form-horizontal" action="${base}/account/avatar" method="post" enctype="multipart/form-data">
             <div class="upload-btn">
                 <label>
                     <span>头像修改</span>
@@ -26,7 +21,7 @@
                 </label>
             </div>
             <div class="update_ava">
-                <img width="128px" src="<@resource src=profile.avatar/>" id="target" alt="[Jcrop Example]"/>
+                <img width="128px" name="newAva" src="<@resource src=profile.avatar/>" id="target" alt="[Jcrop Example]"/>
             </div>
             <div class="form-group">
                 <div class="text-center">
@@ -39,7 +34,7 @@
 
 
 <script type="text/javascript">
-    //seajs.use('avatar');
+    seajs.use('avatar');
 
     var upload_btn = document.querySelector('#upload_btn');
     if(!(window.FileReader && window.File && window.FileList && window.Blob)){
