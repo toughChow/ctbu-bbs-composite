@@ -23,7 +23,7 @@ public class MessageHelper {
     final static String accessKeyId = "LTAIV4HGQE1rHHxP";//短信里面的AKI
     final static String accessKeySecret = "Q7Wz34xQzx3qHlKwmMYwU0cZHTZYHc";//短信里面的AKS
 
-    static String signName = "发明周";//短信发过去的开始名字
+    static String signName = "CTBU论坛";//短信发过去的开始名字
     static String code = "SMS_128565078";//短信模板的code码
 
     static String phone = "17623677587";//用户手机号
