@@ -2,20 +2,17 @@
 package bbs.web.controller.desk.account;
 
 import bbs.base.context.AppContext;
-import bbs.base.data.Data;
 import bbs.core.data.AccountProfile;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import bbs.web.controller.desk.Views;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -38,7 +35,8 @@ public class AvatarController extends BaseController {
         AccountProfile accountProfile = getSubject().getProfile();
         String s = uploadPic(request, avatar);
         userService.updateAvatar(accountProfile.getId(),s);
-        getSubject().getSession().setAttribute("profile",userService.get(accountProfile.getId()));
+        accountProfile.setAvatar(s);
+        getSubject().getSession().setAttribute("profile",accountProfile);
         return "redirect:/account/profile";
     }
 
