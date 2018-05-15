@@ -23,7 +23,7 @@
     <meta name="msapplication-tooltip" content="重庆工商大学校园论坛">
     <meta name="msapplication-task"
           content="name=论坛;action-uri=https://cssauw.org/forum/forum.php;icon-uri=https://cssauw.org/forum/static/image/common/bbs.ico">
-    <link rel="archives" title="重庆工商大学校园论坛" href="https://localhost:8088/index">
+    <link rel="archives" title="重庆工商大学校园论坛" href="${base}">
     <!--[if IE 6]>
     <script src="template/eis_free/eis/js/png.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -99,7 +99,7 @@
                 <div class="eis_wp988">
                     <div class="eis_wp">
                         <div class="hdc cl">
-                            <h2><a href="https://localhost:8088/" title="重庆工商大学校园论坛"><img
+                            <h2><a href="${base}" title="重庆工商大学校园论坛"><img
                                     src="/assets/img/bbs/ctbulogo.gif" alt="重庆工商大学校园论坛" border="0"></a></h2>
                         </div>
                     </div>
@@ -116,9 +116,9 @@
                                     <input type="text" name="srchtxt" id="eskey" autocomplete="off">
                                     <button type="button" name="searchsubmit" id="esbtn" sc="1" value="true"></button>
                                 </form>
-                                <li class="a" id="mn_forum"><a href="https://localhost:8088/" hidefocus="true"
+                                <li class="a" id="mn_forum"><a href="${base}" hidefocus="true"
                                                                title="BBS">论坛<span>BBS</span></a></li>
-                                <li id="mn_N05dc"><a href="https://localhost:8088/" hidefocus="true">CSSA主页</a></li>
+                                <li id="mn_N05dc"><a href="${base}" hidefocus="true">CSSA主页</a></li>
                             </ul>
                         </div>
                     </div>

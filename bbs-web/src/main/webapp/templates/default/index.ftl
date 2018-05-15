@@ -10,8 +10,8 @@
                     <div id="wp" class="wp cl">
                         <div id="pt" class="bm cl">
                             <div class="z">
-                                <a href="https://cssauw.org/forum/" class="nvhm" title="首页">重庆工商大学校园论坛</a><em>»</em><a
-                                    href="https://cssauw.org/forum/forum.php">论坛</a></div>
+                                <a href="${base}" class="nvhm" title="首页">重庆工商大学校园论坛</a><em>»</em><a
+                                    href="${base}">论坛</a></div>
                             <div class="z"></div>
                         </div>
 
