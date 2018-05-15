@@ -28,7 +28,6 @@
         #scrolltop { margin-left:11px;}
         #ft { padding:0px; border:0px; }
     </style>
-    <script src="/assets/img/bbs/home.php" type="text/javascript"></script>
     <div id="scrolltop" style="left: 1154px; visibility: visible;">
 <span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo(&#39;0&#39;,&#39;0&#39;)" class="scrolltopa"><b>返回顶部
 

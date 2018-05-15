@@ -36,8 +36,7 @@
                             <span class="y pgb" id="visitedforums"
                                   onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id,'pos':'34'})"><a
                                     href="${base}/plates/${parent.id}">返回列表</a></span>
-                            <a id="newspecial" href="javascript:;" title="发新帖"><img
-                                    src="static/image/common/pn_post.png" alt="发新帖"></a>
+
                         </div>
 
                         <div id="postlist" class="pl bm">
@@ -75,15 +74,15 @@
                                                         <tbody>
                                                         <tr>
                                                             <th><p><a
-                                                                    href="home.php?mod=space&amp;uid=32942&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space"
+                                                                    href="javascript:void(0)"
                                                                     class="xi2">32</a></p>主题
                                                             </th>
                                                             <th><p><a
-                                                                    href="home.php?mod=space&amp;uid=32942&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space"
+                                                                    href="javascript:void(0)"
                                                                     class="xi2">390</a></p>帖子
                                                             </th>
                                                             <td><p><a
-                                                                    href="home.php?mod=space&amp;uid=32942&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space"
+                                                                    href="javascript:void(0)"
                                                                     class="xi2">0</a></p>精华
                                                             </td>
                                                         </tr>
@@ -184,7 +183,7 @@
                                 </div>
 
                                 <p class="ptm pnpost">
-                                    <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=28" class="y"
+                                    <a href="javascript:void(0)" class="y"
                                        target="_blank">本版积分规则</a>
                                     <button type="submit"
                                             onmouseover="checkpostrule('seccheck_fastpost', 'ac=newthread');this.onmouseover=null"

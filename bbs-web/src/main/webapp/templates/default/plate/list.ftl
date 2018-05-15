@@ -64,7 +64,6 @@
                                                     <th><a href="javascript:;" title="查看更新" class="forumrefresh">版块主题</a></th><td>作者</td><td>回复/查看</td><td>最后发表</td>
                                                 </tr>
                                                 </tbody>
-                                                <script type="text/javascript">hideStickThread();</script>
                                                 <tbody id="normalthread_31820">
                                                 <#list posts.content as row>
                                                     <tr>
@@ -123,8 +122,6 @@
                                         </li>
                                     </ul>
                                 </div>
-
-                                <script src="data/cache/autoloadpage.js?XB6" type="text/javascript"></script>
                                 <@pager "${base}/plates/${plate.id}" posts 5 key/>
                                 <div id="diyfastposttop" class="area"></div><!--[/diy]-->
 
@@ -172,7 +169,7 @@
 
 
                                             <p class="ptm pnpost">
-                                                <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=28" class="y" target="_blank">本版积分规则</a>
+                                                <a href="javascript:void(0)" class="y" target="_blank">本版积分规则</a>
                                                 <button type="submit" onmouseover="checkpostrule('seccheck_fastpost', 'ac=newthread');this.onmouseover=null" name="topicsubmit" id="fastpostsubmit" value="topicsubmit" tabindex="13" class="pn pnc"><strong>发表帖子</strong></button>
                                             </p>
                                         </form>
@@ -244,11 +241,9 @@
                             </tbody></table>
                     </div>
                     <script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 0, 1, 'forum.php?mod=forumdisplay&fid=28&filter=&orderby=lastpost&', 1);}</script>
-                    <script type="text/javascript">checkForumnew_handle = setTimeout(function () {checkForumnew(28, lasttime);}, checkForumtimeout);</script>
                     <div class="wp mtn">
                         <!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
                     </div>
-                    <script>fixed_top_nv();</script>
             </div>
             </div>
         </div>

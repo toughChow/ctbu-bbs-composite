@@ -24,7 +24,6 @@
     <meta name="msapplication-task"
           content="name=论坛;action-uri=https://cssauw.org/forum/forum.php;icon-uri=https://cssauw.org/forum/static/image/common/bbs.ico">
     <link rel="archives" title="重庆工商大学校园论坛" href="https://localhost:8088/index">
-    <script src="/assets/img/bbs/forum.js.下载" type="text/javascript"></script>
     <!--[if IE 6]>
     <script src="template/eis_free/eis/js/png.js" type="text/javascript"></script>
     <script type="text/javascript">

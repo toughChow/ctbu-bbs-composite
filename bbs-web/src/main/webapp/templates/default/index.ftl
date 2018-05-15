@@ -33,8 +33,8 @@
                                             <p class="z">今日: <em>25</em><span class="pipe">|</span>昨日: <em>33</em><span
                                                     class="pipe">|</span>帖子: <em>64727</em><span class="pipe">|</span>会员:
                                                 <em>17286</em><span class="pipe">|</span>欢迎新会员: <em><a
-                                                        href="https://cssauw.org/forum/space-username-%E9%98%BF%E5%BC%A6%E5%A6%9E"
-                                                        target="_blank">阿弦妞</a></em></p>
+                                                        href="javascript:void(0)"
+                                                        target="_blank">${newuser.username}</a></em></p>
                                             <div class="y">
                                                 <a href="${base}/admin/posts/send"
                                                    title="发帖" class="xi2">发帖</a></div>
@@ -43,90 +43,8 @@
                                     <div class="eis_sg_c cl">
                                         <!-- 轮播图 -->
                                         <div class="eis_dtd_l"><!--[diy=eis_fdl]-->
-                                            <div id="eis_fdl" class="area">
-                                                <div id="frameS2Z0DT" class="cl_frame_bm frame move-span cl frame-1">
-                                                    <div id="frameS2Z0DT_left" class="column frame-1-c">
-                                                        <div id="frameS2Z0DT_left_temp" class="move-span temp"></div>
-                                                        <div id="portal_block_3" class="block move-span">
-                                                            <div id="portal_block_3_content" class="dxb_bc"
-                                                                 style="position: relative;">
-                                                                <div class="module cl slidebox" id="0.7977337029571752"
-                                                                     style="display: block;">
-                                                                    <ul class="slideshow">
-                                                                        <li style="width: 300px; height: 220px; display: none;">
-                                                                            <a href="https://mp.weixin.qq.com/s?__biz=MzA4OTI4MTQxNg==&amp;mid=2653448773&amp;idx=1&amp;sn=1b7d1cb9333546ce33eccedf3c3d593b&amp;chksm=8bc18ca2bcb605b40ad5a01c6882eb4e20fa4d4b4565f75ef823468e565375f6d1e5062c23d8&amp;mpshare=1&amp;scene=1&amp;srcid=0502Mk2Q2xu80"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/b131482c9bb74eb5c06fe653f71b1734.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">【国内新生会】这个暑假CTBU与你不见不散！</span>
-                                                                        </li>
-                                                                        <li style="width: 300px; height: 220px; display: none;">
-                                                                            <a href="https://cssauw.org/forum/thread-31808-1-1"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/258004bcc2d86a810d53090a56dbf5dd.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">Greenlake townhouse 出租单间 亚麻-UW-NSC</span>
-                                                                        </li>
-                                                                        <li style="width: 300px; height: 220px; display: none;">
-                                                                            <a href="https://cssauw.org/forum/thread-31805-1-1"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/85c47bcc7a49e76e3806659cbf467ed5.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">华大附近3室1厅的雅房出租~ 6月底可入住</span>
-                                                                        </li>
-                                                                        <li style="width: 300px; height: 220px; display: block;">
-                                                                            <a href="https://cssauw.org/forum/thread-31801-1-1"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/f4972a474fe0863c4083dec5e6ae87c3.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">Lakecity5月起出租房间，房租600带床桌椅衣</span>
-                                                                        </li>
-                                                                        <li style="width: 300px; height: 220px; display: none;">
-                                                                            <a href="https://cssauw.org/forum/thread-31799-1-1"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/3bcae66589234bfad4bbd644c1a9d718.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">#毕业卖车</span></li>
-                                                                        <li style="width: 300px; height: 220px; display: none;">
-                                                                            <a href="https://cssauw.org/forum/thread-31783-1-1"
-                                                                               target="_blank"><img
-                                                                                    src="/assets/img/bbs/c7942eeb8b837658dc392aa0e1f9152f.jpg"
-                                                                                    width="300" height="220"></a><span
-                                                                                class="title">Moving sale 第二波 沙发+茶几+婴儿床+自行</span>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <script type="text/javascript">
-                                                                    runslideshow();
-                                                                </script>
-                                                                <div class="slidebar"
-                                                                     style="position: absolute; top: 5px; left: 4px;">
-                                                                    <ul>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(0); return false;"
-                                                                            class="">1
-                                                                        </li>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(1); return false;"
-                                                                            class="">2
-                                                                        </li>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(2); return false;"
-                                                                            class="">3
-                                                                        </li>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(3); return false;"
-                                                                            class="on">4
-                                                                        </li>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(4); return false;">
-                                                                            5
-                                                                        </li>
-                                                                        <li onmouseover="slideshow.entities[0.7977337029571752].xactive(5); return false;"
-                                                                            class="">6
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!--[/diy]--></div>
+
+                                            <!--[/diy]--></div>
                                         <!-- 活跃会员 -->
                                         <div class="eis_dtd_r"><!--[diy=eis_fdr]-->
                                             <div id="eis_fdr" class="area">
@@ -139,56 +57,16 @@
                                                             <div id="portal_block_7_content" class="dxb_bc">
                                                                 <div class="module cl xl xl1">
                                                                     <ol>
-                                                                        <li><em>2309</em><img class="vm"
-                                                                                              src="/assets/img/bbs/avatar.php"
-                                                                                              width="16" height="16"
-                                                                                              alt="elise"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-14229"
-                                                                                title="elise" c="1" target="_blank"
-                                                                                mid="card_6800">elise</a></li>
-                                                                        <li><em>1516</em><img class="vm"
-                                                                                              src="/assets/img/bbs/avatar(1).php"
-                                                                                              width="16" height="16"
-                                                                                              alt="admin"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-878"
-                                                                                title="admin" c="1" target="_blank"
-                                                                                mid="card_6826">admin</a></li>
-                                                                        <li><em>1222</em><img class="vm"
-                                                                                              src="/assets/img/bbs/avatar(2).php"
-                                                                                              width="16" height="16"
-                                                                                              alt="Sheart"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-32942"
-                                                                                title="Sheart" c="1" target="_blank"
-                                                                                mid="card_3457">Sheart</a></li>
-                                                                        <li><em>790</em><img class="vm"
-                                                                                             src="/assets/img/bbs/avatar(3).php"
-                                                                                             width="16" height="16"
-                                                                                             alt="lemontree"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-41384"
-                                                                                title="lemontree" c="1" target="_blank"
-                                                                                mid="card_1611">lemontree</a></li>
-                                                                        <li><em>784</em><img class="vm"
-                                                                                             src="/assets/img/bbs/avatar(4).php"
-                                                                                             width="16" height="16"
-                                                                                             alt="zhipliu"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-32873"
-                                                                                title="zhipliu" c="1" target="_blank"
-                                                                                mid="card_6250">zhipliu</a></li>
-                                                                        <li><em>738</em><img class="vm"
-                                                                                             src="/assets/img/bbs/avatar(5).php"
-                                                                                             width="16" height="16"
-                                                                                             alt="crystalting"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-1381"
-                                                                                title="crystalting" c="1"
-                                                                                target="_blank" mid="card_3588">crystalting</a>
-                                                                        </li>
-                                                                        <li><em>699</em><img class="vm"
-                                                                                             src="/assets/img/bbs/avatar(6).php"
-                                                                                             width="16" height="16"
-                                                                                             alt="snowing"> <a
-                                                                                href="https://cssauw.org/forum/space-uid-48369"
-                                                                                title="snowing" c="1" target="_blank"
-                                                                                mid="card_1413">snowing</a></li>
+                                                                        <#list users as row>
+                                                                            <li><em>${row.id}</em><img class="vm"
+                                                                                                  src="${row.avatar}"
+                                                                                                  width="16" height="16"
+                                                                                                  alt="${row.username}"> <a
+                                                                                    href="javascript:void(0)"
+                                                                                    title="${row.username}" c="1" target="_blank"
+                                                                                    mid="card_6800">${row.username}</a></li>
+                                                                        </#list>
+
                                                                     </ol>
                                                                 </div>
                                                             </div>
@@ -227,7 +105,6 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <script type="text/javascript">initTab("tabxaWzYW", "mouseover");</script>
                                             </div>
                                         </div><!--[/diy]-->
                                     </div>
