@@ -116,9 +116,9 @@
                                     <input type="text" name="srchtxt" id="eskey" autocomplete="off">
                                     <button type="button" name="searchsubmit" id="esbtn" sc="1" value="true"></button>
                                 </form>
-                                <li class="a" id="mn_forum"><a href="${base}" hidefocus="true"
+                                <li class="a" id="mn_forum"><a href="${base}/" hidefocus="true"
                                                                title="BBS">论坛<span>BBS</span></a></li>
-                                <li id="mn_N05dc"><a href="${base}" hidefocus="true">CSSA主页</a></li>
+                                <li id="mn_N05dc"><a href="${base}/" hidefocus="true">CSSA主页</a></li>
                             </ul>
                         </div>
                     </div>

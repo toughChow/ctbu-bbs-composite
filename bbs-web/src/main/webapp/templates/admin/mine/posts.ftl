@@ -210,7 +210,7 @@
                 $('.' + e.name + 'b').modal('hide');
                 count = 1;
                 if (('close' + e.name + 'b') == "closeoperateGroupb") {
-                    window.location.href = "https://localhost:9090/admin/posts/type";
+                    window.location.href = "${base}/admin/posts/type";
                 }
             });
         })
