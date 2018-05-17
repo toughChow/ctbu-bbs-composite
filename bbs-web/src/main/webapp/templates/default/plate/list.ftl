@@ -61,7 +61,7 @@
                                                 <tbody id="separatorline">
                                                 <tr class="ts">
                                                     <td>&nbsp;</td>
-                                                    <th><a href="javascript:;" title="查看更新" class="forumrefresh">版块主题</a></th><td>作者</td><td>回复/查看</td><td>最后发表</td>
+                                                    <th><a href="javascript:;" title="查看更新" class="forumrefresh">版块主题</a></th><td>作者</td><td>查看</td><td>最后发表</td>
                                                 </tr>
                                                 </tbody>
                                                 <tbody id="normalthread_31820">
@@ -80,12 +80,11 @@
                                                         <td class="by">
                                                             <cite>
                                                                 <a href="javascript:void(0)" c="1" style="color: #660000;" mid="card_9344">${row.owner}</a></cite>
-                                                            <em><span><span title="">${row.createTime}</span></span></em>
+
                                                         </td>
-                                                        <td class="num"><a href="javascript:void(0)" class="xi2">0</a><em>10</em></td>
+                                                        <td class="num"><a href="javascript:void(0)" class="xi2">10</a></td>
                                                         <td class="by">
-                                                            <cite><a href="javascript:void(0)" c="1" mid="card_7535">${row.owner}</a></cite>
-                                                            <em><a href="forum.php?mod=redirect&amp;tid=31820&amp;goto=lastpost#lastpost"><span title="">${row.createTime}</span></a></em>
+                                                            <cite><a href="javascript:void(0)" c="1" mid="card_7535">${row.createTime}</a></cite>
                                                         </td>
                                                     </tr>
                                                 </#list>
