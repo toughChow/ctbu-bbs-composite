@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface RoleDao extends JpaRepository<RolePO, Long>, JpaSpecificationExecutor<RolePO> {
     Page<RolePO> findAllByOrderByIdDesc(Pageable pageable);
+
+    RolePO findById(Long roleId);
 }

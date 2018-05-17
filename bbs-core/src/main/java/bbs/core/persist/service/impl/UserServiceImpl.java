@@ -479,5 +479,32 @@ public class UserServiceImpl implements UserService {
         return BeanMapUtils.copyPassport(userPO);
     }
 
+    @Override
+    @Transactional
+    public void updateStatus(Long id, Integer status) {
+        UserPO userPO = userDao.findById(id);
+        if (userPO != null) {
+            userPO.setStatus(status);
+            userDao.save(userPO);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateRole(Long id, Long[] roleIds) {
+        List<RolePO> rolePOs = new ArrayList<>();
+        for (Long roleId : roleIds) {
+            RolePO rolePO = roleDao.findById(roleId);
+            rolePOs.add(rolePO);
+        }
+
+        UserPO userPO = userDao.findById(id);
+        if (userPO != null) {
+            userPO.setIsAdmin(rolePOs.stream().filter(f -> "管理员".equals(f.getName())).findAny().isPresent() ? 1 : 0);
+            userPO.setRoles(rolePOs);
+            userDao.save(userPO);
+        }
+    }
+
 
 }

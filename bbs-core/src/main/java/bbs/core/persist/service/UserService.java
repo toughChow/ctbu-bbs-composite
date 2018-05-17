@@ -65,4 +65,8 @@ public interface UserService {
     User findByPostId(Long id);
 
     AccountProfile updateAvatar(Long id, String path);
+
+    void updateStatus(Long id, Integer status);
+
+    void updateRole(Long id, Long[] ids);
 }

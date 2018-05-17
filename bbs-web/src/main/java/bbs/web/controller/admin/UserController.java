@@ -1,10 +1,12 @@
 package bbs.web.controller.admin;
 
 import bbs.base.data.Data;
+import bbs.base.lang.Consts;
 import bbs.core.data.AuthMenu;
 import bbs.core.data.Group;
 import bbs.core.data.User;
 import bbs.core.persist.service.AuthMenuService;
+import bbs.core.persist.service.RoleService;
 import bbs.core.persist.service.UserService;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.BeanUtils;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private AuthMenuService authMenuService;
@@ -260,5 +266,57 @@ public class UserController extends BaseController {
             return "1";
         } else
             return "0";
+    }
+
+    @RequestMapping("/close")
+    public @ResponseBody
+    Data close(Long id) {
+        userService.updateStatus(id, Consts.STATUS_LOCKED);
+        Data data = Data.success("操作成功", Data.NOOP);
+        return data;
+    }
+
+    @GetMapping(value = "/pwd")
+    public String pwsView(Long id, ModelMap model) {
+        model.put("view", userService.get(id));
+        return "/admin/users/pwd";
+    }
+
+    @PostMapping(value = "/changePwd")
+    @ResponseBody
+    public String pwd(Long id, String newPassword, ModelMap model) {
+        try {
+            model.put("page", userService.findUserPaging(wrapPageable(), null));
+            userService.updatePassword(id, newPassword);
+            Data data = Data.success("操作成功", Data.NOOP);
+            model.put("data", data);
+            return "/admin/users/list";
+        } catch (IllegalArgumentException e) {
+            Data data = Data.failure(-1001, "密码不能为空");
+            model.put("data", data);
+            return "/admin/users/pwd";
+        } catch (Exception e) {
+            Data data = Data.failure(-7005, "发生异常");
+            model.put("data", data);
+            return "/admin/users/list";
+        }
+    }
+
+    @GetMapping(value = "/update_role")
+    public String updateRole(Long id, ModelMap model) {
+        model.put("user", userService.get(id));
+        model.put("roles", roleService.getAll());
+        return "/admin/users/update_role";
+    }
+
+    @PostMapping(value = "/update_role")
+    public String update(long id, String roleIds) {
+        String[] roleStrIds = roleIds.split(",");
+        Long[] ids = new Long[roleStrIds.length];
+        for (int i = 0; i < ids.length; i++) {
+            ids[i] = Long.valueOf(roleStrIds[i]);
+        }
+        userService.updateRole(id, ids);
+        return "redirect:/admin/users/list";
     }
 }

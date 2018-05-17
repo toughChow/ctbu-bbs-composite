@@ -69,5 +69,15 @@ public class RoleServiceImpl implements RoleService {
         roleDao.delete(id);
     }
 
+    @Override
+    public List<Role> getAll() {
+        List<RolePO> list = roleDao.findAll();
+        List<Role> roles = new ArrayList<>();
+        list.forEach(po -> {
+            roles.add(BeanMapUtils.copy(po));
+        });
+        return roles;
+    }
+
 }
 
