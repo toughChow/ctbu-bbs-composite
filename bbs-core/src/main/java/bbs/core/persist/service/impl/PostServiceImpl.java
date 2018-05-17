@@ -128,6 +128,11 @@ public class PostServiceImpl implements PostService {
                     List<Predicate> predicates = new ArrayList<>();
                     List<Predicate> subPredicates = new ArrayList<>();
 
+                    if (StringUtils.isNotBlank(key)) {
+                        String tag = "%" + key + "%";
+                        subPredicates.add(cb.like(root.get("content"), tag));
+                    }
+
                     subPredicates.add(cb.equal(root.get("status"),status));
                     predicates.add(cb.and(subPredicates.toArray(new Predicate[]{})));
 
@@ -138,10 +143,6 @@ public class PostServiceImpl implements PostService {
                         });
                     }
 
-                    if (StringUtils.isNotBlank(key)) {
-                        String tag = "%" + key + "%";
-                        subPredicates.add(cb.like(root.get("content"), tag));
-                    }
                     predicates.add(cb.or(subPredicates.toArray(new Predicate[]{})));
                     return cb.and(predicates.toArray(new Predicate[]{}));
                 }, pageable
