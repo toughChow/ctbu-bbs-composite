@@ -381,10 +381,13 @@ public class PostServiceImpl implements PostService {
         BeanUtils.copyProperties(post,po);
         po.setCreateTime(new Timestamp(System.currentTimeMillis()));
         po.setIsVerified(0);
-        po.setStatus(0);
         po.setUserId(profile.getId());
         po.setTipOff(0);
         po.setUpvote(0);
+        if(profile.getRoleId() == 1) {
+            po.setStatus(1);
+        }
+        po.setStatus(0);
         postDao.save(po);
     }
 
