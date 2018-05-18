@@ -35,7 +35,7 @@
                         <#list page.content as row>
                         <tr>
                             <td class="text-center">${row.id}</td>
-                            <td id="usertest" data-id="${row.id}">${row.username}</td>
+                            <td>${row.username}</td>
                             <td>${row.nickname}</td>
                             <td>${row.mobile}</td>
                             <td>
@@ -102,10 +102,6 @@
     }
 
     $(function () {
-
-        $('#usertest').on('click',function(){
-            alert($(this).attr('data-id'));
-        })
         // 停用
         $('#dataGrid a[data-action="close"]').bind('click', function () {
             var that = $(this);

@@ -90,7 +90,7 @@ public class RegController extends BaseController{
     @ResponseBody
     public Integer valiUser(String username){
         User user = userService.findUserByName(username);
-        if(user != null)
+        if(user != null && user.getId() != 0)
             return 1; // user name exist
         return 0;
 
