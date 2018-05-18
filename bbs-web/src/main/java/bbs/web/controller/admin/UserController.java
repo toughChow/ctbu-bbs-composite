@@ -5,9 +5,11 @@ import bbs.base.lang.Consts;
 import bbs.core.data.AuthMenu;
 import bbs.core.data.Group;
 import bbs.core.data.User;
+import bbs.core.persist.entity.UserPO;
 import bbs.core.persist.service.AuthMenuService;
 import bbs.core.persist.service.RoleService;
 import bbs.core.persist.service.UserService;
+import bbs.core.persist.utils.BeanMapUtils;
 import bbs.web.controller.BaseController;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -318,5 +320,13 @@ public class UserController extends BaseController {
         }
         userService.updateRole(id, ids);
         return "redirect:/admin/users/list";
+    }
+
+    @RequestMapping("/open")
+    @ResponseBody
+    public Data open (Long id){
+        userService.updateStatus(id,Consts.USER_ENABLED);
+        Data data = Data.success("操作成功", Data.NOOP);
+        return data;
     }
 }
