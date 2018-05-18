@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${site_name} - 后台管理</title>
+    <title>${site_name} - 我的资源</title>
     <link rel="stylesheet" href="${base}/assets/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${base}/assets/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="${base}/assets/css/custom.css">

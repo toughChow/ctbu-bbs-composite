@@ -5,7 +5,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>帖子列表</h2>
+                <h2>我的评论</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -153,9 +153,7 @@
 
     //回复帖子
     $(".edit_post").on('click', function () {
-        var content = $(this).attr('data-tb-content');
         var postId = $(this).attr('data-id');
-        $('#edit_post').val(content);
         $('#post_id_reply').val(postId);
     });
 
@@ -209,8 +207,8 @@
 
     $(function () {
         $('.tb-content').on('click',function () {
+            var content = $(this).attr('data-tb-content');
             var valueFromTb = $(this).attr('data-tb-content');
-            // var valueFromTb = $(this).next().val();
             $('#modal-content').html(valueFromTb);
         })
     })

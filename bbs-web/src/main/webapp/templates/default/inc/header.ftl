@@ -80,7 +80,7 @@
                             <#--<li class="divider"></li>-->
 
                             <@shiro.hasPermission name="admin">
-                                <li><a href="${base}/admin">后台管理</a></li>
+                                <li><a href="${base}/admin">我的资源</a></li>
                             </@shiro.hasPermission>
 
                             <li><a href="${base}/logout">退出</a></li>
