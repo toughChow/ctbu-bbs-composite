@@ -74,7 +74,7 @@
                             <li>
                                 <a href="${base}/account/profile" class="ava">
                                     <@showAva profile.avatar "img-circle" />
-                                    <span>${profile.name}</span>
+                                    <span>${profile.username}</span>
                                 </a>
                             </li>
                             <#--<li class="divider"></li>-->
