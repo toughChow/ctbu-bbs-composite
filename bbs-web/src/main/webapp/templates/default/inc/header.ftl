@@ -99,7 +99,7 @@
                 <div class="eis_wp988">
                     <div class="eis_wp">
                         <div class="hdc cl">
-                            <h2><a href="${base}" title="重庆工商大学校园论坛"><img
+                            <h2><a href="${base}/" title="重庆工商大学校园论坛"><img
                                     src="/assets/img/bbs/ctbulogo.gif" alt="重庆工商大学校园论坛" border="0"></a></h2>
                         </div>
                     </div>
