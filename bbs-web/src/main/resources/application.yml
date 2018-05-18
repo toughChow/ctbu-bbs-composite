@@ -8,7 +8,7 @@ server:
 
 spring:
     profiles:
-        active: test
+        active: dev
 
 ---
 spring:
