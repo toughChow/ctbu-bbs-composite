@@ -255,7 +255,7 @@
                             '                                        <div>\n' +
                             '                                            <div class="avatar" ' +
                             '                                                <a href="javascript:void(0)" class="avtm" target="_blank"><img\n' +
-                            '                                                        style="width:150px;height:150px;" src="${base}${author.avatar};size=middle"></a>\n' +
+                            '                                                        style="width:150px;height:150px;" src=" ' + data[i].user.avatar + ';size=middle"></a>\n' +
                             '                                            </div>\n' +
                             '                                        </div>\n' +
                             '                                    </div>\n' +
